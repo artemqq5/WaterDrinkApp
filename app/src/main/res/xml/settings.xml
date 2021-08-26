@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.preference.PreferenceCategory
+        app:iconSpaceReserved="false"
+        android:title="Настройки">
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:title="Тёмная тема"
+            android:key="theme"
+            android:summary="Применить темную тему"
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:title="Рекомендации ВОЗ"
+            android:key="relativeWHO"
+            android:summary="Отображать рекомендации Всемирной организации здравоохранения"
+            app:iconSpaceReserved="false"/>
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>

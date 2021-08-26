@@ -1,0 +1,41 @@
+<resources>
+
+    <string name="app_name">WaterState</string>
+    <!--    StartActivity-->
+    <string name="button_next">Продолжить</string>
+    <string name="button_start">Начать</string>
+    <string name="button_login">Продолжить</string>
+
+
+    <string name="login">Добро пожаловать!</string>
+    <string name="registration">Регистрация</string>
+
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+
+    <string name="start_1">Как к вам обращатся?</string>
+    <string name="sub_start_1">Имя</string>
+
+    <string name="start_2">Ваш возраст</string>
+    <string name="subDay_start_2">День</string>
+    <string name="subMonth_start_2">Месяц</string>
+    <string name="subYear_start_2">Год</string>
+
+    <string name="start_3">Ваш вес</string>
+    <string name="password_repeat">Повторите пароль</string>
+
+    <string name="start_4">Настройка завершина</string>
+    <string name="sub_start_4">Скорее нажимай кнопку старт и начинай следить за водным балансом</string>
+    <string name="hint_4">Код</string>
+
+    <!--    MainActivity-->
+    <string name="bottom_nav_one">Статистика</string>
+    <string name="bottom_nav_two">Профиль</string>
+    <string name="bottom_nav_three">Настройки</string>
+
+    <!--    profile-->
+    <string name="achievements">Достижения</string>
+    <string name="forgetPassword">Забыл пароль</string>
+    <string name="login_2">Мы рады преведствовать вас в нашем приложении! Надеемся, вы найдете здесь много полезного для себя.</string>
+
+</resources>

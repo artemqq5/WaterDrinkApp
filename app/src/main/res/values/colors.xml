@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="one">#5bd1d7</color>
+    <color name="two">#348498</color>
+    <color name="two_60">#99348498</color>
+    <color name="three">#004d61</color>
+    <color name="three_60">#99004D61</color>
+    <color name="status_bar">#004151</color>
+    <color name="four">#ff502f</color>
+    <color name="teal_200">#0D7EAA</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="gray">#BF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">#F8F8F8</color>
+</resources>

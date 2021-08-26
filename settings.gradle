@@ -1,0 +1,2 @@
+rootProject.name = "WaterState"
+include ':app'
