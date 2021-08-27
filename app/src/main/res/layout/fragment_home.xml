@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="">
+    xmlns:tools="http://schemas.android.com/tools">
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                         android:drawableEnd="@drawable/ic_drop_water"
                         android:drawablePadding="7dp"
                         android:gravity="start"
-                        android:text="Ваша норма потребления воды"
+                        android:text="@string/box1_text"
                         android:textColor="@color/three"
                         android:textSize="16sp" />
 
@@ -55,7 +55,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:gravity="start"
-                        android:text="составляет 1.4 литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела"
+                        android:text="@string/box1_text_sub"
                         android:textColor="@color/three"
                         android:textSize="14sp" />
 
@@ -82,7 +82,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="10dp"
-                        android:text="Сегодня"
+                        android:text="@string/box2_text"
                         android:textSize="20sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -93,8 +93,9 @@
                         android:layout_alignParentEnd="true"
                         android:fontFamily="sans-serif-light"
                         android:layout_margin="16dp"
-                        android:text="0"
-                        android:textSize="25sp" />
+                        android:textSize="25sp"
+                        android:text=""
+                        tools:text="0"/>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_more_drunk"
@@ -106,7 +107,7 @@
                         android:textSize="13sp"
                         android:textColor="@color/three_60"
                         android:layout_marginBottom="0dp"
-                        android:text="Открыть список"/>
+                        android:text="@string/box2_button"/>
 
 <!--                    <androidx.recyclerview.widget.RecyclerView-->
 <!--                        android:id="@+id/recycler_achievements"-->
@@ -144,7 +145,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="5dp"
-                        android:text="Детальная статистика"
+                        android:text="@string/box3_text"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -155,7 +156,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="За прошлую неделю"
+                        android:text="@string/box3_text_sub"
                         android:textSize="14sp" />
 
                     <ImageView
@@ -192,7 +193,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="5dp"
                         android:gravity="start"
-                        android:text="Какую воду не следует пить"
+                        android:text="@string/box4_text"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -207,7 +208,7 @@
                         android:drawableEnd="@drawable/ic_who"
                         android:gravity="start"
                         android:layout_marginBottom="0dp"
-                        android:text="Безопасная и доступная \nвода — важный фактор здоровья людей, независимо от того, используется ли она для питья."
+                        android:text="@string/box4_text_sub"
                         android:textSize="14sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -219,7 +220,7 @@
                         android:layout_marginEnd="16dp"
                         android:textColor="@color/teal_200"
                         android:layout_marginBottom="0dp"
-                        android:text="Посмотреть больше"/>
+                        android:text="@string/box4_button"/>
 
                 </RelativeLayout>
 

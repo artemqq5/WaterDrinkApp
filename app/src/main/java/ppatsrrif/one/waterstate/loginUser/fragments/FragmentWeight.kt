@@ -34,10 +34,17 @@ class FragmentWeight : Fragment() {
             minValue = 30
         }
 
+        binding.weightChoiceSub.apply {
+            maxValue = 9
+            minValue = 0
+        }
+
         binding.buttonNextEnd.setOnClickListener {
 
+            val weight = binding.weightChoice.value + (binding.weightChoiceSub.value / 10.0f)
+
             //save user weight
-            sharedPreferencesHelper.setUserWeight(binding.weightChoice.value.toString())
+            sharedPreferencesHelper.setUserWeight(weight)
 
             //run method from LoginActivity
             (activity as LoginActivity).nextFragment(FragmentEnd.newInstance())

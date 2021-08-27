@@ -4,38 +4,46 @@
     <!--    StartActivity-->
     <string name="button_next">Продолжить</string>
     <string name="button_start">Начать</string>
-    <string name="button_login">Продолжить</string>
-
 
     <string name="login">Добро пожаловать!</string>
-    <string name="registration">Регистрация</string>
+    <string name="login_sub">Мы рады преведствовать вас в нашем приложении! Надеемся, вы найдете здесь много полезного для себя.</string>
 
-    <string name="email">Почта</string>
-    <string name="password">Пароль</string>
+    <string name="setName">Как к вам обращатся?</string>
+    <string name="setNameInput">Имя</string>
 
-    <string name="start_1">Как к вам обращатся?</string>
-    <string name="sub_start_1">Имя</string>
+    <string name="setWeight">Ваш вес</string>
+    <string name="setWeightInput">,</string>
 
-    <string name="start_2">Ваш возраст</string>
-    <string name="subDay_start_2">День</string>
-    <string name="subMonth_start_2">Месяц</string>
-    <string name="subYear_start_2">Год</string>
-
-    <string name="start_3">Ваш вес</string>
-    <string name="password_repeat">Повторите пароль</string>
-
-    <string name="start_4">Настройка завершина</string>
-    <string name="sub_start_4">Скорее нажимай кнопку старт и начинай следить за водным балансом</string>
-    <string name="hint_4">Код</string>
+    <string name="end">Настройка завершина</string>
+    <string name="end_sub">Скорее нажимай кнопку старт и начинай следить за водным балансом</string>
 
     <!--    MainActivity-->
-    <string name="bottom_nav_one">Статистика</string>
-    <string name="bottom_nav_two">Профиль</string>
-    <string name="bottom_nav_three">Настройки</string>
 
-    <!--    profile-->
-    <string name="achievements">Достижения</string>
-    <string name="forgetPassword">Забыл пароль</string>
-    <string name="login_2">Мы рады преведствовать вас в нашем приложении! Надеемся, вы найдете здесь много полезного для себя.</string>
+<!--    Navigation-->
+    <string name="bottom_nav_home">Главная</string>
+    <string name="bottom_nav_profile">Профиль</string>
+    <string name="bottom_nav_settings">Настройки</string>
+
+
+<!--    Home Page-->
+    <string name="box1_text">Ваша норма потребления воды</string>
+    <string name="box1_text_sub">составляет 1.4 литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела</string>
+
+    <string name="box2_text">Сегодня</string>
+    <string name="box2_button">Открыть список</string>
+
+    <string name="box3_text">Детальная статистика</string>
+    <string name="box3_text_sub">За прошлую неделю</string>
+
+    <string name="box4_text">Какую воду не следует пить</string>
+    <string name="box4_text_sub">Безопасная и доступная \nвода — важный фактор здоровья людей,
+        независимо от того, используется ли она для питья</string>
+    <string name="box4_button">Посмотреть больше</string>
+
+
+<!--    Profile Page-->
+    <string name="buttonEdit">Редактировать</string>
+    <string name="buttonReset">Сбросить профиль</string>
+
 
 </resources>
