@@ -4,22 +4,23 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import ppatsrrif.one.waterstate.mainPart.activity.MainActivity
 import ppatsrrif.one.waterstate.R
-import ppatsrrif.one.waterstate.SplashScreen
+import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.ActivityLoginBinding
-import ppatsrrif.one.waterstate.loginUser.fragments.FragmentEnd
+import ppatsrrif.one.waterstate.mainPart.activity.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // initializing sharedPreferenceHelper
+        sharedPreferencesHelper = SharedPreferencesHelper(this)
 
     }
 
@@ -32,12 +33,8 @@ class LoginActivity : AppCompatActivity() {
 
     // launch start MainActivity
     fun startMainAct() {
-       SplashScreen().setStateLoading()
+       sharedPreferencesHelper.setStartMode(1)
        startActivity(Intent(this, MainActivity::class.java))
     }
 
-    companion object {
-        const val PREFERENCE_NAME_USER = "name_user"
-        const val PREFERENCE_WEIGHT_USER = "weight_user"
-    }
 }

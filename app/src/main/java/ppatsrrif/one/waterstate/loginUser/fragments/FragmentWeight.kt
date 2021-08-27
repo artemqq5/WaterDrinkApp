@@ -1,28 +1,26 @@
 package ppatsrrif.one.waterstate.loginUser.fragments
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.FragmentWeightBinding
 import ppatsrrif.one.waterstate.loginUser.activity.LoginActivity
 
 class FragmentWeight : Fragment() {
 
-    private lateinit var preferenceWeight: SharedPreferences
     private lateinit var binding: FragmentWeightBinding
+    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        preferenceWeight = requireContext().getSharedPreferences(LoginActivity.PREFERENCE_WEIGHT_USER,
-            AppCompatActivity.MODE_PRIVATE
-        )
+        // initializing sharedPreferenceHelper
+        sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
         binding = FragmentWeightBinding.inflate(inflater)
         return binding.root
@@ -39,8 +37,7 @@ class FragmentWeight : Fragment() {
         binding.buttonNextEnd.setOnClickListener {
 
             //save user weight
-            preferenceWeight.edit().putInt(LoginActivity.PREFERENCE_WEIGHT_USER,
-                binding.weightChoice.value).apply()
+            sharedPreferencesHelper.setUserWeight(binding.weightChoice.value.toString())
 
             //run method from LoginActivity
             (activity as LoginActivity).nextFragment(FragmentEnd.newInstance())

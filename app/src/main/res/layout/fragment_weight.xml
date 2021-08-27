@@ -26,7 +26,6 @@
                 android:id="@+id/title"
                 style="@style/Text.SizeBig"
                 android:layout_gravity="center_horizontal"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:text="@string/start_3"
                 app:layout_constraintEnd_toEndOf="parent"

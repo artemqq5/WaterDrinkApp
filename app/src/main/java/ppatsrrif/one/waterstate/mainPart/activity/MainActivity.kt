@@ -1,19 +1,17 @@
 package ppatsrrif.one.waterstate.mainPart.activity
 
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.ActivityMainBinding
+import ppatsrrif.one.waterstate.mainPart.fragments.FragmentHome
 import ppatsrrif.one.waterstate.mainPart.fragments.FragmentProfile
 import ppatsrrif.one.waterstate.mainPart.fragments.FragmentSettings
-import ppatsrrif.one.waterstate.mainPart.fragments.FragmentHome
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var sharedPreferencesName: SharedPreferences
-    private lateinit var sharedPreferencesWeight: SharedPreferences
+
 
     private lateinit var binding: ActivityMainBinding
 

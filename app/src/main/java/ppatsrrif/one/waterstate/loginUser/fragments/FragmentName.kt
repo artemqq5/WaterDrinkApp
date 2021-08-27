@@ -1,30 +1,30 @@
 package ppatsrrif.one.waterstate.loginUser.fragments
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.FragmentNameBinding
 import ppatsrrif.one.waterstate.loginUser.activity.LoginActivity
 
 class FragmentName : Fragment() {
 
-    private lateinit var preferenceName: SharedPreferences
+
     private lateinit var binding: FragmentNameBinding
+    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        preferenceName = requireContext().getSharedPreferences(LoginActivity.PREFERENCE_NAME_USER,
-            AppCompatActivity.MODE_PRIVATE
-        )
+        // initializing sharedPreferenceHelper
+        sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
+
 
         binding = FragmentNameBinding.inflate(inflater)
         return binding.root
@@ -43,8 +43,7 @@ class FragmentName : Fragment() {
             if(name.isNotEmpty()) {
 
                 //save user name
-                preferenceName.edit().putString(LoginActivity.PREFERENCE_NAME_USER,
-                name).apply()
+                sharedPreferencesHelper.setUserName(name)
 
                 //run method from LoginActivity
                 (activity as LoginActivity).nextFragment(FragmentWeight.newInstance())
