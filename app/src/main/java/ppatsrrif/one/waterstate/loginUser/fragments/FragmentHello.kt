@@ -16,7 +16,7 @@ class FragmentHello : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentHelloBinding.inflate(inflater)
 

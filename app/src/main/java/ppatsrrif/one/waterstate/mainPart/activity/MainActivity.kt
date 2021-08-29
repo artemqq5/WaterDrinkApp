@@ -12,7 +12,6 @@ import ppatsrrif.one.waterstate.mainPart.fragments.FragmentSettings
 class MainActivity : AppCompatActivity() {
 
 
-
     private lateinit var binding: ActivityMainBinding
 
 
@@ -32,7 +31,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
 
     }
 

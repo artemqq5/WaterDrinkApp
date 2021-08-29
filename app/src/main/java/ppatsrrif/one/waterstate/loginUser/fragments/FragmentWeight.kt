@@ -17,7 +17,7 @@ class FragmentWeight : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // initializing sharedPreferenceHelper
         sharedPreferencesHelper = SharedPreferencesHelper(requireContext())

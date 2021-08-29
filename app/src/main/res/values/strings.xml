@@ -12,7 +12,8 @@
     <string name="setNameInput">Имя</string>
 
     <string name="setWeight">Ваш вес</string>
-    <string name="setWeightInput">,</string>
+    <string name="setWeightInput">Вес</string>
+    <string name="setWeightSub">,</string>
 
     <string name="end">Настройка завершина</string>
     <string name="end_sub">Скорее нажимай кнопку старт и начинай следить за водным балансом</string>
@@ -27,7 +28,6 @@
 
 <!--    Home Page-->
     <string name="box1_text">Ваша норма потребления воды</string>
-    <string name="box1_text_sub">составляет 1.4 литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела</string>
 
     <string name="box2_text">Сегодня</string>
     <string name="box2_button">Открыть список</string>
@@ -44,6 +44,9 @@
 <!--    Profile Page-->
     <string name="buttonEdit">Редактировать</string>
     <string name="buttonReset">Сбросить профиль</string>
+
+    <!--    EditUser Dialog-->
+        <string name="weight">Вес</string>
 
 
 </resources>

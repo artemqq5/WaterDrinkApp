@@ -35,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
     fun startMainAct() {
        sharedPreferencesHelper.setStartMode(1)
        startActivity(Intent(this, MainActivity::class.java))
+
+       finish()
     }
 
 }

@@ -30,7 +30,7 @@
                 android:padding="16dp">
 
                 <!-- Title, secondary and supporting text -->
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/nameText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                     tools:text="Artem"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/weightText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,6 +57,7 @@
                 android:layout_margin="8dp">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editUserProfile"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

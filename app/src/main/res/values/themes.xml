@@ -23,8 +23,6 @@
 
 
 <!--    Text start-->
-
-
     <style name="Text" parent="Widget.MaterialComponents.TextView">
         <item name="android:gravity">center</item>
         <item name="android:layout_marginStart">20dp</item>
@@ -34,7 +32,6 @@
         <item name="android:textColor">@color/gray</item>
         <item name="android:textSize">15sp</item>
     </style>
-
 
     <style name="Text.SizeBig">
         <item name="android:layout_marginTop">25dp</item>
@@ -46,22 +43,12 @@
         <item name="android:layout_marginStart">15dp</item>
         <item name="android:layout_marginEnd">15dp</item>
     </style>
-
-
 <!--    Text end-->
 
 
 
 
-
-
-
-
-
 <!--    Button start-->
-
-
-
     <style name="Button">
         <item name="android:gravity">center</item>
         <item name="android:layout_marginStart">20dp</item>
@@ -123,23 +110,11 @@
         <item name="android:layout_marginTop">100dp</item>
         <item name="android:layout_marginBottom">30dp</item>
     </style>
-
-
-
 <!--    Button end-->
 
 
 
-
-
-
-
-
-
 <!--    Input start-->
-
-
-
     <style name="InputMaterial" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -184,17 +159,17 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
-
-
 <!--    Input end-->
 
 
 
+<!--Other components-->
 
-
-
-
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider</item>
+    </style>
 
 
     <style name="ActionButton" parent="Widget.MaterialComponents.FloatingActionButton">

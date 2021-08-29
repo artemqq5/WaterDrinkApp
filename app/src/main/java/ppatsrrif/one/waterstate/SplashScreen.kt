@@ -30,6 +30,7 @@ class SplashScreen : AppCompatActivity() {
             else -> startActivity(Intent(this, LoginActivity::class.java))
         }
 
+        finish()
     }
 
 }

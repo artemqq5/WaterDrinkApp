@@ -13,14 +13,13 @@ import ppatsrrif.one.waterstate.loginUser.activity.LoginActivity
 
 class FragmentName : Fragment() {
 
-
     private lateinit var binding: FragmentNameBinding
     private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // initializing sharedPreferenceHelper
         sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
