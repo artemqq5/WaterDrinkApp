@@ -10,9 +10,7 @@ class SplashScreen : AppCompatActivity() {
 
     // for checking condition
     private var stateLoading = 0
-
     private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +27,5 @@ class SplashScreen : AppCompatActivity() {
             1 -> startActivity(Intent(this, MainActivity::class.java))
             else -> startActivity(Intent(this, LoginActivity::class.java))
         }
-
-        finish()
     }
-
 }

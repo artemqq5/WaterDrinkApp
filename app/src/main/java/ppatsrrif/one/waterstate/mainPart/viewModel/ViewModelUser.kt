@@ -30,8 +30,7 @@ class ViewModelUser(application: Application) : AndroidViewModel(application),
     }
 
 
-
-
+    // set data from dialogUserEdit to LiveData
     override fun onSharedPreferenceChanged(preferences: SharedPreferences?, key: String?) {
         when(key) {
             SharedPreferencesHelper.KEY_NAME_USER ->
@@ -48,8 +47,5 @@ class ViewModelUser(application: Application) : AndroidViewModel(application),
 
         super.onCleared()
     }
-
-
-
 
 }

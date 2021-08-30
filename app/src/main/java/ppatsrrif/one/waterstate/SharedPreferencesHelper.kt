@@ -21,12 +21,8 @@ class SharedPreferencesHelper(context: Context) {
     fun getUserWeight(): Float = preferenceUser.getFloat(KEY_WEIGHT_USER, 30.0f)
     fun setUserWeight(weight: Float) = preferenceUser.edit().putFloat(KEY_WEIGHT_USER, weight).apply()
 
-    // Start Mode
     fun getStartMode(): Int = preferenceStart.getInt(KEY_START, 0)
     fun setStartMode(type: Int) = preferenceStart.edit().putInt(KEY_START, type).apply()
-
-
-
 
 
    companion object {
@@ -35,7 +31,7 @@ class SharedPreferencesHelper(context: Context) {
         const val PREFERENCE_USER = "user_preferences"
        // key
         const val KEY_NAME_USER = "name_user"
-        const val KEY_WEIGHT_USER = "name_weight"
+        const val KEY_WEIGHT_USER = "weight_user"
 
        // label
         const val PREFERENCE_START_MODE = "checkToPass"

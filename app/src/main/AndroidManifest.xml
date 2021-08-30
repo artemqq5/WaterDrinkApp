@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WaterState">
         <activity android:name=".mainPart.activity.MainActivity"></activity>
-        <activity android:name=".loginUser.activity.LoginActivity"></activity>
-        <activity android:name=".SplashScreen">
+        <activity android:name=".loginUser.activity.LoginActivity" android:noHistory="true"></activity>
+        <activity android:name=".SplashScreen" android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

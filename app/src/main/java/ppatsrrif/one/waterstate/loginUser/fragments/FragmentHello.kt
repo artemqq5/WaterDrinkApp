@@ -25,7 +25,6 @@ class FragmentHello : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         binding.buttonLogIn.setOnClickListener {
 
             //run method from LoginActivity

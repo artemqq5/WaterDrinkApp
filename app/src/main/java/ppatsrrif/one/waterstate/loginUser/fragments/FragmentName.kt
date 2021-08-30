@@ -21,11 +21,11 @@ class FragmentName : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        binding = FragmentNameBinding.inflate(inflater)
+
         // initializing sharedPreferenceHelper
         sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
-
-        binding = FragmentNameBinding.inflate(inflater)
         return binding.root
     }
 
@@ -37,29 +37,24 @@ class FragmentName : Fragment() {
         binding.buttonNextWeight.setOnClickListener {
 
             val name = binding.textFieldName.editText?.text.toString()
-
             // check for validity
-            if(name.isNotEmpty()) {
 
+            if(name.isNotEmpty()) {
                 //save user name
                 sharedPreferencesHelper.setUserName(name)
-
                 //run method from LoginActivity
                 (activity as LoginActivity).nextFragment(FragmentWeight.newInstance())
 
             } else {
                 binding.textFieldName.error = "Пустое поле"
             }
-
-
-
         }
+
     }
 
     companion object {
         fun newInstance() = FragmentName()
     }
-
 
     //listener for editText
     private val textListener = object: TextWatcher {

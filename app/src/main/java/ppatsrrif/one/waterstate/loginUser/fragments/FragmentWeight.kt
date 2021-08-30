@@ -33,12 +33,12 @@ class FragmentWeight : Fragment() {
             maxValue = 150
             minValue = 30
         }
-
         binding.weightChoiceSub.apply {
             maxValue = 9
             minValue = 0
         }
 
+        // next button
         binding.buttonNextEnd.setOnClickListener {
 
             val weight = binding.weightChoice.value + (binding.weightChoiceSub.value / 10.0f)

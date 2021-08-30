@@ -11,9 +11,8 @@ import ppatsrrif.one.waterstate.mainPart.fragments.FragmentSettings
 
 class MainActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityMainBinding
-
+    private var timeBackPressed: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +40,14 @@ class MainActivity : AppCompatActivity() {
         ).commit()
 
         return true
+    }
+
+    override fun onBackPressed() {
+
+        if(timeBackPressed + 1000 > System.currentTimeMillis()) {
+            finishAffinity()
+        } else timeBackPressed = System.currentTimeMillis()
+
     }
 
 

@@ -13,6 +13,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+    private var timeBackPressed: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
 
         // initializing sharedPreferenceHelper
         sharedPreferencesHelper = SharedPreferencesHelper(this)
-
     }
 
     // launch some fragment
@@ -35,8 +35,11 @@ class LoginActivity : AppCompatActivity() {
     fun startMainAct() {
        sharedPreferencesHelper.setStartMode(1)
        startActivity(Intent(this, MainActivity::class.java))
-
-       finish()
     }
 
+    override fun onBackPressed() {
+        if(timeBackPressed + 1000 > System.currentTimeMillis()) {
+            finishAffinity()
+        } else timeBackPressed = System.currentTimeMillis()
+    }
 }

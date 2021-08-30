@@ -10,17 +10,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.DialogEditUserBinding
-import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 
 class DialogEditUser : DialogFragment() {
 
     private lateinit var bindingDialog: DialogEditUserBinding
     private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
-    private val liveDataUser: ViewModelUser by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,12 +33,13 @@ class DialogEditUser : DialogFragment() {
         return bindingDialog.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // set params for dialog
         dialog?.setCancelable(false)
         dialog?.window?.run {
-            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setBackgroundDrawable(ColorDrawable(Color.WHITE))
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
 
@@ -53,10 +51,11 @@ class DialogEditUser : DialogFragment() {
         // change name text
         bindingDialog.nameEditInput.editText?.addTextChangedListener(textListener)
 
-        // close dialog
+        // button close dialog
         bindingDialog.closeDialogButton.setOnClickListener{
-            dialog?.cancel()
+            dismiss()
         }
+
 
         // save data in dialog
         bindingDialog.saveEditsButton.setOnClickListener {
@@ -64,21 +63,22 @@ class DialogEditUser : DialogFragment() {
             val userWeight = bindingDialog.weightEditSlider.value
             val userName = bindingDialog.nameEditInput.editText?.text.toString()
 
-            sharedPreferencesHelper.setUserWeight(userWeight)
-            sharedPreferencesHelper.setUserName(userName)
+            // check for validity
+            if(userName.isNotEmpty()) {
 
+            // set data to SharedPreferences
+                sharedPreferencesHelper.setUserWeight(userWeight)
+                sharedPreferencesHelper.setUserName(userName)
 
-            dialog?.cancel()
+                // close dialog
+                dismiss()
+
+            } else {
+                bindingDialog.nameEditInput.error = "Пустое поле"
+            }
+
         }
 
-        // set start weight and profile
-        liveDataUser.liveDataName.observe(requireActivity()) {
-            bindingDialog.nameEditInput.editText?.setText(it)
-        }
-
-        liveDataUser.liveDataName.observe(requireActivity()) {
-            bindingDialog.finalWeight.text = "${getString(R.string.weight)} $it"
-        }
 
     }
 
@@ -102,5 +102,13 @@ class DialogEditUser : DialogFragment() {
     }
 
 
+    override fun onStart() {
+        super.onStart()
 
+        // get start weight and name from (SharedPreferences -> LiveData -> this)
+        bindingDialog.nameEditInput.editText?.setText(sharedPreferencesHelper.getUserName())
+
+        bindingDialog.weightEditSlider.value = sharedPreferencesHelper.getUserWeight()
+        bindingDialog.finalWeight.text = "${getString(R.string.weight)} ${sharedPreferencesHelper.getUserWeight()}"
+    }
 }

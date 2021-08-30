@@ -17,7 +17,6 @@ class FragmentProfile : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     lateinit var sharedPreferencesHelper: SharedPreferencesHelper
-    private lateinit var dialogEditUser: DialogEditUser
     private val liveDataUser: ViewModelUser by activityViewModels()
 
     override fun onCreateView(
@@ -30,10 +29,6 @@ class FragmentProfile : Fragment() {
         // initializing sharedPreferenceHelper
         sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
-        //initializing dialog UserEdit
-        dialogEditUser = DialogEditUser()
-
-
         return binding.root
     }
 
@@ -45,12 +40,10 @@ class FragmentProfile : Fragment() {
            startActivity(Intent(requireContext(), SplashScreen::class.java))
         }
 
-
-        // show listener to show dialogEditUser
+        // show dialogEditUser
         binding.editUserProfile.setOnClickListener {
-            dialogEditUser.show(childFragmentManager, "DialogUserEdit")
+            DialogEditUser().show(parentFragmentManager, "DialogUserEdit")
         }
-
 
         // set data to profile info
         liveDataUser.liveDataName.observe(requireActivity()) {
@@ -60,9 +53,6 @@ class FragmentProfile : Fragment() {
         liveDataUser.liveDataWeight.observe(requireActivity()) {
             binding.weightText.text = "$it кг"
         }
-
-
-
 
     }
 
