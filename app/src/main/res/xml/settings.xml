@@ -8,14 +8,14 @@
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:title="Тёмная тема"
-            android:key="theme"
+            android:key="set_theme_pref"
             android:summary="Применить темную тему"
             app:iconSpaceReserved="false"/>
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:title="Рекомендации ВОЗ"
-            android:key="relativeWHO"
+            android:key="recommendation_who"
             android:summary="Отображать рекомендации Всемирной организации здравоохранения"
             app:iconSpaceReserved="false"/>
     </androidx.preference.PreferenceCategory>

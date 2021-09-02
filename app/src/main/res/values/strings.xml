@@ -48,5 +48,8 @@
     <!--    EditUser Dialog-->
         <string name="weight">Вес</string>
 
+    <!--    ResetUser Dialog-->
+        <string name="resetProfileMessage">После сброса профиль невозможно будет восстановить!</string>
+        <string name="resetProfileTitle">Сбросить профиль?</string>
 
 </resources>

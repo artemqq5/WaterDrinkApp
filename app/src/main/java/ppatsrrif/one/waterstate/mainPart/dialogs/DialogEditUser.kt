@@ -39,7 +39,7 @@ class DialogEditUser : DialogFragment() {
         // set params for dialog
         dialog?.setCancelable(false)
         dialog?.window?.run {
-            setBackgroundDrawable(ColorDrawable(Color.WHITE))
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
 
@@ -78,7 +78,6 @@ class DialogEditUser : DialogFragment() {
             }
 
         }
-
 
     }
 

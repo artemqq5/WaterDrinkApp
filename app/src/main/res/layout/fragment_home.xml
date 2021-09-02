@@ -171,6 +171,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/blockRecommendation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -198,6 +199,7 @@
                         android:textSize="16sp" />
 
                     <ImageView
+                        android:id="@+id/closeRecommendation"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         android:layout_margin="10dp"
