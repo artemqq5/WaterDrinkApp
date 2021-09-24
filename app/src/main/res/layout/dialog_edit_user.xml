@@ -10,6 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@color/three"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,29 +19,21 @@
             android:id="@+id/closeDialogButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_margin="15dp"
-            android:src="@drawable/ic_close" />
+            android:src="@drawable/ic_close_dialog" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_margin="15dp"
             android:text="Редактировать"
-            android:textColor="#CB1C1C1C"
+            android:textColor="@color/white"
             android:textSize="22sp" />
 
     </LinearLayout>
 
-
-
-    <View
-        android:id="@+id/view"
-        style="@style/Divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
-
-    </View>
 
     <ScrollView
         android:id="@+id/scroll23"
@@ -50,7 +43,7 @@
         app:layout_constraintBottom_toTopOf="@+id/saveEditsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="@string/weight"/>
+                android:text="@string/weight" />
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/weightEditSlider"
@@ -87,9 +80,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
+                android:stepSize="0.1"
                 android:valueFrom="30.0"
-                android:valueTo="150.0"
-                android:stepSize="0.1" />
+                android:valueTo="150.0" />
 
         </LinearLayout>
 

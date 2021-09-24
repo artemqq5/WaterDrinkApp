@@ -3,6 +3,7 @@
     package="ppatsrrif.one.waterstate">
 
     <application
+        android:name=".mainPart.roomDataBase.runApp.ApplicationStartActions"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

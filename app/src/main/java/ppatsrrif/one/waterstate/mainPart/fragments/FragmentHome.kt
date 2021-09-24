@@ -7,14 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
+import ppatsrrif.one.waterstate.databinding.DialogCreateBinding
 import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
+import ppatsrrif.one.waterstate.mainPart.dialogs.DialogAddWater
+import ppatsrrif.one.waterstate.mainPart.dialogs.DialogListItemWater
+import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorage
+import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
-class FragmentHome : Fragment() {
+class FragmentHome : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
@@ -31,6 +41,7 @@ class FragmentHome : Fragment() {
         // initializing SharedPreferencesHelper
         sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
+        binding.floatingActionButton.setOnClickListener(this)
 
         return binding.root
     }
@@ -66,6 +77,18 @@ class FragmentHome : Fragment() {
             startActivity(uriWho)
         }
 
+        // open list water item
+        binding.buttonMoreDrunk.setOnClickListener {
+
+            val dialog = DialogListItemWater()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            transaction
+                .add(android.R.id.content, dialog)
+                .addToBackStack(null)
+                .commit()
+        }
+
 
     }
 
@@ -80,5 +103,13 @@ class FragmentHome : Fragment() {
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
         return df.format((kg * 35.0) / 1000.0)
+    }
+
+    override fun onClick(p0: View?) {
+        when(p0?.id) {
+            R.id.floating_action_button -> {
+               DialogAddWater().show(parentFragmentManager, "DialogAddWater")
+            }
+        }
     }
 }
