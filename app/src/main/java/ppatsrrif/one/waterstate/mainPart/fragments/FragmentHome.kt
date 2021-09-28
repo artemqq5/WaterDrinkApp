@@ -29,6 +29,9 @@ class FragmentHome : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
     private val liveDataUser: ViewModelUser by activityViewModels()
+    private val viewModelItem: ViewModelItem by lazy {
+        ViewModelProvider(requireActivity())[ViewModelItem::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +64,22 @@ class FragmentHome : Fragment(), View.OnClickListener {
                     " литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела"
         }
 
+        // set all volume drunk water for a day
+        viewModelItem.listWaterItem.observe(viewLifecycleOwner, {
+            var sum = 0.0
+
+            for(item in it){
+                sum += item.volumeWater
+            }
+
+            // reg for volume
+            val df = DecimalFormat("#.###")
+            df.roundingMode = RoundingMode.CEILING
+            df.format(sum)
+
+            binding.countWater.text = (df.format(sum).toDouble()).toString()
+        })
+
         // close WHO Recommendation
         binding.closeRecommendation.setOnClickListener {
             binding.blockRecommendation.visibility = View.INVISIBLE
@@ -88,6 +107,8 @@ class FragmentHome : Fragment(), View.OnClickListener {
                 .addToBackStack(null)
                 .commit()
         }
+
+
 
 
     }

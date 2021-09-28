@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 
 @Database (
     entities = [TableItemStorage::class],
-    version = 1,
+    version = 1
 )
 @TypeConverters (ConvertorDataType::class)
 abstract class DataBase : RoomDatabase() {

@@ -50,8 +50,13 @@ class DialogListItemWater : DialogFragment() {
         viewModelItem = ViewModelProvider(requireActivity())[ViewModelItem::class.java]
 
 
+
         // create adapter
-        adapterRecycler = AdapterListItemWater(viewModelItem)
+        adapterRecycler = AdapterListItemWater {
+            viewModelItem.deleteItem(it)
+        }
+
+
 
         // set observer to RecyclerView
         viewModelItem.listWaterItem.observe(viewLifecycleOwner, Observer { list ->
