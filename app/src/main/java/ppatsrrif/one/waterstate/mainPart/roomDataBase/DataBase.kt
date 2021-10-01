@@ -1,7 +1,5 @@
 package ppatsrrif.one.waterstate.mainPart.roomDataBase
 
-import android.annotation.SuppressLint
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters

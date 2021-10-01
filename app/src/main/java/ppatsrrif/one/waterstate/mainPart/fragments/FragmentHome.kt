@@ -12,17 +12,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
-import ppatsrrif.one.waterstate.databinding.DialogCreateBinding
 import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
+import ppatsrrif.one.waterstate.mainPart.activity.MoreStats
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogAddWater
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogListItemWater
-import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorage
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class FragmentHome : Fragment(), View.OnClickListener {
 
@@ -45,6 +42,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
         sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
         binding.floatingActionButton.setOnClickListener(this)
+        binding.moreStatistic.setOnClickListener(this)
 
         return binding.root
     }
@@ -59,7 +57,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
             if(statusVisibilityRecommendation) View.VISIBLE else View.INVISIBLE
 
         // set water norm
-        liveDataUser.liveDataWeight.observe(requireActivity()) {
+        liveDataUser.liveDataWeight.observe(viewLifecycleOwner) {
             binding.waterNorma.text = "составляет ${normalWater(it)}" +
                     " литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела"
         }
@@ -73,7 +71,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
             }
 
             // reg for volume
-            val df = DecimalFormat("#.###")
+            val df = DecimalFormat("#.##")
             df.roundingMode = RoundingMode.CEILING
             df.format(sum)
 
@@ -109,8 +107,6 @@ class FragmentHome : Fragment(), View.OnClickListener {
         }
 
 
-
-
     }
 
     companion object {
@@ -130,6 +126,13 @@ class FragmentHome : Fragment(), View.OnClickListener {
         when(p0?.id) {
             R.id.floating_action_button -> {
                DialogAddWater().show(parentFragmentManager, "DialogAddWater")
+            }
+
+            R.id.more_statistic -> {
+                startActivity(
+                    Intent(requireContext(), MoreStats::class.java)
+                )
+
             }
         }
     }

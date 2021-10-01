@@ -21,50 +21,58 @@
             android:layout_height="0dp"
             android:focusableInTouchMode="true">
 
-            <RelativeLayout
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/relativeLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_slide"
-                android:elevation="3dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text2"
-                    style="@style/Text"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="3dp"
-                    android:drawableEnd="@drawable/ic_drop_water"
-                    android:drawablePadding="7dp"
-                    android:gravity="start"
-                    android:text="@string/box1_text"
-                    android:textColor="@color/three"
-                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/waterNorma"
-                    style="@style/Text"
-                    android:layout_below="@id/text2"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:gravity="start"
-                    android:text=""
-                    android:textColor="@color/three"
-                    android:textSize="14sp"
-                    tools:text="составляет 1.4 литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела" />
 
-            </RelativeLayout>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text2"
+                        style="@style/Text"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="3dp"
+                        android:drawableEnd="@drawable/ic_drop_water"
+                        android:drawablePadding="7dp"
+                        android:gravity="start"
+                        android:text="@string/box1_text"
+                        android:textColor="@color/three"
+                        android:textSize="16sp" />
 
-            <RelativeLayout
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/waterNorma"
+                        style="@style/Text"
+                        android:layout_below="@id/text2"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="start"
+                        android:text=""
+                        android:textColor="@color/three"
+                        android:textSize="14sp"
+                        tools:text="составляет 1.4 литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела" />
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/relativeLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,48 +80,54 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_slide"
-                android:elevation="3dp"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text1"
-                    style="@style/Text"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/box2_text"
-                    android:textColor="@color/three"
-                    android:textSize="20sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/count_water"
-                    style="@style/Text"
-                    android:layout_alignBaseline="@+id/text1"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="16dp"
-                    android:text=""
-                    android:textColor="@color/three"
-                    android:textSize="25sp"
-                    tools:text="0" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text1"
+                        style="@style/Text"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/box2_text"
+                        android:textColor="@color/three"
+                        android:textSize="20sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_more_drunk"
-                    style="@style/ButtonText"
-                    android:layout_below="@id/text1"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="0dp"
-                    android:text="@string/box2_button"
-                    android:textSize="12sp" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/count_water"
+                        style="@style/Text"
+                        android:layout_alignBaseline="@+id/text1"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="16dp"
+                        android:text=""
+                        android:textColor="@color/three"
+                        android:textSize="20sp"
+                        tools:text="0" />
 
-            </RelativeLayout>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_more_drunk"
+                        style="@style/ButtonText"
+                        android:layout_below="@id/text1"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="0dp"
+                        android:text="@string/box2_button"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
 
 
-            <RelativeLayout
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/more_statistic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,45 +136,50 @@
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_ripple"
                 android:clickable="true"
-                android:elevation="3dp"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="10dp"
                 android:focusable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout4">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text7"
-                    style="@style/Text"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/box3_text"
-                    android:textColor="@color/three"
-                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/Text"
-                    android:layout_below="@id/text7"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/box3_text_sub"
-                    android:textColor="@color/three_60"
-                    android:textSize="14sp" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text7"
+                        style="@style/Text"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/box3_text"
+                        android:textColor="@color/three"
+                        android:textSize="16sp" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="16dp"
-                    android:src="@drawable/ic_arrow_right" />
-            </RelativeLayout>
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/Text"
+                        android:layout_below="@id/text7"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/box3_text_sub"
+                        android:textColor="@color/three_60"
+                        android:textSize="14sp" />
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/ic_arrow_right" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <RelativeLayout
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/blockRecommendation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -169,60 +188,66 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/bg_slide"
-                android:elevation="3dp"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/more_statistic">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text8"
-                    style="@style/Text"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="start"
-                    android:text="@string/box4_text"
-                    android:textColor="@color/three"
-                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/closeRecommendation"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="6dp"
-                    android:padding="7dp"
-                    android:src="@drawable/ic_close" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text8"
+                        style="@style/Text"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="start"
+                        android:text="@string/box4_text"
+                        android:textColor="@color/three"
+                        android:textSize="16sp" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text9"
-                    style="@style/Text"
-                    android:layout_below="@id/text8"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="0dp"
-                    android:drawableEnd="@drawable/ic_who"
-                    android:drawablePadding="30dp"
-                    android:gravity="start"
-                    android:text="@string/box4_text_sub"
-                    android:textColor="@color/three_60"
-                    android:textSize="14sp" />
+                    <ImageView
+                        android:id="@+id/closeRecommendation"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="6dp"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_close" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_more"
-                    style="@style/ButtonText"
-                    android:layout_below="@id/text9"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="0dp"
-                    android:text="@string/box4_button" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text9"
+                        style="@style/Text"
+                        android:layout_below="@id/text8"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="0dp"
+                        android:drawableEnd="@drawable/ic_who"
+                        android:drawablePadding="30dp"
+                        android:gravity="start"
+                        android:text="@string/box4_text_sub"
+                        android:textColor="@color/three_60"
+                        android:textSize="14sp" />
 
-            </RelativeLayout>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_more"
+                        style="@style/ButtonText"
+                        android:layout_below="@id/text9"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="0dp"
+                        android:text="@string/box4_button" />
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
