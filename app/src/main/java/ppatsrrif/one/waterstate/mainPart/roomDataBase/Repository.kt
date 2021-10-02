@@ -5,26 +5,43 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import java.util.*
 
-private const val DATABASE_NAME = "data_base-water_state2"
+private const val DATABASE_NAME = "data_base-water_state5"
 
 class Repository private constructor(context: Context) {
 
-    private val dataBase: DataBase = Room.databaseBuilder(
-        context.applicationContext,
-        DataBase::class.java,
-        DATABASE_NAME
-    ).build()
+    private val dataBase: DataBase by lazy {
+        Room.databaseBuilder(
+            context.applicationContext,
+            DataBase::class.java,
+            DATABASE_NAME
+        ).build()
 
+    }
     private val daoManager = dataBase.createDao()
 
+
+    // get all object from Table Day
     fun getAllItem(): LiveData<List<TableItemStorage>> = daoManager.getAll()
 
+    // get some object from Table Week
+    fun getItemFromWeek(): LiveData<List<TableItemStorageWeek>> =
+        daoManager.getAllFromWeek()
+
+
+    // add item to Table Day and Week
     suspend fun addItem(item: TableItemStorage) {
         dataBase.createDao().insertItem(item)
+        dataBase.createDao().insertItemToWeek(
+            TableItemStorageWeek(
+                item.id, item.volumeWater
+            )
+        )
     }
 
+    // delete item from Table Day and Week
     suspend fun deleteItem(id: UUID) {
         dataBase.createDao().deleteItem(id)
+        dataBase.createDao().deleteItemFromWeek(id)
     }
 
     companion object {
@@ -36,6 +53,7 @@ class Repository private constructor(context: Context) {
                 INSTANCE = Repository(context)
             }
         }
+
 
         fun getInstance (): Repository {
             return INSTANCE ?:

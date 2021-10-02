@@ -12,10 +12,8 @@ data class TableItemStorage(
     val volumeWater: Double
 )
 
-//@Entity(tableName = "table_item_storage_week")
-//data class TableItemStorageWeek(
-//    val id: UUID,
-//    val dayName: String,
-//    var dayVolume: Double,
-//    var dayGoal: Int
-//)
+@Entity(tableName = "table_item_storage_week")
+data class TableItemStorageWeek(
+    @PrimaryKey val id: UUID,
+    var dayVolume: Double,
+)

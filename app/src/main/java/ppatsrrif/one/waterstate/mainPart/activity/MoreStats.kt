@@ -34,16 +34,18 @@ class MoreStats : AppCompatActivity() {
         // set max progress
         liveDataUser.liveDataWeight.observe(this) {
             binding.textPart3.text = normalWater(it)
+            binding.textPart3Week.text = (normalWater(it).toDouble() * 7).toString()
 
             binding.progressDrink.max = floor(normalWater(it).toFloat() * 100).toInt()
+            binding.progressDrinkWeek.max = floor((normalWater(it).toFloat() * 100) * 7).toInt()
 
         }
 
-        // set progress
+        // set progress for Day
         viewModelItem.listWaterItem.observe(this) {
             var sum = 0.0
 
-            for(item in it){
+            for (item in it) {
                 sum += item.volumeWater
             }
 
@@ -54,10 +56,34 @@ class MoreStats : AppCompatActivity() {
 
             binding.textPart1.text = (df.format(sum).toDouble()).toString()
 
-            if(binding.textPart1.text == binding.textPart3.text) {
+            if (binding.textPart1.text == binding.textPart3.text) {
                 binding.progressDrink.progress = binding.progressDrink.max
-            } else binding.progressDrink.progress = floor(sum * 100).toInt()
 
+            } else {
+                binding.progressDrink.progress = floor(sum * 100).toInt()
+
+            }
+
+        }
+
+        // set progress for Week
+        viewModelItem.listWaterItemWeek.observe(this) {
+            var sum = 0.0
+
+            for (item in it) {
+                sum += item.dayVolume
+            }
+
+            // reg for volume
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.CEILING
+            df.format(sum)
+
+            binding.textPart1Week.text = (df.format(sum).toDouble()).toString()
+
+            if (binding.textPart1Week.text == binding.textPart3Week.text) {
+                binding.progressDrinkWeek.progress = binding.progressDrinkWeek.max
+            } else binding.progressDrinkWeek.progress = floor(sum * 100).toInt()
 
         }
 
@@ -73,4 +99,6 @@ class MoreStats : AppCompatActivity() {
         df.roundingMode = RoundingMode.CEILING
         return df.format((kg * 35.0) / 1000.0)
     }
+
+
 }
