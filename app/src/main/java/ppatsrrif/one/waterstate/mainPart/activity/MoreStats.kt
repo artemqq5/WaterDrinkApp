@@ -2,14 +2,17 @@ package ppatsrrif.one.waterstate.mainPart.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.ActivityMoreStatsBinding
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import java.util.*
 import kotlin.math.floor
 
 class MoreStats : AppCompatActivity() {
@@ -19,6 +22,9 @@ class MoreStats : AppCompatActivity() {
         ViewModelProvider(this)[ViewModelItem::class.java]
     }
     private val liveDataUser: ViewModelUser by viewModels()
+    private val listOfIdImageStatus by lazy {
+        arrayOf(R.id.Mon, R.id.Tue, R.id.Wed, R.id.Thu, R.id.Fri, R.id.Sat, R.id.Sun)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +65,11 @@ class MoreStats : AppCompatActivity() {
             if (binding.textPart1.text == binding.textPart3.text) {
                 binding.progressDrink.progress = binding.progressDrink.max
 
+                viewModelItem.updateGoals(getNowDate(), 1)
+
             } else {
                 binding.progressDrink.progress = floor(sum * 100).toInt()
+                viewModelItem.updateGoals(getNowDate(), 0)
 
             }
 
@@ -87,7 +96,24 @@ class MoreStats : AppCompatActivity() {
 
         }
 
+        // set goals and count text
+        viewModelItem.listGoals.observe(this) {
+            var sumCompleted = 0
 
+            for(n in it){
+
+                if(n.status == 1) {
+                    findViewById<ImageView>(listOfIdImageStatus[n.dayOFWeek-1])
+                        .setImageResource(R.drawable.ic_goal_completed)
+
+                    sumCompleted++
+
+                } else findViewById<ImageView>(listOfIdImageStatus[n.dayOFWeek-1])
+                    .setImageResource(R.drawable.ic_goal)
+            }
+
+            binding.textCompleted.text = "$sumCompleted/7"
+        }
 
 
     }
@@ -98,6 +124,12 @@ class MoreStats : AppCompatActivity() {
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
         return df.format((kg * 35.0) / 1000.0)
+    }
+
+    private fun getNowDate(): Int{
+
+
+        return Calendar.DAY_OF_WEEK-1
     }
 
 

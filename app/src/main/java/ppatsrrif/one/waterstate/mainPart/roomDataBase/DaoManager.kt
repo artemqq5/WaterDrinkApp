@@ -35,7 +35,15 @@ interface DaoManager {
     fun getAllFromWeek(): LiveData<List<TableItemStorageWeek>>
 
 
+    //for goals
+    @Insert (onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addGoals(item: TableIItemStorageGoals)
 
+    @Query("UPDATE table_item_storage_goals SET status=(:status) WHERE dayOFWeek=(:dayOFWeek)")
+    suspend fun updateGoals(dayOFWeek: Int, status: Int)
+
+    @Query("SELECT * FROM table_item_storage_goals")
+    fun getGoals(): LiveData<List<TableIItemStorageGoals>>
 
 
 }

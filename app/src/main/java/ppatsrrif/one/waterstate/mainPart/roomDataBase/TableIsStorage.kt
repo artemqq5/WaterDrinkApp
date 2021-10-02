@@ -17,3 +17,9 @@ data class TableItemStorageWeek(
     @PrimaryKey val id: UUID,
     var dayVolume: Double,
 )
+
+@Entity(tableName = "table_item_storage_goals")
+data class TableIItemStorageGoals(
+    @PrimaryKey val dayOFWeek: Int,
+    var status: Int
+)
