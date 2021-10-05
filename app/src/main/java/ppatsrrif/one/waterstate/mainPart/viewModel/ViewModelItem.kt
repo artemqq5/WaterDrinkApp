@@ -51,4 +51,29 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
         }
     }
 
+
+
+
+    // delete dt day
+    fun deleteDayT() {
+        viewModelScope.launch(Dispatchers.IO) {
+            Repository.getInstance().deleteDay()
+        }
+    }
+
+    // delete dt goals
+    fun deleteGoalsT() {
+        viewModelScope.launch(Dispatchers.IO) {
+            Repository.getInstance().deleteGoals()
+        }
+    }
+
+    // delete dt week
+    fun deleteWeekT() {
+        viewModelScope.launch(Dispatchers.IO) {
+            Repository.getInstance().deleteWeek()
+        }
+    }
+
+
 }

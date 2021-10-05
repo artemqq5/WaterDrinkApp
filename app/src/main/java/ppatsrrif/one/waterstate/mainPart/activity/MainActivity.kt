@@ -3,16 +3,31 @@ package ppatsrrif.one.waterstate.mainPart.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import ppatsrrif.one.waterstate.R
+import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.ActivityMainBinding
 import ppatsrrif.one.waterstate.mainPart.fragments.FragmentHome
 import ppatsrrif.one.waterstate.mainPart.fragments.FragmentProfile
 import ppatsrrif.one.waterstate.mainPart.fragments.FragmentSettings
+import ppatsrrif.one.waterstate.mainPart.helperClasses.CompareDates
+import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
+import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var timeBackPressed: Long = 0
+
+    private val dateHelper by lazy {
+        DateHelper()
+    }
+
+    private val dateCheck by lazy {
+        CompareDates(
+            SharedPreferencesHelper(this),
+            ViewModelProvider(this)[ViewModelItem::class.java])
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +65,12 @@ class MainActivity : AppCompatActivity() {
             finishAffinity()
         } else timeBackPressed = System.currentTimeMillis()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        dateCheck.checkWeek(dateHelper.getDay(), dateHelper.getWeek())
     }
 
 

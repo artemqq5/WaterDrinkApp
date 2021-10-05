@@ -4,24 +4,37 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.ActivityLoginBinding
 import ppatsrrif.one.waterstate.mainPart.activity.MainActivity
+import ppatsrrif.one.waterstate.mainPart.helperClasses.CompareDates
+import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
+import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+    private val sharedPreferencesHelper by lazy {
+        SharedPreferencesHelper(this)
+    }
     private var timeBackPressed: Long = 0
+
+    private val dateHelper by lazy {
+        DateHelper()
+    }
+
+    private val dateCheck by lazy {
+        CompareDates(sharedPreferencesHelper,
+            ViewModelProvider(this)[ViewModelItem::class.java])
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // initializing sharedPreferenceHelper
-        sharedPreferencesHelper = SharedPreferencesHelper(this)
     }
 
     // launch some fragment
@@ -41,5 +54,12 @@ class LoginActivity : AppCompatActivity() {
         if(timeBackPressed + 1000 > System.currentTimeMillis()) {
             finishAffinity()
         } else timeBackPressed = System.currentTimeMillis()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        dateCheck.checkWeek(dateHelper.getDay(), dateHelper.getWeek())
     }
 }

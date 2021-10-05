@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import java.util.*
 
-private const val DATABASE_NAME = "data_base-water_state6"
+private const val DATABASE_NAME = "data_base-water_state7"
 
 class Repository private constructor(context: Context) {
 
@@ -54,6 +54,16 @@ class Repository private constructor(context: Context) {
 
     // get all object from Table Goals
     fun getGoals(): LiveData<List<TableIItemStorageGoals>> = daoManager.getGoals()
+
+
+    //delete dt day
+    suspend fun deleteDay() = daoManager.deleteDay()
+
+    //delete dt goals
+    suspend fun deleteGoals() = daoManager.deleteGoals()
+
+    //delete dt week
+    suspend fun deleteWeek() = daoManager.deleteWeek()
 
     companion object {
 

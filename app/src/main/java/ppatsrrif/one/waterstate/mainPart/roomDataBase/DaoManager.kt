@@ -46,4 +46,17 @@ interface DaoManager {
     fun getGoals(): LiveData<List<TableIItemStorageGoals>>
 
 
+
+    // delete dt day
+    @Query("DELETE FROM table_item_storage")
+    suspend fun deleteDay()
+
+    // delete dt goals
+    @Query("DELETE FROM table_item_storage_goals")
+    suspend fun deleteGoals()
+
+    // delete dt week
+    @Query("DELETE FROM table_item_storage_week")
+    suspend fun deleteWeek()
+
 }
