@@ -3,6 +3,7 @@ package ppatsrrif.one.waterstate.mainPart.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,6 +13,12 @@ import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorage
 import java.util.*
 
 class ViewModelItem(application: Application) : AndroidViewModel(application) {
+
+
+    val date by lazy {
+        MutableLiveData<String>()
+    } 
+
 
     val listWaterItem: LiveData<List<TableItemStorage>> =
         Repository.getInstance().getAllItem()

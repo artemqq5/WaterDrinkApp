@@ -18,7 +18,7 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.floor
+import kotlin.math.round
 
 class MoreStats : AppCompatActivity() {
 
@@ -55,45 +55,47 @@ class MoreStats : AppCompatActivity() {
 
         // set max progress
         liveDataUser.liveDataWeight.observe(this) {
-            binding.textPart3.text = normalWater(it)
-            binding.textPart3Week.text = (normalWater(it).toDouble() * 7).toString()
 
-            binding.progressDrink.max = floor(normalWater(it).toFloat() * 100).toInt()
-            binding.progressDrinkWeek.max = floor((normalWater(it).toFloat() * 100) * 7).toInt()
+            binding.textPart3.text = normalWater(it.toDouble(), 1.0).toString()
+            binding.textPart3Week.text = (normalWater(it.toDouble(), 7.0)).toString()
 
+            binding.progressDrink.max = round(normalWater(it.toDouble(), 100.0)).toInt()
+            binding.progressDrinkWeek.max = round(normalWater(it.toDouble(), 700.0)).toInt()
+
+            Log.i("sdfe34f234f", "${binding.progressDrink.max}, ${binding.progressDrinkWeek.max}")
         }
 
-        dateCheck.checkWeek(dateHelper.getWeek())
+        viewModelItem.date.observe(this) { dateNow ->
 
-        // set progress for Day
-        viewModelItem.listSomeDay(dateHelper.getDay()).observe(this) {
-            var sum = 0.0
+            // set progress for Day
+            viewModelItem.listSomeDay(dateNow).observe(this) { listItems ->
+                var sum = 0.0
 
-            for (item in it) {
-                sum += item.volumeWater
+                for (item in listItems) {
+                    sum += item.volumeWater
+                }
+
+                // reg for volume
+                val df = DecimalFormat("#.##")
+                df.roundingMode = RoundingMode.CEILING
+                df.format(sum)
+
+                binding.textPart1.text = (df.format(sum).toDouble()).toString()
+
+                if (binding.textPart1.text == binding.textPart3.text) {
+                    binding.progressDrink.progress = binding.progressDrink.max
+
+                } else {
+                    binding.progressDrink.progress = round(sum * 100).toInt()
+
+                }
+
+                Log.i("sdfe34f234f", "${round(sum * 100).toInt()}, $sum, ${binding.progressDrink.max}")
+                if(round(sum * 100).toInt() >= binding.progressDrink.max) {
+                    viewModelItem.updateGoals(getNowDate(), 1)
+                }  else viewModelItem.updateGoals(getNowDate(), 0)
+
             }
-
-            // reg for volume
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.CEILING
-            df.format(sum)
-
-            Log.i("lkjj9f399f3fk9e", sum.toString())
-
-            binding.textPart1.text = (df.format(sum).toDouble()).toString()
-
-            if (binding.textPart1.text == binding.textPart3.text) {
-                binding.progressDrink.progress = binding.progressDrink.max
-
-            } else {
-                binding.progressDrink.progress = floor(sum * 100).toInt()
-
-            }
-
-            if(floor(sum * 100).toInt() >= binding.progressDrink.max) {
-                Log.i("lkjj9f399f3fk9e", getNowDate().toString())
-                viewModelItem.updateGoals(getNowDate(), 1)
-            }  else viewModelItem.updateGoals(getNowDate(), 0)
 
         }
 
@@ -114,9 +116,11 @@ class MoreStats : AppCompatActivity() {
 
             if (binding.textPart1Week.text == binding.textPart3Week.text) {
                 binding.progressDrinkWeek.progress = binding.progressDrinkWeek.max
-            } else binding.progressDrinkWeek.progress = floor(sum * 100).toInt()
+            } else binding.progressDrinkWeek.progress = round(sum * 100).toInt()
 
         }
+
+
 
         // set goals and count text
         viewModelItem.listGoals.observe(this) {
@@ -141,11 +145,11 @@ class MoreStats : AppCompatActivity() {
     }
 
     // calculate water norm
-    private fun normalWater(kg: Float): String {
+    private fun normalWater(kg: Double, num: Double): Double {
 
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
-        return df.format((kg * 35.0) / 1000.0)
+        return df.format(((kg * 35.0) / 1000.0) * num).toDouble()
     }
 
     private fun getNowDate(): Int{
@@ -170,59 +174,7 @@ class MoreStats : AppCompatActivity() {
         super.onResume()
 
         dateCheck.checkWeek(dateHelper.getWeek())
-
-        // set progress for Day
-        viewModelItem.listSomeDay(dateHelper.getDay()).observe(this) {
-            var sum = 0.0
-
-            for (item in it) {
-                sum += item.volumeWater
-            }
-
-            // reg for volume
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.CEILING
-            df.format(sum)
-
-            Log.i("lkjj9f399f3fk9e", sum.toString())
-
-            binding.textPart1.text = (df.format(sum).toDouble()).toString()
-
-            if (binding.textPart1.text == binding.textPart3.text) {
-                binding.progressDrink.progress = binding.progressDrink.max
-
-            } else {
-                binding.progressDrink.progress = floor(sum * 100).toInt()
-
-            }
-
-            if(floor(sum * 100).toInt() >= binding.progressDrink.max) {
-                Log.i("lkjj9f399f3fk9e", getNowDate().toString())
-                viewModelItem.updateGoals(getNowDate(), 1)
-            }  else viewModelItem.updateGoals(getNowDate(), 0)
-
-        }
-
-        // set progress for Week
-        viewModelItem.listWaterItem.observe(this) {
-            var sum = 0.0
-
-            for (item in it) {
-                sum += item.volumeWater
-            }
-
-            // reg for volume
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.CEILING
-            df.format(sum)
-
-            binding.textPart1Week.text = (df.format(sum).toDouble()).toString()
-
-            if (binding.textPart1Week.text == binding.textPart3Week.text) {
-                binding.progressDrinkWeek.progress = binding.progressDrinkWeek.max
-            } else binding.progressDrinkWeek.progress = floor(sum * 100).toInt()
-
-        }
+        viewModelItem.date.value = dateHelper.getDay()
     }
 
 }

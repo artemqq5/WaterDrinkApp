@@ -23,10 +23,14 @@ class MainActivity : AppCompatActivity() {
         DateHelper()
     }
 
+    private val viewModelItem by lazy {
+        ViewModelProvider(this)[ViewModelItem::class.java]
+    }
+
     private val dateCheck by lazy {
         CompareDates(
             SharedPreferencesHelper(this),
-            ViewModelProvider(this)[ViewModelItem::class.java])
+            viewModelItem)
     }
 
 
@@ -71,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         dateCheck.checkWeek(dateHelper.getWeek())
+        viewModelItem.date.value = dateHelper.getDay()
     }
 
 

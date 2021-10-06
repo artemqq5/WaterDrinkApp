@@ -67,21 +67,27 @@ class FragmentHome : Fragment(), View.OnClickListener {
                     " литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела"
         }
 
-        // set all volume drunk water for a day
-        viewModelItem.listSomeDay(dateHelper.getDay()).observe(viewLifecycleOwner, {
-            var sum = 0.0
+        viewModelItem.date.observe(viewLifecycleOwner) { nowDate ->
 
-            for(item in it){
-                sum += item.volumeWater
-            }
+            // set all volume drunk water for a day
+            viewModelItem.listSomeDay(nowDate).observe(viewLifecycleOwner, { listItems ->
+                var sum = 0.0
 
-            // reg for volume
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.CEILING
-            df.format(sum)
+                for(item in listItems){
+                    sum += item.volumeWater
+                }
 
-            binding.countWater.text = (df.format(sum).toDouble()).toString()
-        })
+                // reg for volume
+                val df = DecimalFormat("#.##")
+                df.roundingMode = RoundingMode.CEILING
+                df.format(sum)
+
+                binding.countWater.text = (df.format(sum).toDouble()).toString()
+            })
+
+        }
+
+
 
         // close WHO Recommendation
         binding.closeRecommendation.setOnClickListener {
@@ -140,25 +146,5 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // set all volume drunk water for a day
-        viewModelItem.listSomeDay(dateHelper.getDay()).observe(viewLifecycleOwner, {
-            var sum = 0.0
-
-            for(item in it){
-                sum += item.volumeWater
-            }
-
-            // reg for volume
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.CEILING
-            df.format(sum)
-
-            binding.countWater.text = (df.format(sum).toDouble()).toString()
-        })
     }
 }

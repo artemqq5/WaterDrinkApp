@@ -10,14 +10,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.DialogEditUserBinding
+import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 
 class DialogEditUser : DialogFragment() {
 
     private lateinit var bindingDialog: DialogEditUserBinding
     private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+    private val viewModelUser: ViewModelUser by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,6 +72,11 @@ class DialogEditUser : DialogFragment() {
             // set data to SharedPreferences
                 sharedPreferencesHelper.setUserWeight(userWeight)
                 sharedPreferencesHelper.setUserName(userName)
+
+                // set into viewModel
+                viewModelUser.liveDataWeight.value = userWeight
+                viewModelUser.liveDataName.value = userName
+
 
                 // close dialog
                 dismiss()

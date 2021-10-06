@@ -64,11 +64,16 @@ class DialogListItemWater : DialogFragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
+        viewModelItem.date.observe(viewLifecycleOwner) {
 
-        // set observer to RecyclerView
-        viewModelItem.listSomeDay(dateHelper.getDay()).observe(viewLifecycleOwner, Observer { list ->
-            adapterRecycler.setNewList(list)
-        })
+            // set observer to RecyclerView
+            viewModelItem.listSomeDay(it).observe(viewLifecycleOwner, Observer { list ->
+                adapterRecycler.setNewList(list)
+            })
+
+        }
+
+
 
         // button close dialog
         bindingDialog.closeDialogButton.setOnClickListener{
@@ -77,15 +82,6 @@ class DialogListItemWater : DialogFragment() {
 
 
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // set observer to RecyclerView
-        viewModelItem.listSomeDay(dateHelper.getDay()).observe(viewLifecycleOwner, Observer { list ->
-            adapterRecycler.setNewList(list)
-        })
     }
 
 }
