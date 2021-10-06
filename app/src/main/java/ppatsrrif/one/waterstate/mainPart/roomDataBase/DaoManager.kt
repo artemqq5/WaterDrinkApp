@@ -10,29 +10,18 @@ import java.util.*
 @Dao
 interface DaoManager {
 
-
-    // Day table
+    //for storage water
     @Insert (onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertItem(tableItemStorage: TableItemStorage)
 
-    //Week table
-    @Insert (onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertItemToWeek(tableItemStorageWeek: TableItemStorageWeek)
-
-    //Delete one from Day Table
     @Query("DELETE FROM table_item_storage WHERE id=(:id)")
     suspend fun deleteItem(id: UUID)
-
-    //Delete one from Week Table
-    @Query("DELETE FROM table_item_storage_week WHERE id=(:id)")
-    suspend fun deleteItemFromWeek(id: UUID)
 
     @Query("SELECT * FROM table_item_storage")
     fun getAll(): LiveData<List<TableItemStorage>>
 
-    // for week
-    @Query("SELECT * FROM table_item_storage_week")
-    fun getAllFromWeek(): LiveData<List<TableItemStorageWeek>>
+    @Query("SELECT * FROM table_item_storage WHERE typeDay=(:type)")
+    fun getSomeDay(type:String): LiveData<List<TableItemStorage>>
 
 
     //for goals
@@ -47,16 +36,13 @@ interface DaoManager {
 
 
 
-    // delete dt day
-    @Query("DELETE FROM table_item_storage")
-    suspend fun deleteDay()
 
     // delete dt goals
     @Query("DELETE FROM table_item_storage_goals")
     suspend fun deleteGoals()
 
     // delete dt week
-    @Query("DELETE FROM table_item_storage_week")
+    @Query("DELETE FROM table_item_storage")
     suspend fun deleteWeek()
 
 }

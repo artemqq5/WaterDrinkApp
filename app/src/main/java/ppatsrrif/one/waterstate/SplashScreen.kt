@@ -44,7 +44,7 @@ class SplashScreen : AppCompatActivity() {
             viewModelItem.addGoals(TableIItemStorageGoals(n, 0))
         }
 
-        checkDateDB.checkWeek(dateHelper.getDay(), dateHelper.getWeek())
+        checkDateDB.checkWeek(dateHelper.getWeek())
 
         // choice activity to start
         when(stateLoading) {

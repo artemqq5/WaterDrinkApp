@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 import ppatsrrif.one.waterstate.mainPart.roomDataBase.Repository
 import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableIItemStorageGoals
 import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorage
-import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorageWeek
 import java.util.*
 
 class ViewModelItem(application: Application) : AndroidViewModel(application) {
@@ -17,9 +16,9 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
     val listWaterItem: LiveData<List<TableItemStorage>> =
         Repository.getInstance().getAllItem()
 
-    val listWaterItemWeek: LiveData<List<TableItemStorageWeek>> =
-        Repository.getInstance().getItemFromWeek()
-
+    val listSomeDay: (type: String) -> LiveData<List<TableItemStorage>> = {
+        Repository.getInstance().getSomeDay(it)
+    }
 
     fun addItem(itemStorage: TableItemStorage) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -32,6 +31,17 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
             Repository.getInstance().deleteItem(id)
         }
     }
+
+    // delete dt storage
+    fun deleteTStorage() {
+        viewModelScope.launch(Dispatchers.IO) {
+            Repository.getInstance().deleteWeek()
+        }
+    }
+
+
+
+
 
     // get list of goals
     val listGoals: LiveData<List<TableIItemStorageGoals>> =
@@ -51,16 +61,6 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
         }
     }
 
-
-
-
-    // delete dt day
-    fun deleteDayT() {
-        viewModelScope.launch(Dispatchers.IO) {
-            Repository.getInstance().deleteDay()
-        }
-    }
-
     // delete dt goals
     fun deleteGoalsT() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -68,12 +68,7 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // delete dt week
-    fun deleteWeekT() {
-        viewModelScope.launch(Dispatchers.IO) {
-            Repository.getInstance().deleteWeek()
-        }
-    }
+
 
 
 }

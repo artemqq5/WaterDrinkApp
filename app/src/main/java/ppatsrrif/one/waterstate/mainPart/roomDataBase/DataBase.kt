@@ -5,8 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database (
-    entities = [TableItemStorage::class,
-        TableItemStorageWeek::class, TableIItemStorageGoals::class],
+    entities = [TableItemStorage::class, TableIItemStorageGoals::class],
     version = 1
 )
 @TypeConverters (ConvertorDataType::class)

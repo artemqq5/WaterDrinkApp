@@ -3,19 +3,16 @@ package ppatsrrif.one.waterstate.mainPart.dialogs
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ppatsrrif.one.waterstate.databinding.DialogListItemWaterBinding
+import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
 import ppatsrrif.one.waterstate.mainPart.recyclerView.AdapterListItemWater
-import ppatsrrif.one.waterstate.mainPart.roomDataBase.DataBase
-import ppatsrrif.one.waterstate.mainPart.roomDataBase.Repository
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 
 class DialogListItemWater : DialogFragment() {
@@ -24,6 +21,10 @@ class DialogListItemWater : DialogFragment() {
     private lateinit var adapterRecycler: AdapterListItemWater
 
     private lateinit var viewModelItem: ViewModelItem
+
+    private val dateHelper by lazy {
+        DateHelper()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,12 +58,6 @@ class DialogListItemWater : DialogFragment() {
         }
 
 
-
-        // set observer to RecyclerView
-        viewModelItem.listWaterItem.observe(viewLifecycleOwner, Observer { list ->
-            adapterRecycler.setNewList(list)
-        })
-
         // set adapter, layoutManager to RecyclerView
         bindingDialog.recyclerItemWater.run {
             adapter = adapterRecycler
@@ -70,7 +65,10 @@ class DialogListItemWater : DialogFragment() {
         }
 
 
-
+        // set observer to RecyclerView
+        viewModelItem.listSomeDay(dateHelper.getDay()).observe(viewLifecycleOwner, Observer { list ->
+            adapterRecycler.setNewList(list)
+        })
 
         // button close dialog
         bindingDialog.closeDialogButton.setOnClickListener{
@@ -79,9 +77,15 @@ class DialogListItemWater : DialogFragment() {
 
 
 
+    }
 
+    override fun onResume() {
+        super.onResume()
 
-
+        // set observer to RecyclerView
+        viewModelItem.listSomeDay(dateHelper.getDay()).observe(viewLifecycleOwner, Observer { list ->
+            adapterRecycler.setNewList(list)
+        })
     }
 
 }

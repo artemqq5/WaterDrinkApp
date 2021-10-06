@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import java.util.*
 
-private const val DATABASE_NAME = "data_base-water_state7"
+private const val DATABASE_NAME = "data_base-water_state8"
 
 class Repository private constructor(context: Context) {
 
@@ -20,33 +20,22 @@ class Repository private constructor(context: Context) {
     private val daoManager = dataBase.createDao()
 
 
-    // get all object from Table Day
+    // get all object from storage
     fun getAllItem(): LiveData<List<TableItemStorage>> = daoManager.getAll()
 
-    // get some object from Table Week
-    fun getItemFromWeek(): LiveData<List<TableItemStorageWeek>> =
-        daoManager.getAllFromWeek()
+    // get some object from storage
+    fun getSomeDay(type: String): LiveData<List<TableItemStorage>> =
+        daoManager.getSomeDay(type)
 
-    // add item to Table Day and Week
-    suspend fun addItem(item: TableItemStorage) {
-        dataBase.createDao().insertItem(item)
-        dataBase.createDao().insertItemToWeek(
-            TableItemStorageWeek(
-                item.id, item.volumeWater
-            )
-        )
-    }
+    // add item to Table
+    suspend fun addItem(item: TableItemStorage) = daoManager.insertItem(item)
 
-    // delete item from Table Day and Week
-    suspend fun deleteItem(id: UUID) {
-        dataBase.createDao().deleteItem(id)
-        dataBase.createDao().deleteItemFromWeek(id)
-    }
+    // delete item from Table
+    suspend fun deleteItem(id: UUID) = daoManager.deleteItem(id)
 
 
     //add item goals
-    suspend fun addGoals(item: TableIItemStorageGoals) =
-        daoManager.addGoals(item)
+    suspend fun addGoals(item: TableIItemStorageGoals) = daoManager.addGoals(item)
 
     //update goals status
     suspend fun updateGoals(dayOFWeek: Int, status: Int) =
@@ -56,13 +45,10 @@ class Repository private constructor(context: Context) {
     fun getGoals(): LiveData<List<TableIItemStorageGoals>> = daoManager.getGoals()
 
 
-    //delete dt day
-    suspend fun deleteDay() = daoManager.deleteDay()
-
     //delete dt goals
     suspend fun deleteGoals() = daoManager.deleteGoals()
 
-    //delete dt week
+    //delete dt storage
     suspend fun deleteWeek() = daoManager.deleteWeek()
 
     companion object {

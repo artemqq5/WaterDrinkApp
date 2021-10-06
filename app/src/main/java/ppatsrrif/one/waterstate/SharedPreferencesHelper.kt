@@ -37,10 +37,7 @@ class SharedPreferencesHelper(context: Context) {
         KEY_RECOMMENDATION, status).apply()
 
     // DB Date
-    fun getDateDay(): String = preferencesDBDates.getString(KEY_DAY_L, "none") ?: "none"
     fun getDateWeek(): Int = preferencesDBDates.getInt(KEY_WEEK_L, 0)
-
-    fun setDateDay(dayNum: String) = preferencesDBDates.edit().putString(KEY_DAY_L, dayNum).apply()
     fun setDateWeek(weekNum: Int) = preferencesDBDates.edit().putInt(KEY_WEEK_L, weekNum).apply()
 
    companion object {
@@ -59,7 +56,6 @@ class SharedPreferencesHelper(context: Context) {
        // label
        const val DB_DATE = "db_date1"
        // key
-       const val KEY_DAY_L = "day_last1"
        const val KEY_WEEK_L = "week_last1"
 
        // keys of default preferences

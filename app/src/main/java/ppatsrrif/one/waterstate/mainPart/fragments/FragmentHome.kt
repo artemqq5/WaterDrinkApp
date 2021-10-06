@@ -16,6 +16,7 @@ import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
 import ppatsrrif.one.waterstate.mainPart.activity.MoreStats
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogAddWater
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogListItemWater
+import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 import java.math.RoundingMode
@@ -28,6 +29,10 @@ class FragmentHome : Fragment(), View.OnClickListener {
     private val liveDataUser: ViewModelUser by activityViewModels()
     private val viewModelItem: ViewModelItem by lazy {
         ViewModelProvider(requireActivity())[ViewModelItem::class.java]
+    }
+
+    private val dateHelper by lazy {
+        DateHelper()
     }
 
     override fun onCreateView(
@@ -63,7 +68,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
         }
 
         // set all volume drunk water for a day
-        viewModelItem.listWaterItem.observe(viewLifecycleOwner, {
+        viewModelItem.listSomeDay(dateHelper.getDay()).observe(viewLifecycleOwner, {
             var sum = 0.0
 
             for(item in it){
@@ -135,5 +140,25 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // set all volume drunk water for a day
+        viewModelItem.listSomeDay(dateHelper.getDay()).observe(viewLifecycleOwner, {
+            var sum = 0.0
+
+            for(item in it){
+                sum += item.volumeWater
+            }
+
+            // reg for volume
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.CEILING
+            df.format(sum)
+
+            binding.countWater.text = (df.format(sum).toDouble()).toString()
+        })
     }
 }

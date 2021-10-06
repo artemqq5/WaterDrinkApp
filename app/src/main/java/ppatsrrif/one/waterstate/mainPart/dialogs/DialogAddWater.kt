@@ -1,21 +1,16 @@
 package ppatsrrif.one.waterstate.mainPart.dialogs
 
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isNotEmpty
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import ppatsrrif.one.waterstate.R
-import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.DialogCreateBinding
-import ppatsrrif.one.waterstate.databinding.DialogEditUserBinding
+import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
 import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorage
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import java.text.SimpleDateFormat
@@ -26,6 +21,10 @@ class DialogAddWater : DialogFragment() {
     private lateinit var bindingDialog: DialogCreateBinding
     private val viewModelItem by lazy {
         ViewModelProvider(requireActivity())[ViewModelItem::class.java]
+    }
+
+    private val dateHelper by lazy {
+        DateHelper()
     }
 
     override fun onCreateView(
@@ -66,7 +65,8 @@ class DialogAddWater : DialogFragment() {
                     val volumeWaterItem = volume.toDouble() / 1000
 
                     viewModelItem.addItem(
-                        TableItemStorage(time = resultTime, volumeWater = volumeWaterItem)
+                        TableItemStorage(time = resultTime, volumeWater = volumeWaterItem,
+                        typeDay = dateHelper.getDay())
                     )
 
                     // close dialog

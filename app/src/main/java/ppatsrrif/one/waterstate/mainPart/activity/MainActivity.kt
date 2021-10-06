@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        dateCheck.checkWeek(dateHelper.getDay(), dateHelper.getWeek())
+        dateCheck.checkWeek(dateHelper.getWeek())
     }
 
 

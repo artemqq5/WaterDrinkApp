@@ -63,8 +63,10 @@ class MoreStats : AppCompatActivity() {
 
         }
 
+        dateCheck.checkWeek(dateHelper.getWeek())
+
         // set progress for Day
-        viewModelItem.listWaterItem.observe(this) {
+        viewModelItem.listSomeDay(dateHelper.getDay()).observe(this) {
             var sum = 0.0
 
             for (item in it) {
@@ -96,11 +98,11 @@ class MoreStats : AppCompatActivity() {
         }
 
         // set progress for Week
-        viewModelItem.listWaterItemWeek.observe(this) {
+        viewModelItem.listWaterItem.observe(this) {
             var sum = 0.0
 
             for (item in it) {
-                sum += item.dayVolume
+                sum += item.volumeWater
             }
 
             // reg for volume
@@ -167,7 +169,60 @@ class MoreStats : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        dateCheck.checkWeek(dateHelper.getDay(), dateHelper.getWeek())
+        dateCheck.checkWeek(dateHelper.getWeek())
+
+        // set progress for Day
+        viewModelItem.listSomeDay(dateHelper.getDay()).observe(this) {
+            var sum = 0.0
+
+            for (item in it) {
+                sum += item.volumeWater
+            }
+
+            // reg for volume
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.CEILING
+            df.format(sum)
+
+            Log.i("lkjj9f399f3fk9e", sum.toString())
+
+            binding.textPart1.text = (df.format(sum).toDouble()).toString()
+
+            if (binding.textPart1.text == binding.textPart3.text) {
+                binding.progressDrink.progress = binding.progressDrink.max
+
+            } else {
+                binding.progressDrink.progress = floor(sum * 100).toInt()
+
+            }
+
+            if(floor(sum * 100).toInt() >= binding.progressDrink.max) {
+                Log.i("lkjj9f399f3fk9e", getNowDate().toString())
+                viewModelItem.updateGoals(getNowDate(), 1)
+            }  else viewModelItem.updateGoals(getNowDate(), 0)
+
+        }
+
+        // set progress for Week
+        viewModelItem.listWaterItem.observe(this) {
+            var sum = 0.0
+
+            for (item in it) {
+                sum += item.volumeWater
+            }
+
+            // reg for volume
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.CEILING
+            df.format(sum)
+
+            binding.textPart1Week.text = (df.format(sum).toDouble()).toString()
+
+            if (binding.textPart1Week.text == binding.textPart3Week.text) {
+                binding.progressDrinkWeek.progress = binding.progressDrinkWeek.max
+            } else binding.progressDrinkWeek.progress = floor(sum * 100).toInt()
+
+        }
     }
 
 }
