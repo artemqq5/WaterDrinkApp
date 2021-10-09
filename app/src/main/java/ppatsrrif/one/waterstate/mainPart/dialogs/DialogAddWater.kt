@@ -65,8 +65,10 @@ class DialogAddWater : DialogFragment() {
                     val volumeWaterItem = volume.toDouble()
 
                     viewModelItem.addItem(
-                        TableItemStorage(time = resultTime, volumeWater = volumeWaterItem,
-                        typeDay = dateHelper.getDay())
+                        TableItemStorage(
+                            time = resultTime, volumeWater = volumeWaterItem,
+                            typeDay = dateHelper.getDay()
+                        )
                     )
 
                     // close dialog

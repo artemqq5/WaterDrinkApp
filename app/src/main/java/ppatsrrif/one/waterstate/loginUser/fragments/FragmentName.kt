@@ -39,7 +39,7 @@ class FragmentName : Fragment() {
             val name = binding.textFieldName.editText?.text.toString()
             // check for validity
 
-            if(name.isNotEmpty()) {
+            if (name.isNotEmpty()) {
                 //save user name
                 sharedPreferencesHelper.setUserName(name)
                 //run method from LoginActivity
@@ -57,13 +57,13 @@ class FragmentName : Fragment() {
     }
 
     //listener for editText
-    private val textListener = object: TextWatcher {
+    private val textListener = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            if(binding.textFieldName.editText?.text.toString().isNotEmpty()) {
+            if (binding.textFieldName.editText?.text.toString().isNotEmpty()) {
                 binding.textFieldName.error = null
             }
         }

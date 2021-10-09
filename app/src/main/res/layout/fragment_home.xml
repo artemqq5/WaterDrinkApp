@@ -8,6 +8,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         style="@style/ActionButton"
+        android:contentDescription="@string/add_water"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -174,6 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:contentDescription="@string/ms_open"
                         android:layout_margin="16dp"
                         android:src="@drawable/ic_arrow_right" />
                 </RelativeLayout>
@@ -219,6 +221,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_margin="6dp"
                         android:padding="7dp"
+                        android:contentDescription="@string/close_who"
                         android:src="@drawable/ic_close" />
 
                     <com.google.android.material.textview.MaterialTextView

@@ -25,7 +25,7 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
 
         fun initializing(model: TableItemStorage) {
             binding.timeText.text = model.time
-            binding.volumeText.text = addWater(model.volumeWater, 1).toString()
+            binding.volumeText.text = addWater(model.volumeWater).toString()
 
             idItem = model.id
 
@@ -33,7 +33,7 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
         }
 
         override fun onClick(p0: View?) {
-            when(p0?.id) {
+            when (p0?.id) {
                 R.id.openPopMenu -> {
                     openMenu(binding.openPopMenu)
                 }
@@ -55,7 +55,7 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
 
             val textView = view.findViewById<TextView>(R.id.popMenu)
 
-            textView.setOnClickListener{
+            textView.setOnClickListener {
                 listener(idItem)
                 popupWindow.dismiss()
             }
@@ -73,8 +73,10 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
 
     // fill item data
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_water_view, parent,
-            false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_water_view, parent,
+            false
+        )
         return CustomViewHolder(view)
     }
 
@@ -91,11 +93,9 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
     }
 
     // add volume to UI
-    private fun addWater(volume: Double, type: Int): Double {
+    private fun addWater(volume: Double): Double {
 
-        return if(type == 1) {
-            round((volume / 1000.0) * 10 ) / 10.0
-        } else round(volume / 100.0)
+        return round((volume / 1000.0) * 10) / 10.0
 
     }
 

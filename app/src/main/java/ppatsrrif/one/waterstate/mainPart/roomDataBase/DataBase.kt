@@ -4,11 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database (
+@Database(
     entities = [TableItemStorage::class, TableIItemStorageGoals::class],
     version = 1
 )
-@TypeConverters (ConvertorDataType::class)
+@TypeConverters(ConvertorDataType::class)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun createDao(): DaoManager

@@ -55,7 +55,7 @@ class DialogEditUser : DialogFragment() {
         bindingDialog.nameEditInput.editText?.addTextChangedListener(textListener)
 
         // button close dialog
-        bindingDialog.closeDialogButton.setOnClickListener{
+        bindingDialog.closeDialogButton.setOnClickListener {
             dismiss()
         }
 
@@ -67,9 +67,9 @@ class DialogEditUser : DialogFragment() {
             val userName = bindingDialog.nameEditInput.editText?.text.toString()
 
             // check for validity
-            if(userName.isNotEmpty()) {
+            if (userName.isNotEmpty()) {
 
-            // set data to SharedPreferences
+                // set data to SharedPreferences
                 sharedPreferencesHelper.setUserWeight(userWeight)
                 sharedPreferencesHelper.setUserName(userName)
 
@@ -91,13 +91,13 @@ class DialogEditUser : DialogFragment() {
 
 
     //listener for editText
-    private val textListener = object: TextWatcher {
+    private val textListener = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            if(bindingDialog.nameEditInput.editText?.text.toString().isNotEmpty()) {
+            if (bindingDialog.nameEditInput.editText?.text.toString().isNotEmpty()) {
                 bindingDialog.nameEditInput.error = null
             }
         }
@@ -116,6 +116,7 @@ class DialogEditUser : DialogFragment() {
         bindingDialog.nameEditInput.editText?.setText(sharedPreferencesHelper.getUserName())
 
         bindingDialog.weightEditSlider.value = sharedPreferencesHelper.getUserWeight()
-        bindingDialog.finalWeight.text = "${getString(R.string.weight)} ${sharedPreferencesHelper.getUserWeight()}"
+        bindingDialog.finalWeight.text =
+            "${getString(R.string.weight)} ${sharedPreferencesHelper.getUserWeight()}"
     }
 }

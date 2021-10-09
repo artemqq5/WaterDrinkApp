@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
     private val dateCheck by lazy {
         CompareDates(
             SharedPreferencesHelper(this),
-            viewModelItem)
+            viewModelItem
+        )
     }
 
 
@@ -39,10 +40,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setTheme(R.style.Theme_WaterState)
+
 
         // set action for navigation items
         binding.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
 
                 R.id.home -> nextFragment(FragmentHome.newInstance())
                 R.id.profile -> nextFragment(FragmentProfile.newInstance())
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        if(timeBackPressed + 1000 > System.currentTimeMillis()) {
+        if (timeBackPressed + 1000 > System.currentTimeMillis()) {
             finishAffinity()
         } else timeBackPressed = System.currentTimeMillis()
 

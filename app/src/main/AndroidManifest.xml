@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WaterState">
-        <activity android:name=".mainPart.activity.MoreStats"></activity>
-        <activity android:name=".mainPart.activity.MainActivity"></activity>
-        <activity android:name=".loginUser.activity.LoginActivity" android:noHistory="true"></activity>
+        <activity android:name=".mainPart.activity.MoreStats"/>
+        <activity android:name=".mainPart.activity.MainActivity"/>
+        <activity android:name=".loginUser.activity.LoginActivity" android:noHistory="true"/>
         <activity android:name=".SplashScreen" android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

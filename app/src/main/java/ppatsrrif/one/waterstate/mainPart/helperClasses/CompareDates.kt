@@ -3,7 +3,10 @@ package ppatsrrif.one.waterstate.mainPart.helperClasses
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 
-class CompareDates(private val sharedPref: SharedPreferencesHelper, private val viewModelItem: ViewModelItem) {
+class CompareDates(
+    private val sharedPref: SharedPreferencesHelper,
+    private val viewModelItem: ViewModelItem
+) {
 
     fun checkWeek(weekNow: Int) {
         if (sharedPref.getDateWeek() != 0) {

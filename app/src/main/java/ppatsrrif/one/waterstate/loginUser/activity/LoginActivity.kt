@@ -26,8 +26,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private val dateCheck by lazy {
-        CompareDates(sharedPreferencesHelper,
-            ViewModelProvider(this)[ViewModelItem::class.java])
+        CompareDates(
+            sharedPreferencesHelper,
+            ViewModelProvider(this)[ViewModelItem::class.java]
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +48,12 @@ class LoginActivity : AppCompatActivity() {
 
     // launch start MainActivity
     fun startMainAct() {
-       sharedPreferencesHelper.setStartMode(1)
-       startActivity(Intent(this, MainActivity::class.java))
+        sharedPreferencesHelper.setStartMode(1)
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     override fun onBackPressed() {
-        if(timeBackPressed + 1000 > System.currentTimeMillis()) {
+        if (timeBackPressed + 1000 > System.currentTimeMillis()) {
             finishAffinity()
         } else timeBackPressed = System.currentTimeMillis()
     }

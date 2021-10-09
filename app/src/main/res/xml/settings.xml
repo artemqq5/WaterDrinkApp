@@ -6,13 +6,6 @@
         app:iconSpaceReserved="false"
         android:title="Настройки">
         <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:title="Тёмная тема"
-            android:key="set_theme_pref"
-            android:summary="Применить темную тему"
-            app:iconSpaceReserved="false"/>
-
-        <SwitchPreferenceCompat
             android:defaultValue="true"
             android:title="Рекомендации ВОЗ"
             android:key="recommendation_who"

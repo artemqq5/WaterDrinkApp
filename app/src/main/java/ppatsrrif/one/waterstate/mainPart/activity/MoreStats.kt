@@ -2,7 +2,6 @@ package ppatsrrif.one.waterstate.mainPart.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +32,8 @@ class MoreStats : AppCompatActivity() {
     private val dateCheck by lazy {
         CompareDates(
             SharedPreferencesHelper(this),
-            viewModelItem)
+            viewModelItem
+        )
     }
 
     private val listOfIdImageStatus =
@@ -60,7 +60,6 @@ class MoreStats : AppCompatActivity() {
             binding.progressDrink.max = normalWaterProgress(it, 1)
             binding.progressDrinkWeek.max = normalWaterProgress(it, 2)
 
-            Log.i("sdfe34f234f1", "${binding.progressDrink.max}, ${binding.progressDrinkWeek.max}")
         }
 
         viewModelItem.date.observe(this) { dateNow ->
@@ -71,16 +70,11 @@ class MoreStats : AppCompatActivity() {
 
                 for (item in listItems) {
                     sum += item.volumeWater
-                    Log.i("sdfe34f234f12", "${sum}")
+
                 }
-
-                Log.i("sdfe34f234f1", "$sum")
-
 
 
                 binding.textPart1.text = addWater(sum, 1).toString()
-
-                Log.i("sdfe34f234f1", "${addWater(sum, 1)}")
 
                 if (binding.textPart1.text == binding.textPart3.text) {
                     binding.progressDrink.progress = binding.progressDrink.max
@@ -90,11 +84,10 @@ class MoreStats : AppCompatActivity() {
 
                 }
 
-                if(addWater(sum, 2).toInt() >= binding.progressDrink.max) {
+                if (addWater(sum, 2).toInt() >= binding.progressDrink.max) {
                     viewModelItem.updateGoals(getNowDate(), 1)
-                }  else viewModelItem.updateGoals(getNowDate(), 0)
+                } else viewModelItem.updateGoals(getNowDate(), 0)
 
-                Log.i("sdfe34f234f1", "${addWater(sum, 1)}, ${addWater(sum, 2).toInt()}")
 
             }
 
@@ -114,25 +107,23 @@ class MoreStats : AppCompatActivity() {
                 binding.progressDrinkWeek.progress = binding.progressDrinkWeek.max
             } else binding.progressDrinkWeek.progress = addWater(sum, 2).toInt()
 
-            Log.i("sdfe34f234f1", "${addWater(sum, 1)}, ${addWater(sum, 2).toInt()}")
 
         }
-
 
 
         // set goals and count text
         viewModelItem.listGoals.observe(this) {
             var sumCompleted = 0
 
-            for(n in it){
+            for (n in it) {
 
-                if(n.status == 1) {
-                    findViewById<ImageView>(listOfIdImageStatus[n.dayOFWeek-1])
+                if (n.status == 1) {
+                    findViewById<ImageView>(listOfIdImageStatus[n.dayOFWeek - 1])
                         .setImageResource(R.drawable.ic_goal_completed)
 
                     sumCompleted++
 
-                } else findViewById<ImageView>(listOfIdImageStatus[n.dayOFWeek-1])
+                } else findViewById<ImageView>(listOfIdImageStatus[n.dayOFWeek - 1])
                     .setImageResource(R.drawable.ic_goal)
             }
 
@@ -147,9 +138,9 @@ class MoreStats : AppCompatActivity() {
 
         kg.toDouble()
 
-        return if(type == 1) {
-            round(((kg * 35.0) / 1000.0) * 10 ) / 10.0
-        } else round(((kg * 35.0 * 7) / 1000.0) * 10 ) / 10.0
+        return if (type == 1) {
+            round(((kg * 35.0) / 1000.0) * 10) / 10.0
+        } else round(((kg * 35.0 * 7) / 1000.0) * 10) / 10.0
     }
 
     // calculate water norm for Progress
@@ -157,7 +148,7 @@ class MoreStats : AppCompatActivity() {
 
         kg.toDouble()
 
-        return if(type == 1) {
+        return if (type == 1) {
             round(((kg * 35.0) / 100)).toInt()
         } else round(((kg * 35.0 * 7) / 100)).toInt()
     }
@@ -165,17 +156,17 @@ class MoreStats : AppCompatActivity() {
     // add volume to UI
     private fun addWater(volume: Double, type: Int): Double {
 
-        return if(type == 1) {
-            round((volume / 1000.0) * 10 ) / 10.0
+        return if (type == 1) {
+            round((volume / 1000.0) * 10) / 10.0
         } else round(volume / 100.0)
 
     }
 
-    private fun getNowDate(): Int{
+    private fun getNowDate(): Int {
 
-        var dateFormat = SimpleDateFormat("EEEE")
+        val dateFormat = SimpleDateFormat("EEEE")
 
-        return when(dateFormat.format(Date())) {
+        return when (dateFormat.format(Date())) {
             "Monday" -> 1
             "Tuesday" -> 2
             "Wednesday" -> 3

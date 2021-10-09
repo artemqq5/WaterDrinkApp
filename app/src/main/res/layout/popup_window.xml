@@ -15,6 +15,6 @@
         android:paddingTop="10dp"
         android:paddingEnd="30dp"
         android:paddingBottom="10dp"
-        android:text="Удалить" />
+        android:text="@string/delete" />
 
 </com.google.android.material.card.MaterialCardView>

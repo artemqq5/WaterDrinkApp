@@ -16,7 +16,6 @@ import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
 import ppatsrrif.one.waterstate.mainPart.activity.MoreStats
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogAddWater
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogListItemWater
-import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 import java.math.RoundingMode
@@ -30,10 +29,6 @@ class FragmentHome : Fragment(), View.OnClickListener {
     private val liveDataUser: ViewModelUser by activityViewModels()
     private val viewModelItem: ViewModelItem by lazy {
         ViewModelProvider(requireActivity())[ViewModelItem::class.java]
-    }
-
-    private val dateHelper by lazy {
-        DateHelper()
     }
 
     override fun onCreateView(
@@ -60,12 +55,13 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
         // set default status WHO Recommendation
         binding.blockRecommendation.visibility =
-            if(statusVisibilityRecommendation) View.VISIBLE else View.INVISIBLE
+            if (statusVisibilityRecommendation) View.VISIBLE else View.INVISIBLE
 
         // set water norm
         liveDataUser.liveDataWeight.observe(viewLifecycleOwner) {
-            binding.waterNorma.text = "составляет ${normalWater(it)}" +
-                    " литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела"
+            binding.waterNorma.text =
+                resources.getString(R.string.sub_text_home1) + " " + normalWater(it) + " " + resources.getString(R.string.sub_text_home2)
+
         }
 
         viewModelItem.date.observe(viewLifecycleOwner) { nowDate ->
@@ -74,16 +70,15 @@ class FragmentHome : Fragment(), View.OnClickListener {
             viewModelItem.listSomeDay(nowDate).observe(viewLifecycleOwner, { listItems ->
                 var sum = 0.0
 
-                for(item in listItems){
+                for (item in listItems) {
                     sum += item.volumeWater
                 }
 
 
-                binding.countWater.text = addWater(sum, 1).toString()
+                binding.countWater.text = addWater(sum).toString()
             })
 
         }
-
 
 
         // close WHO Recommendation
@@ -96,7 +91,8 @@ class FragmentHome : Fragment(), View.OnClickListener {
         // start WHO site
         binding.buttonMore.setOnClickListener {
             val uriWho =
-                Intent(Intent.ACTION_VIEW,
+                Intent(
+                    Intent.ACTION_VIEW,
                     Uri.parse("https://www.who.int/news-room/fact-sheets/detail/drinking-water")
                 )
             startActivity(uriWho)
@@ -131,9 +127,9 @@ class FragmentHome : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        when(p0?.id) {
+        when (p0?.id) {
             R.id.floating_action_button -> {
-               DialogAddWater().show(parentFragmentManager, "DialogAddWater")
+                DialogAddWater().show(parentFragmentManager, "DialogAddWater")
             }
 
             R.id.more_statistic -> {
@@ -146,11 +142,9 @@ class FragmentHome : Fragment(), View.OnClickListener {
     }
 
     // add volume to UI
-    private fun addWater(volume: Double, type: Int): Double {
+    private fun addWater(volume: Double): Double {
 
-        return if(type == 1) {
-            round((volume / 1000.0) * 10 ) / 10.0
-        } else round(volume / 100.0)
+        return round((volume / 1000.0) * 10) / 10.0
 
     }
 }

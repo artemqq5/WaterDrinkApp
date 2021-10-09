@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,7 +16,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/status_bar"
             app:navigationIcon="@drawable/ic_arrow_back_"
-            app:title="Детальная статистика"
+            app:title="@string/more_stats_title"
             app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -26,9 +27,10 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView2"
@@ -52,7 +54,7 @@
                         style="@style/Text.SizeSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Дневная норма" />
+                        android:text="@string/daily_norm" />
 
                     <TextView
                         android:id="@+id/textDate"
@@ -61,8 +63,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textDaly"
                         android:layout_marginTop="5dp"
-                        android:text="Сегодня"
-                        android:textSize="10sp" />
+                        android:text="@string/today"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -82,8 +84,9 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="5dp"
-                            android:text="0.5"
-                            android:textColor="@color/three" />
+                            android:text=""
+                            android:textColor="@color/three"
+                            tools:text="0.5" />
 
                         <TextView
                             android:id="@+id/textPart2"
@@ -93,9 +96,9 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="0dp"
-                            android:text="из"
+                            android:text="@string/_of"
                             android:textColor="@color/three"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textPart3"
@@ -104,8 +107,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="0dp"
-                            android:text="2.35"
-                            android:textColor="@color/three" />
+                            android:text=""
+                            android:textColor="@color/three"
+                            tools:text="2.35" />
 
                         <ProgressBar
                             android:id="@+id/progressDrink"
@@ -142,7 +146,7 @@
                         style="@style/Text.SizeSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Недельная норма" />
+                        android:text="@string/weekly_norm" />
 
                     <TextView
                         android:id="@+id/textDateWeek"
@@ -151,8 +155,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textWeekly"
                         android:layout_marginTop="5dp"
-                        android:text="Сентябрь 23 - 30"
-                        android:textSize="10sp" />
+                        android:text=""
+                        android:textSize="12sp"
+                        tools:text="Сентябрь 23 - 30" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -172,8 +177,9 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="5dp"
-                            android:text="6.0"
-                            android:textColor="@color/three" />
+                            android:text=""
+                            android:textColor="@color/three"
+                            tools:text="6.0" />
 
                         <TextView
                             android:id="@+id/textPart2Week"
@@ -183,9 +189,9 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="0dp"
-                            android:text="из"
+                            android:text="@string/_of"
                             android:textColor="@color/three"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textPart3Week"
@@ -194,8 +200,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="0dp"
-                            android:text="24"
-                            android:textColor="@color/three" />
+                            android:text=""
+                            android:textColor="@color/three"
+                            tools:text="24" />
 
                         <ProgressBar
                             android:id="@+id/progressDrinkWeek"
@@ -233,7 +240,10 @@
                         style="@style/Text.SizeSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Твои цели" />
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/your_goals" />
 
                     <TextView
                         android:id="@+id/textDateNow"
@@ -242,26 +252,31 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textGoals"
                         android:layout_marginTop="5dp"
-                        android:text="Текущая неделя"
-                        android:textSize="10sp" />
+                        android:text="@string/now_week"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/textCompleted"
                         style="@style/Text.SizeSmall"
-                        android:textSize="15sp"
-                        android:layout_alignParentEnd="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/three"
-                        android:text="3/7" />
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@+id/textGoals"
+                        android:gravity="end"
+                        android:text=""
+                        android:textColor="@color/three_60"
+                        android:textSize="15sp"
+                        tools:text="3/7" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textDateNow"
                         android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
                         android:layout_marginBottom="15dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
@@ -271,49 +286,55 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_goal"/>
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
 
                         <ImageView
                             android:id="@+id/Tue"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_goal"/>
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
 
                         <ImageView
                             android:id="@+id/Wed"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_goal"/>
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
 
                         <ImageView
                             android:id="@+id/Thu"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_goal"/>
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
 
                         <ImageView
                             android:id="@+id/Fri"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_goal"/>
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
 
                         <ImageView
                             android:id="@+id/Sat"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_goal"/>
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
 
                         <ImageView
                             android:id="@+id/Sun"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_goal"/>
-
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
 
 
                     </LinearLayout>
@@ -323,10 +344,7 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
         <!-- Scrollable content -->
 
     </androidx.core.widget.NestedScrollView>

@@ -56,15 +56,14 @@ class Repository private constructor(context: Context) {
         private var INSTANCE: Repository? = null
 
         fun initialize(context: Context) {
-            if(INSTANCE == null) {
+            if (INSTANCE == null) {
                 INSTANCE = Repository(context)
             }
         }
 
 
-        fun getInstance (): Repository {
-            return INSTANCE ?:
-            throw IllegalStateException("Repository must be initialize")
+        fun getInstance(): Repository {
+            return INSTANCE ?: throw IllegalStateException("Repository must be initialize")
         }
 
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.FragmentProfileBinding
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogEditUser
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogResetProfile
@@ -51,7 +52,7 @@ class FragmentProfile : Fragment() {
         }
 
         liveDataUser.liveDataWeight.observe(requireActivity()) {
-            binding.weightText.text = "$it кг"
+            binding.weightText.text = "$it " + resources.getString(R.string.unit_weight)
         }
 
     }
@@ -60,5 +61,5 @@ class FragmentProfile : Fragment() {
 
         fun newInstance() = FragmentProfile()
     }
-    
+
 }

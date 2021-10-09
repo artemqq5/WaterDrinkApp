@@ -38,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_smile"
+                android:contentDescription="@string/login"
                 android:layout_below="@+id/textView5"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="34dp"/>

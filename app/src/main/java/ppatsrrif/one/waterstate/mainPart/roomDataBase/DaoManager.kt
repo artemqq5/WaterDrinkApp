@@ -11,7 +11,7 @@ import java.util.*
 interface DaoManager {
 
     //for storage water
-    @Insert (onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertItem(tableItemStorage: TableItemStorage)
 
     @Query("DELETE FROM table_item_storage WHERE id=(:id)")
@@ -21,11 +21,11 @@ interface DaoManager {
     fun getAll(): LiveData<List<TableItemStorage>>
 
     @Query("SELECT * FROM table_item_storage WHERE typeDay=(:type)")
-    fun getSomeDay(type:String): LiveData<List<TableItemStorage>>
+    fun getSomeDay(type: String): LiveData<List<TableItemStorage>>
 
 
     //for goals
-    @Insert (onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addGoals(item: TableIItemStorageGoals)
 
     @Query("UPDATE table_item_storage_goals SET status=(:status) WHERE dayOFWeek=(:dayOFWeek)")
@@ -33,8 +33,6 @@ interface DaoManager {
 
     @Query("SELECT * FROM table_item_storage_goals")
     fun getGoals(): LiveData<List<TableIItemStorageGoals>>
-
-
 
 
     // delete dt goals

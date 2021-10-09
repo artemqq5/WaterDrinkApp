@@ -40,14 +40,14 @@ class SplashScreen : AppCompatActivity() {
         stateLoading = sharedPreferencesHelper.getStartMode()
 
         // create table elements if not exists (ONCE)
-        for(n in 1..7) {
+        for (n in 1..7) {
             viewModelItem.addGoals(TableIItemStorageGoals(n, 0))
         }
 
         checkDateDB.checkWeek(dateHelper.getWeek())
 
         // choice activity to start
-        when(stateLoading) {
+        when (stateLoading) {
             1 -> startActivity(Intent(this, MainActivity::class.java))
             else -> startActivity(Intent(this, LoginActivity::class.java))
         }

@@ -17,7 +17,7 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
 
     val date by lazy {
         MutableLiveData<String>()
-    } 
+    }
 
 
     val listWaterItem: LiveData<List<TableItemStorage>> =
@@ -47,9 +47,6 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
     }
 
 
-
-
-
     // get list of goals
     val listGoals: LiveData<List<TableIItemStorageGoals>> =
         Repository.getInstance().getGoals()
@@ -74,8 +71,6 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
             Repository.getInstance().deleteGoals()
         }
     }
-
-
 
 
 }

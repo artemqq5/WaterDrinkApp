@@ -9,17 +9,18 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@color/three"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/closeDialogButton"
-            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/close_window"
             android:padding="15dp"
             android:src="@drawable/ic_close_dialog" />
 
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="15dp"
-            android:text="Список записей"
+            android:text="@string/list_records"
             android:textColor="@color/white"
             android:textSize="22sp" />
 
@@ -46,9 +47,9 @@
             android:id="@+id/recycler_itemWater"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="25dp"
+            android:clipToPadding="false"
             android:paddingTop="15dp"
-            android:clipToPadding="false"/>
+            android:paddingBottom="25dp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

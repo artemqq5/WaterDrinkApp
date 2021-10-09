@@ -7,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ppatsrrif.one.waterstate.databinding.DialogListItemWaterBinding
-import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
 import ppatsrrif.one.waterstate.mainPart.recyclerView.AdapterListItemWater
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 
@@ -21,10 +19,6 @@ class DialogListItemWater : DialogFragment() {
     private lateinit var adapterRecycler: AdapterListItemWater
 
     private lateinit var viewModelItem: ViewModelItem
-
-    private val dateHelper by lazy {
-        DateHelper()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +45,6 @@ class DialogListItemWater : DialogFragment() {
         viewModelItem = ViewModelProvider(requireActivity())[ViewModelItem::class.java]
 
 
-
         // create adapter
         adapterRecycler = AdapterListItemWater {
             viewModelItem.deleteItem(it)
@@ -67,19 +60,17 @@ class DialogListItemWater : DialogFragment() {
         viewModelItem.date.observe(viewLifecycleOwner) {
 
             // set observer to RecyclerView
-            viewModelItem.listSomeDay(it).observe(viewLifecycleOwner, Observer { list ->
+            viewModelItem.listSomeDay(it).observe(viewLifecycleOwner, { list ->
                 adapterRecycler.setNewList(list)
             })
 
         }
 
 
-
         // button close dialog
-        bindingDialog.closeDialogButton.setOnClickListener{
+        bindingDialog.closeDialogButton.setOnClickListener {
             dismiss()
         }
-
 
 
     }
