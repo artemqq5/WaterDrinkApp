@@ -21,6 +21,7 @@ import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import kotlin.math.round
 
 class FragmentHome : Fragment(), View.OnClickListener {
 
@@ -77,12 +78,8 @@ class FragmentHome : Fragment(), View.OnClickListener {
                     sum += item.volumeWater
                 }
 
-                // reg for volume
-                val df = DecimalFormat("#.##")
-                df.roundingMode = RoundingMode.CEILING
-                df.format(sum)
 
-                binding.countWater.text = (df.format(sum).toDouble()).toString()
+                binding.countWater.text = addWater(sum, 1).toString()
             })
 
         }
@@ -146,5 +143,14 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
             }
         }
+    }
+
+    // add volume to UI
+    private fun addWater(volume: Double, type: Int): Double {
+
+        return if(type == 1) {
+            round((volume / 1000.0) * 10 ) / 10.0
+        } else round(volume / 100.0)
+
     }
 }

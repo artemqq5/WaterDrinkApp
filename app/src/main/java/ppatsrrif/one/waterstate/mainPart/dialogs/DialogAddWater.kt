@@ -60,9 +60,9 @@ class DialogAddWater : DialogFragment() {
 
             // check for validity
             if (bindingDialog.waterInput.editText?.text.toString().isNotEmpty()) {
-                if (volume.toDouble() in 50.0..1000.0) {
+                if (volume.toDouble() in 100.0..1000.0) {
 
-                    val volumeWaterItem = volume.toDouble() / 1000
+                    val volumeWaterItem = volume.toDouble()
 
                     viewModelItem.addItem(
                         TableItemStorage(time = resultTime, volumeWater = volumeWaterItem,
@@ -71,7 +71,7 @@ class DialogAddWater : DialogFragment() {
 
                     // close dialog
                     dismiss()
-                } else bindingDialog.waterInput.error = "от 50 до 1000 мл."
+                } else bindingDialog.waterInput.error = "от 100 до 1000 мл."
 
             } else bindingDialog.waterInput.error = "Пустое поле"
 
@@ -94,7 +94,7 @@ class DialogAddWater : DialogFragment() {
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             if (bindingDialog.waterInput.editText?.text.toString().isNotEmpty()) {
-                if ((bindingDialog.waterInput.editText?.text.toString()).toDouble() in 50.0..1000.0) {
+                if ((bindingDialog.waterInput.editText?.text.toString()).toDouble() in 100.0..1000.0) {
                     bindingDialog.waterInput.error = null
                 }
             }

@@ -14,8 +14,6 @@ import ppatsrrif.one.waterstate.mainPart.helperClasses.CompareDates
 import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
-import java.math.RoundingMode
-import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.round
@@ -56,13 +54,13 @@ class MoreStats : AppCompatActivity() {
         // set max progress
         liveDataUser.liveDataWeight.observe(this) {
 
-            binding.textPart3.text = normalWater(it.toDouble(), 1.0).toString()
-            binding.textPart3Week.text = (normalWater(it.toDouble(), 7.0)).toString()
+            binding.textPart3.text = normalWaterUI(it, 1).toString()
+            binding.textPart3Week.text = normalWaterUI(it, 2).toString()
 
-            binding.progressDrink.max = round(normalWater(it.toDouble(), 100.0)).toInt()
-            binding.progressDrinkWeek.max = round(normalWater(it.toDouble(), 700.0)).toInt()
+            binding.progressDrink.max = normalWaterProgress(it, 1)
+            binding.progressDrinkWeek.max = normalWaterProgress(it, 2)
 
-            Log.i("sdfe34f234f", "${binding.progressDrink.max}, ${binding.progressDrinkWeek.max}")
+            Log.i("sdfe34f234f1", "${binding.progressDrink.max}, ${binding.progressDrinkWeek.max}")
         }
 
         viewModelItem.date.observe(this) { dateNow ->
@@ -73,27 +71,30 @@ class MoreStats : AppCompatActivity() {
 
                 for (item in listItems) {
                     sum += item.volumeWater
+                    Log.i("sdfe34f234f12", "${sum}")
                 }
 
-                // reg for volume
-                val df = DecimalFormat("#.##")
-                df.roundingMode = RoundingMode.CEILING
-                df.format(sum)
+                Log.i("sdfe34f234f1", "$sum")
 
-                binding.textPart1.text = (df.format(sum).toDouble()).toString()
+
+
+                binding.textPart1.text = addWater(sum, 1).toString()
+
+                Log.i("sdfe34f234f1", "${addWater(sum, 1)}")
 
                 if (binding.textPart1.text == binding.textPart3.text) {
                     binding.progressDrink.progress = binding.progressDrink.max
 
                 } else {
-                    binding.progressDrink.progress = round(sum * 100).toInt()
+                    binding.progressDrink.progress = addWater(sum, 2).toInt()
 
                 }
 
-                Log.i("sdfe34f234f", "${round(sum * 100).toInt()}, $sum, ${binding.progressDrink.max}")
-                if(round(sum * 100).toInt() >= binding.progressDrink.max) {
+                if(addWater(sum, 2).toInt() >= binding.progressDrink.max) {
                     viewModelItem.updateGoals(getNowDate(), 1)
                 }  else viewModelItem.updateGoals(getNowDate(), 0)
+
+                Log.i("sdfe34f234f1", "${addWater(sum, 1)}, ${addWater(sum, 2).toInt()}")
 
             }
 
@@ -107,16 +108,13 @@ class MoreStats : AppCompatActivity() {
                 sum += item.volumeWater
             }
 
-            // reg for volume
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.CEILING
-            df.format(sum)
-
-            binding.textPart1Week.text = (df.format(sum).toDouble()).toString()
+            binding.textPart1Week.text = addWater(sum, 1).toString()
 
             if (binding.textPart1Week.text == binding.textPart3Week.text) {
                 binding.progressDrinkWeek.progress = binding.progressDrinkWeek.max
-            } else binding.progressDrinkWeek.progress = round(sum * 100).toInt()
+            } else binding.progressDrinkWeek.progress = addWater(sum, 2).toInt()
+
+            Log.i("sdfe34f234f1", "${addWater(sum, 1)}, ${addWater(sum, 2).toInt()}")
 
         }
 
@@ -144,12 +142,33 @@ class MoreStats : AppCompatActivity() {
 
     }
 
-    // calculate water norm
-    private fun normalWater(kg: Double, num: Double): Double {
+    // calculate water norm for UI
+    private fun normalWaterUI(kg: Float, type: Int): Double {
 
-        val df = DecimalFormat("#.##")
-        df.roundingMode = RoundingMode.CEILING
-        return df.format(((kg * 35.0) / 1000.0) * num).toDouble()
+        kg.toDouble()
+
+        return if(type == 1) {
+            round(((kg * 35.0) / 1000.0) * 10 ) / 10.0
+        } else round(((kg * 35.0 * 7) / 1000.0) * 10 ) / 10.0
+    }
+
+    // calculate water norm for Progress
+    private fun normalWaterProgress(kg: Float, type: Int): Int {
+
+        kg.toDouble()
+
+        return if(type == 1) {
+            round(((kg * 35.0) / 100)).toInt()
+        } else round(((kg * 35.0 * 7) / 100)).toInt()
+    }
+
+    // add volume to UI
+    private fun addWater(volume: Double, type: Int): Double {
+
+        return if(type == 1) {
+            round((volume / 1000.0) * 10 ) / 10.0
+        } else round(volume / 100.0)
+
     }
 
     private fun getNowDate(): Int{

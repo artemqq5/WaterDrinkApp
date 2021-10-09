@@ -1,16 +1,16 @@
 package ppatsrrif.one.waterstate.mainPart.recyclerView
 
-import android.view.*
-import android.widget.PopupMenu
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.TextView
-import androidx.annotation.MenuRes
 import androidx.recyclerview.widget.RecyclerView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.ItemWaterViewBinding
-import ppatsrrif.one.waterstate.databinding.PopupWindowBinding
 import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorage
 import java.util.*
+import kotlin.math.round
 
 
 class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
@@ -25,7 +25,7 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
 
         fun initializing(model: TableItemStorage) {
             binding.timeText.text = model.time
-            binding.volumeText.text = model.volumeWater.toString()
+            binding.volumeText.text = addWater(model.volumeWater, 1).toString()
 
             idItem = model.id
 
@@ -88,6 +88,15 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
     fun setNewList(list: List<TableItemStorage>) {
         this.listItemWater = list
         notifyDataSetChanged()
+    }
+
+    // add volume to UI
+    private fun addWater(volume: Double, type: Int): Double {
+
+        return if(type == 1) {
+            round((volume / 1000.0) * 10 ) / 10.0
+        } else round(volume / 100.0)
+
     }
 
 }
