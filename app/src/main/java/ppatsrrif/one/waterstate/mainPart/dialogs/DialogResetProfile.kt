@@ -23,10 +23,10 @@ class DialogResetProfile : DialogFragment() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.resetProfileTitle))
             .setMessage(getString(R.string.resetProfileMessage))
-            .setNegativeButton("ОТМЕНА") { _, _ ->
+            .setNegativeButton(resources.getString(R.string.button_cancel)) { _, _ ->
                 dismiss()
             }
-            .setPositiveButton("ОК") { _, _ ->
+            .setPositiveButton(resources.getString(R.string.reset_ok)) { _, _ ->
 
                 viewModelItem.deleteTStorage()
                 viewModelItem.deleteGoalsT()

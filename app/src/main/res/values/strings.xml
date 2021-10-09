@@ -61,6 +61,7 @@
     <!--    ResetUser Dialog-->
     <string name="resetProfileMessage">After a reset, the profile cannot be restored!</string>
     <string name="resetProfileTitle">Reset profile?</string>
+    <string name="reset_ok">OK</string>
 
     <!--    Fragment name-->
     <string name="setName">How can I call you?</string>
@@ -83,5 +84,7 @@
 
     <!--    Popup menu-->
     <string name="delete">Delete</string>
+
+
 
 </resources>

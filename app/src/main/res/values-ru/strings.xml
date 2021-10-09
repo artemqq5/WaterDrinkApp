@@ -61,6 +61,7 @@
     <!--    ResetUser Dialog-->
     <string name="resetProfileMessage">После сброса профиль невозможно будет восстановить!</string>
     <string name="resetProfileTitle">Сбросить профиль?</string>
+    <string name="reset_ok">ОК</string>
 
     <!--    Fragment name-->
     <string name="setName">Как к вам обращаться?</string>
