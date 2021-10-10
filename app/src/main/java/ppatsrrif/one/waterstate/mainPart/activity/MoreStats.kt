@@ -139,7 +139,6 @@ class MoreStats : AppCompatActivity() {
     }
 
 
-
     private fun getNowDate(): Int {
 
         val dateFormat = SimpleDateFormat("EEEE")

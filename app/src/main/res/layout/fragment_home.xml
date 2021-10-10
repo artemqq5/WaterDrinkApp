@@ -8,9 +8,9 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         style="@style/ActionButton"
-        android:contentDescription="@string/add_water"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/add_water" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
@@ -25,9 +25,9 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/relativeLayout3"
+                style="@style/CardMoreStats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/CardMoreStats"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -71,9 +71,9 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/relativeLayout4"
+                style="@style/CardMoreStats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/CardMoreStats"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
@@ -121,9 +121,9 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/more_statistic"
+                style="@style/CardMoreStats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/CardMoreStats"
                 android:focusable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -160,17 +160,17 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="@string/ms_open"
                         android:layout_margin="16dp"
+                        android:contentDescription="@string/ms_open"
                         android:src="@drawable/ic_arrow_right" />
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/blockRecommendation"
+                style="@style/CardMoreStats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/CardMoreStats"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -200,8 +200,8 @@
                         android:layout_height="28dp"
                         android:layout_alignParentEnd="true"
                         android:layout_margin="6dp"
-                        android:padding="7dp"
                         android:contentDescription="@string/close_who"
+                        android:padding="7dp"
                         android:src="@drawable/ic_close" />
 
                     <com.google.android.material.textview.MaterialTextView

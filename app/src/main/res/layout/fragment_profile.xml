@@ -60,12 +60,12 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/editUserProfile"
                     style="@style/ButtonOutline"
-                    android:textColor="@color/teal_200"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:text="@string/buttonEdit"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColor="@color/teal_200" />
             </FrameLayout>
 
         </LinearLayout>
