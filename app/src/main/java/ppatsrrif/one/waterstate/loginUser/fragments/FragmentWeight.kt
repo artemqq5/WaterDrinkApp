@@ -12,15 +12,14 @@ import ppatsrrif.one.waterstate.loginUser.activity.LoginActivity
 class FragmentWeight : Fragment() {
 
     private lateinit var binding: FragmentWeightBinding
-    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+    private val sharedPreferencesHelper by lazy {
+        SharedPreferencesHelper(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        // initializing sharedPreferenceHelper
-        sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
         binding = FragmentWeightBinding.inflate(inflater)
         return binding.root

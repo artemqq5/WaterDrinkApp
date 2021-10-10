@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.FragmentNameBinding
 import ppatsrrif.one.waterstate.loginUser.activity.LoginActivity
@@ -14,7 +15,9 @@ import ppatsrrif.one.waterstate.loginUser.activity.LoginActivity
 class FragmentName : Fragment() {
 
     private lateinit var binding: FragmentNameBinding
-    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+    private val sharedPreferencesHelper by lazy {
+        SharedPreferencesHelper(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,9 +25,6 @@ class FragmentName : Fragment() {
     ): View {
 
         binding = FragmentNameBinding.inflate(inflater)
-
-        // initializing sharedPreferenceHelper
-        sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
         return binding.root
     }
@@ -46,7 +46,7 @@ class FragmentName : Fragment() {
                 (activity as LoginActivity).nextFragment(FragmentWeight.newInstance())
 
             } else {
-                binding.textFieldName.error = "Пустое поле"
+                binding.textFieldName.error = resources.getString(R.string.empty_error)
             }
         }
 

@@ -19,7 +19,9 @@ import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 class DialogEditUser : DialogFragment() {
 
     private lateinit var bindingDialog: DialogEditUserBinding
-    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+    private val sharedPreferencesHelper by lazy {
+        SharedPreferencesHelper(requireContext())
+    }
     private val viewModelUser: ViewModelUser by activityViewModels()
 
     override fun onCreateView(
@@ -29,9 +31,6 @@ class DialogEditUser : DialogFragment() {
     ): View {
 
         bindingDialog = DialogEditUserBinding.inflate(inflater)
-
-        // initializing SharedPreferencesHelper
-        sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
         return bindingDialog.root
     }

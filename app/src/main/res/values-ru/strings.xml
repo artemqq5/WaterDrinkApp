@@ -85,4 +85,6 @@
     <!--    Popup menu-->
     <string name="delete">Удалить</string>
 
+    <string name="empty_error">Пустое поле</string>
+
 </resources>

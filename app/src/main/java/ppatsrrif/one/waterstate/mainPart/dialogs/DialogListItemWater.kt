@@ -16,9 +16,15 @@ import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 class DialogListItemWater : DialogFragment() {
 
     private lateinit var bindingDialog: DialogListItemWaterBinding
-    private lateinit var adapterRecycler: AdapterListItemWater
+    private val adapterRecycler by lazy {
+        AdapterListItemWater {
+            viewModelItem.deleteItem(it)
+        }
+    }
 
-    private lateinit var viewModelItem: ViewModelItem
+    private val viewModelItem by lazy {
+        ViewModelProvider(requireActivity())[ViewModelItem::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,16 +46,6 @@ class DialogListItemWater : DialogFragment() {
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
-
-        // initializing ViewModelItem
-        viewModelItem = ViewModelProvider(requireActivity())[ViewModelItem::class.java]
-
-
-        // create adapter
-        adapterRecycler = AdapterListItemWater {
-            viewModelItem.deleteItem(it)
-        }
-
 
         // set adapter, layoutManager to RecyclerView
         bindingDialog.recyclerItemWater.run {

@@ -16,19 +16,23 @@ import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
 import ppatsrrif.one.waterstate.mainPart.activity.MoreStats
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogAddWater
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogListItemWater
+import ppatsrrif.one.waterstate.mainPart.helperClasses.TranslateVolume
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
-import java.math.RoundingMode
-import java.text.DecimalFormat
-import kotlin.math.round
 
 class FragmentHome : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+    private val sharedPreferencesHelper by lazy {
+        SharedPreferencesHelper(requireContext())
+    }
     private val liveDataUser: ViewModelUser by activityViewModels()
     private val viewModelItem: ViewModelItem by lazy {
         ViewModelProvider(requireActivity())[ViewModelItem::class.java]
+    }
+
+    private val translateVolume by lazy {
+        TranslateVolume()
     }
 
     override fun onCreateView(
@@ -38,9 +42,6 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater)
-
-        // initializing SharedPreferencesHelper
-        sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
         binding.floatingActionButton.setOnClickListener(this)
         binding.moreStatistic.setOnClickListener(this)
@@ -60,7 +61,10 @@ class FragmentHome : Fragment(), View.OnClickListener {
         // set water norm
         liveDataUser.liveDataWeight.observe(viewLifecycleOwner) {
             binding.waterNorma.text =
-                resources.getString(R.string.sub_text_home1) + " " + normalWater(it) + " " + resources.getString(R.string.sub_text_home2)
+                resources.getString(R.string.sub_text_home1) + " " + translateVolume.normalWaterUI(
+                    it,
+                    1
+                ) + " " + resources.getString(R.string.sub_text_home2)
 
         }
 
@@ -75,40 +79,18 @@ class FragmentHome : Fragment(), View.OnClickListener {
                 }
 
 
-                binding.countWater.text = addWater(sum).toString()
+                binding.countWater.text = translateVolume.addWater(sum, 1).toString()
             })
 
         }
 
 
         // close WHO Recommendation
-        binding.closeRecommendation.setOnClickListener {
-            binding.blockRecommendation.visibility = View.INVISIBLE
-
-            sharedPreferencesHelper.setStatusRecommendation(false)
-        }
-
+        binding.closeRecommendation.setOnClickListener(this)
         // start WHO site
-        binding.buttonMore.setOnClickListener {
-            val uriWho =
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://www.who.int/news-room/fact-sheets/detail/drinking-water")
-                )
-            startActivity(uriWho)
-        }
-
+        binding.buttonMore.setOnClickListener(this)
         // open list water item
-        binding.buttonMoreDrunk.setOnClickListener {
-
-            val dialog = DialogListItemWater()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            transaction
-                .add(android.R.id.content, dialog)
-                .addToBackStack(null)
-                .commit()
-        }
+        binding.buttonMoreDrunk.setOnClickListener(this)
 
 
     }
@@ -118,16 +100,9 @@ class FragmentHome : Fragment(), View.OnClickListener {
         fun newInstance() = FragmentHome()
     }
 
-    // calculate water norm
-    private fun normalWater(kg: Float): String {
-
-        val df = DecimalFormat("#.##")
-        df.roundingMode = RoundingMode.CEILING
-        return df.format((kg * 35.0) / 1000.0)
-    }
-
     override fun onClick(p0: View?) {
         when (p0?.id) {
+
             R.id.floating_action_button -> {
                 DialogAddWater().show(parentFragmentManager, "DialogAddWater")
             }
@@ -138,13 +113,31 @@ class FragmentHome : Fragment(), View.OnClickListener {
                 )
 
             }
+
+            R.id.closeRecommendation -> {
+                binding.blockRecommendation.visibility = View.INVISIBLE
+
+                sharedPreferencesHelper.setStatusRecommendation(false)
+            }
+
+            R.id.button_more -> {
+                val uriWho =
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.who.int/news-room/fact-sheets/detail/drinking-water")
+                    )
+                startActivity(uriWho)
+            }
+
+            R.id.button_more_drunk -> {
+                val dialog = DialogListItemWater()
+                val transaction = parentFragmentManager.beginTransaction()
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                transaction
+                    .add(android.R.id.content, dialog)
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
-    }
-
-    // add volume to UI
-    private fun addWater(volume: Double): Double {
-
-        return round((volume / 1000.0) * 10) / 10.0
-
     }
 }

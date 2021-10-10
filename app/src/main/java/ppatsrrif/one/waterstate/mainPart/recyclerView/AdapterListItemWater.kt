@@ -8,15 +8,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.ItemWaterViewBinding
+import ppatsrrif.one.waterstate.mainPart.helperClasses.TranslateVolume
 import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorage
 import java.util.*
-import kotlin.math.round
 
 
 class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
     RecyclerView.Adapter<AdapterListItemWater.CustomViewHolder>() {
 
     private var listItemWater = listOf<TableItemStorage>()
+
+    private val translateVolume by lazy {
+        TranslateVolume()
+    }
 
     // class for init components of card
     inner class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
@@ -25,7 +29,7 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
 
         fun initializing(model: TableItemStorage) {
             binding.timeText.text = model.time
-            binding.volumeText.text = addWater(model.volumeWater).toString()
+            binding.volumeText.text = translateVolume.addWater(model.volumeWater, 1).toString()
 
             idItem = model.id
 
@@ -90,13 +94,6 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
     fun setNewList(list: List<TableItemStorage>) {
         this.listItemWater = list
         notifyDataSetChanged()
-    }
-
-    // add volume to UI
-    private fun addWater(volume: Double): Double {
-
-        return round((volume / 1000.0) * 10) / 10.0
-
     }
 
 }

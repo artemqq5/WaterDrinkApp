@@ -2,23 +2,24 @@ package ppatsrrif.one.waterstate
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 
 class SharedPreferencesHelper(context: Context) {
 
-    private val preferenceUser: SharedPreferences =
+    private val preferenceUser by lazy {
         context.getSharedPreferences(PREFERENCE_USER, MODE_PRIVATE)
+    }
 
-    private val preferenceStart: SharedPreferences =
+    private val preferenceStart by lazy {
         context.getSharedPreferences(PREFERENCE_START_MODE, MODE_PRIVATE)
+    }
 
-    private val preferencesSettings: SharedPreferences =
+    private val preferencesSettings by lazy {
         PreferenceManager.getDefaultSharedPreferences(context)
-
-    private val preferencesDBDates: SharedPreferences =
+    }
+    private val preferencesDBDates by lazy {
         context.getSharedPreferences(DB_DATE, MODE_PRIVATE)
-
+    }
 
     // User
     fun getUserName(): String = preferenceUser.getString(KEY_NAME_USER, "none") ?: "none"

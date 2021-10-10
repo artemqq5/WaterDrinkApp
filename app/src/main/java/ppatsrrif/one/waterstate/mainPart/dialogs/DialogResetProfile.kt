@@ -14,7 +14,9 @@ import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 class DialogResetProfile : DialogFragment() {
 
 
-    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+    private val sharedPreferencesHelper by lazy {
+        SharedPreferencesHelper(requireContext())
+    }
     private val viewModelItem by lazy {
         ViewModelProvider(requireActivity())[ViewModelItem::class.java]
     }
@@ -30,9 +32,6 @@ class DialogResetProfile : DialogFragment() {
 
                 viewModelItem.deleteTStorage()
                 viewModelItem.deleteGoalsT()
-
-                // initializing SharedPreferencesHelper
-                sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
 
                 sharedPreferencesHelper.setStartMode(0)
                 startActivity(Intent(requireContext(), SplashScreen::class.java))

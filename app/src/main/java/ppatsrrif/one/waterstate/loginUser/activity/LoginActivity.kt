@@ -15,7 +15,9 @@ import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+    private val binding by lazy {
+        ActivityLoginBinding.inflate(layoutInflater)
+    }
     private val sharedPreferencesHelper by lazy {
         SharedPreferencesHelper(this)
     }
@@ -34,7 +36,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
     }

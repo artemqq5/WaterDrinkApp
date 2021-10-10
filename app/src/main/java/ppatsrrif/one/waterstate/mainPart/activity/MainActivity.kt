@@ -16,7 +16,9 @@ import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     private var timeBackPressed: Long = 0
 
     private val dateHelper by lazy {
@@ -37,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setTheme(R.style.Theme_WaterState)

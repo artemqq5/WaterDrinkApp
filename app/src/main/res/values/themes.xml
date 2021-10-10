@@ -266,9 +266,17 @@
     </style>
 
     <style name="Theme.WaterState.MyAutofilledHighlight">
-        <item name="android:autofilledHighlight" tools:ignore="NewApi">@android:color/transparent</item>
+        <item name="android:autofilledHighlight" tools:ignore="NewApi">@android:color/transparent
+        </item>
     </style>
 
+    <style name="CardMoreStats">
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
 
 
 </resources>
