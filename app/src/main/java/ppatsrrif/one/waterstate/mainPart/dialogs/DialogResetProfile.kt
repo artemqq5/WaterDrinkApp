@@ -35,6 +35,7 @@ class DialogResetProfile : DialogFragment() {
 
                 sharedPreferencesHelper.setStartMode(0)
                 startActivity(Intent(requireContext(), SplashScreen::class.java))
+                requireActivity().finish()
                 dismiss()
             }
             .create()

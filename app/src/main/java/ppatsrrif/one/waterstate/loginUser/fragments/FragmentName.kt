@@ -18,6 +18,7 @@ class FragmentName : Fragment() {
     private val sharedPreferencesHelper by lazy {
         SharedPreferencesHelper(requireContext())
     }
+    private val nameKey = "NameUser"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +51,18 @@ class FragmentName : Fragment() {
             }
         }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(nameKey, binding.textFieldName.editText?.text.toString())
+
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+
+        binding.textFieldName.editText?.setText(savedInstanceState?.getString(nameKey, ""))
+        super.onViewStateRestored(savedInstanceState)
     }
 
     companion object {

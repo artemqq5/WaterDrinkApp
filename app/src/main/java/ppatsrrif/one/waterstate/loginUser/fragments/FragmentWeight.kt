@@ -15,6 +15,8 @@ class FragmentWeight : Fragment() {
     private val sharedPreferencesHelper by lazy {
         SharedPreferencesHelper(requireContext())
     }
+    private val weightKey1 = "WeightUserKg"
+    private val weightKey2 = "WeightUserGr"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +50,23 @@ class FragmentWeight : Fragment() {
             //run method from LoginActivity
             (activity as LoginActivity).nextFragment(FragmentEnd.newInstance())
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+
+            putInt(weightKey1, binding.weightChoice.value)
+            putInt(weightKey2, binding.weightChoiceSub.value)
+        }
+
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+
+        binding.weightChoice.value = savedInstanceState?.getInt(weightKey1, 30) ?: 30
+        binding.weightChoiceSub.value = savedInstanceState?.getInt(weightKey2, 0) ?: 0
+        super.onViewStateRestored(savedInstanceState)
     }
 
     companion object {
