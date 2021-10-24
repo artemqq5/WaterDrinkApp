@@ -16,14 +16,14 @@ class ViewModelItem(application: Application) : AndroidViewModel(application) {
 
 
     val date by lazy {
-        MutableLiveData<String>()
+        MutableLiveData<Int>()
     }
 
 
     val listWaterItem: LiveData<List<TableItemStorage>> =
         Repository.getInstance().getAllItem()
 
-    val listSomeDay: (type: String) -> LiveData<List<TableItemStorage>> = {
+    val listSomeDay: (type: Int) -> LiveData<List<TableItemStorage>> = {
         Repository.getInstance().getSomeDay(it)
     }
 

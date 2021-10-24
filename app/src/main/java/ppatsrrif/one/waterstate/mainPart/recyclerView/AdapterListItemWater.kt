@@ -1,5 +1,6 @@
 package ppatsrrif.one.waterstate.mainPart.recyclerView
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,9 +28,11 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
         private val binding = ItemWaterViewBinding.bind(view)
         private lateinit var idItem: UUID
 
-        fun initializing(model: TableItemStorage) {
+        fun initializing(model: TableItemStorage, context: Context) {
             binding.timeText.text = model.time
-            binding.volumeText.text = translateVolume.addWater(model.volumeWater, 1).toString()
+            binding.volumeText.text =
+                translateVolume.addWater(model.volumeWater, 1).toString() + " " +
+                        context.resources.getString(R.string.volume_l)
 
             idItem = model.id
 
@@ -86,7 +89,7 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
 
     // start init fun with ModelItemWater object
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.initializing(listItemWater[position])
+        holder.initializing(listItemWater[position], holder.itemView.context)
     }
 
     override fun getItemCount(): Int = listItemWater.size

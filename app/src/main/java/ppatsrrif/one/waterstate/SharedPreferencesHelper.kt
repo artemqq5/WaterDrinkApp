@@ -45,6 +45,14 @@ class SharedPreferencesHelper(context: Context) {
     fun getDateWeek(): Int = preferencesDBDates.getInt(KEY_WEEK_L, 0)
     fun setDateWeek(weekNum: Int) = preferencesDBDates.edit().putInt(KEY_WEEK_L, weekNum).apply()
 
+    fun getStartDate(): Int = preferencesDBDates.getInt(KEY_START_DATE, 0)
+    fun getEndDate(): Int = preferencesDBDates.getInt(KEY_END_DATE, 0)
+    fun setStartDate(count: Int) = preferencesDBDates.edit().putInt(KEY_START_DATE, count)
+        .apply()
+
+    fun setEndDate(count: Int) = preferencesDBDates.edit().putInt(KEY_END_DATE, count)
+        .apply()
+
     companion object {
 
         // label
@@ -65,6 +73,8 @@ class SharedPreferencesHelper(context: Context) {
 
         // key
         const val KEY_WEEK_L = "week_last1"
+        const val KEY_START_DATE = "start_date"
+        const val KEY_END_DATE = "end_date"
 
         // keys of default preferences
         const val KEY_RECOMMENDATION = "recommendation_who"

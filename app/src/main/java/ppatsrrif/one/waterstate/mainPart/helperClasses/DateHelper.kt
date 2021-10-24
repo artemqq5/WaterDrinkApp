@@ -6,15 +6,15 @@ import java.util.*
 
 class DateHelper {
 
-    fun getDay(): String {
+    fun getDay(): Int {
 
-        val dfD = SimpleDateFormat("EEEE")
-        return dfD.format(Date())
+        val dfD = SimpleDateFormat("u", Locale.CANADA)
+        return dfD.format(Date()).toInt()
 
     }
 
     fun getWeek(): Int {
-        val dfW = SimpleDateFormat("ww")
+        val dfW = SimpleDateFormat("ww", Locale.CANADA)
         return dfW.format(Date()).toInt()
     }
 

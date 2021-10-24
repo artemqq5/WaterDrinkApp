@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import java.util.*
 
-private const val DATABASE_NAME = "data_base-water_state8"
+private const val DATABASE_NAME = "data_base-water_state10"
 
 class Repository private constructor(context: Context) {
 
@@ -24,7 +24,7 @@ class Repository private constructor(context: Context) {
     fun getAllItem(): LiveData<List<TableItemStorage>> = daoManager.getAll()
 
     // get some object from storage
-    fun getSomeDay(type: String): LiveData<List<TableItemStorage>> =
+    fun getSomeDay(type: Int): LiveData<List<TableItemStorage>> =
         daoManager.getSomeDay(type)
 
     // add item to Table

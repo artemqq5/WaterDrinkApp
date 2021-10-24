@@ -14,33 +14,33 @@ interface DaoManager {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertItem(tableItemStorage: TableItemStorage)
 
-    @Query("DELETE FROM table_item_storage WHERE id=(:id)")
+    @Query("DELETE FROM table_item_storage1 WHERE id=(:id)")
     suspend fun deleteItem(id: UUID)
 
-    @Query("SELECT * FROM table_item_storage")
+    @Query("SELECT * FROM table_item_storage1")
     fun getAll(): LiveData<List<TableItemStorage>>
 
-    @Query("SELECT * FROM table_item_storage WHERE typeDay=(:type)")
-    fun getSomeDay(type: String): LiveData<List<TableItemStorage>>
+    @Query("SELECT * FROM table_item_storage1 WHERE typeDay=(:type)")
+    fun getSomeDay(type: Int): LiveData<List<TableItemStorage>>
 
 
     //for goals
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addGoals(item: TableIItemStorageGoals)
 
-    @Query("UPDATE table_item_storage_goals SET status=(:status) WHERE dayOFWeek=(:dayOFWeek)")
+    @Query("UPDATE table_item_storage_goals1 SET status=(:status) WHERE dayOFWeek=(:dayOFWeek)")
     suspend fun updateGoals(dayOFWeek: Int, status: Int)
 
-    @Query("SELECT * FROM table_item_storage_goals")
+    @Query("SELECT * FROM table_item_storage_goals1")
     fun getGoals(): LiveData<List<TableIItemStorageGoals>>
 
 
     // delete dt goals
-    @Query("DELETE FROM table_item_storage_goals")
+    @Query("DELETE FROM table_item_storage_goals1")
     suspend fun deleteGoals()
 
     // delete dt week
-    @Query("DELETE FROM table_item_storage")
+    @Query("DELETE FROM table_item_storage1")
     suspend fun deleteWeek()
 
 }

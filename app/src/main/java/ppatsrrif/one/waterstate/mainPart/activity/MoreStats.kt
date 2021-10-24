@@ -141,19 +141,9 @@ class MoreStats : AppCompatActivity() {
 
     private fun getNowDate(): Int {
 
-        val dateFormat = SimpleDateFormat("EEEE")
+        val dateFormat = SimpleDateFormat("u")
 
-        return when (dateFormat.format(Date())) {
-            "Monday" -> 1
-            "Tuesday" -> 2
-            "Wednesday" -> 3
-            "Thursday" -> 4
-            "Friday" -> 5
-            "Saturday" -> 6
-            "Sunday" -> 7
-
-            else -> 0
-        }
+        return dateFormat.format(Date()).toInt()
     }
 
 
@@ -162,6 +152,24 @@ class MoreStats : AppCompatActivity() {
 
         dateCheck.checkWeek(dateHelper.getWeek())
         viewModelItem.date.value = dateHelper.getDay()
+
+        setWeekDate()
+
+    }
+
+    private fun setWeekDate() {
+        // object calendar
+        var calendar = Calendar.getInstance(Locale.getDefault())
+        // set monday date
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        // write to string var date
+        var sDateW = calendar.get(Calendar.DAY_OF_MONTH).toString() + " - "
+        // set saturday date
+        calendar.add(Calendar.DAY_OF_WEEK, 6)
+        // write to string var date too
+        sDateW += calendar.get(Calendar.DAY_OF_MONTH).toString()
+        //set Date for week
+        binding.textDateWeek.text = "${SimpleDateFormat("MMMM").format(Date())} $sDateW"
     }
 
 }

@@ -3,6 +3,7 @@ package ppatsrrif.one.waterstate.mainPart.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,6 +69,8 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
         }
 
+
+
         viewModelItem.date.observe(viewLifecycleOwner) { nowDate ->
 
             // set all volume drunk water for a day
@@ -80,6 +83,8 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
 
                 binding.countWater.text = translateVolume.addWater(sum, 1).toString()
+
+                Log.i("sdfe34f234f1", "$sum - ${translateVolume.addWater(sum, 1)}")
             })
 
         }
@@ -137,7 +142,15 @@ class FragmentHome : Fragment(), View.OnClickListener {
                     .add(android.R.id.content, dialog)
                     .addToBackStack(null)
                     .commit()
+
+
+
+                dialog.isCancelable = true
             }
         }
     }
+
+
 }
+
+

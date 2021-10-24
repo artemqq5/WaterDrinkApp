@@ -1,6 +1,7 @@
 package ppatsrrif.one.waterstate.mainPart.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -69,9 +70,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        if (timeBackPressed + 1000 > System.currentTimeMillis()) {
+        if (timeBackPressed + 2000 > System.currentTimeMillis()) {
             finishAffinity()
-        } else timeBackPressed = System.currentTimeMillis()
+        } else {
+            timeBackPressed = System.currentTimeMillis()
+            Toast.makeText(
+                this, resources.getString(R.string.toast_exit),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
     }
 

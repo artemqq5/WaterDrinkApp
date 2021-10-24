@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.DialogCreateBinding
 import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
 import ppatsrrif.one.waterstate.mainPart.roomDataBase.TableItemStorage
@@ -55,7 +56,7 @@ class DialogAddWater : DialogFragment() {
             val volume = bindingDialog.waterInput.editText?.text.toString()
 
             val dateNow = Date()
-            val stringFormat = SimpleDateFormat("HH:mm")
+            val stringFormat = SimpleDateFormat("HH:mm", Locale.CANADA)
             val resultTime = stringFormat.format(dateNow)
 
             // check for validity
@@ -73,9 +74,9 @@ class DialogAddWater : DialogFragment() {
 
                     // close dialog
                     dismiss()
-                } else bindingDialog.waterInput.error = "от 100 до 1000 мл."
+                } else bindingDialog.waterInput.error = resources.getString(R.string.field_ml)
 
-            } else bindingDialog.waterInput.error = "Пустое поле"
+            } else bindingDialog.waterInput.error = resources.getString(R.string.empty_error)
 
 
         }

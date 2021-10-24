@@ -13,6 +13,7 @@ import ppatsrrif.one.waterstate.databinding.DialogListItemWaterBinding
 import ppatsrrif.one.waterstate.mainPart.recyclerView.AdapterListItemWater
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 
+
 class DialogListItemWater : DialogFragment() {
 
     private lateinit var bindingDialog: DialogListItemWaterBinding
@@ -41,7 +42,6 @@ class DialogListItemWater : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // set params for dialog
-        dialog?.setCancelable(false)
         dialog?.window?.run {
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

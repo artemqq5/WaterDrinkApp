@@ -86,5 +86,10 @@
     <string name="delete">Удалить</string>
 
     <string name="empty_error">Пустое поле</string>
+    <string name="field_ml">от 100 до 1000 мл.</string>
+
+    <string name="volume_l">Л</string>
+
+    <string name="toast_exit">Повторите для выхода</string>
 
 </resources>

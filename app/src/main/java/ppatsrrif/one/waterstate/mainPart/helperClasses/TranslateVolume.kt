@@ -28,7 +28,7 @@ class TranslateVolume {
     fun addWater(volume: Double, type: Int): Double {
 
         return if (type == 1) {
-            round((volume / 1000.0) * 10) / 10.0
+            round((volume / 1000.0) * 100) / 100.0
         } else round(volume / 100.0)
 
     }
