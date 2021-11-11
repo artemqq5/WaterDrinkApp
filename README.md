@@ -10,3 +10,5 @@ The database clears itself after a week.
 
 I used Room and tried to keep the architecture clean also I used the principles of material design, 
 viewmodel, coroutines, view binding, solid principles.
+
+![alt text](image_1.png)
