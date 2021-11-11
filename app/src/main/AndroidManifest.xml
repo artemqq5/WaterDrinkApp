@@ -11,9 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WaterState">
         <activity android:name=".mainPart.activity.MoreStats"/>
-        <activity android:name=".mainPart.activity.MainActivity"/>
-        <activity android:name=".loginUser.activity.LoginActivity" android:noHistory="true"/>
-        <activity android:name=".SplashScreen" android:noHistory="true">
+        <activity android:name=".mainPart.activity.MainActivity" />
+        <activity
+            android:name=".loginUser.activity.LoginActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".SplashScreen"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +25,9 @@
             </intent-filter>
         </activity>
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
     </application>
 
 </manifest>

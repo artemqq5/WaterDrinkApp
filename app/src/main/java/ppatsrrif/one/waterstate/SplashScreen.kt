@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.ads.MobileAds
 import ppatsrrif.one.waterstate.loginUser.activity.LoginActivity
 import ppatsrrif.one.waterstate.mainPart.activity.MainActivity
 import ppatsrrif.one.waterstate.mainPart.helperClasses.CompareDates
@@ -35,6 +36,8 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
+
+        MobileAds.initialize(this) {}
 
         // get actually value
         stateLoading = sharedPreferencesHelper.getStartMode()

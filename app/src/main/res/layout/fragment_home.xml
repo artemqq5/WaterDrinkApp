@@ -166,6 +166,19 @@
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="16dp"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/more_statistic" />
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/blockRecommendation"
                 style="@style/CardMoreStats"
@@ -176,7 +189,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/more_statistic">
+                app:layout_constraintTop_toBottomOf="@+id/adView">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

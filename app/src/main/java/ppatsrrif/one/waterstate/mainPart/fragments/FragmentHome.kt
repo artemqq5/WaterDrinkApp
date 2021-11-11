@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
@@ -51,6 +54,16 @@ class FragmentHome : Fragment(), View.OnClickListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // ads
+        val mAdView = binding.adView
+
+        val adView = AdView(requireContext())
+        adView.adSize = AdSize.BANNER
+        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         // get status WHO Recommendation
         val statusVisibilityRecommendation = sharedPreferencesHelper.getStatusRecommendation()
