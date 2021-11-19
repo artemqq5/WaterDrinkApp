@@ -3,6 +3,7 @@ package ppatsrrif.one.waterstate.mainPart.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
 
 
@@ -19,6 +20,9 @@ class ViewModelUser(application: Application) : AndroidViewModel(application) {
     val liveDataWeight: MutableLiveData<Float> by lazy {
         MutableLiveData<Float>()
     }
+
+    fun getStringWeight() =
+        getApplication<Application>().resources.getString(R.string.unit_weight)
 
     init {
         liveDataName.value = sharedPreferencesHelper.getUserName()

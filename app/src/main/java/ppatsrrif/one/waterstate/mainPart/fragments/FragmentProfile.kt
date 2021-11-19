@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
-import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.FragmentProfileBinding
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogEditUser
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogResetProfile
@@ -41,8 +40,7 @@ class FragmentProfile : Fragment() {
             val transaction = parentFragmentManager.beginTransaction()
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             transaction
-                .add(android.R.id.content, dialog)
-                .addToBackStack(null)
+                .replace(android.R.id.content, dialog)
                 .commit()
         }
 
@@ -52,7 +50,7 @@ class FragmentProfile : Fragment() {
         }
 
         liveDataUser.liveDataWeight.observe(requireActivity()) {
-            binding.weightText.text = "$it " + resources.getString(R.string.unit_weight)
+            binding.weightText.text = "$it " + liveDataUser.getStringWeight()
         }
 
     }

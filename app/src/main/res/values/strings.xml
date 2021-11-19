@@ -92,4 +92,8 @@
 
     <string name="toast_exit">Repeat to exit</string>
 
+
+    <!--    ads google-->
+    <string name="justBannerKey" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+
 </resources>

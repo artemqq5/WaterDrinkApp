@@ -16,6 +16,7 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
+import ppatsrrif.one.waterstate.adMob.KeysAds
 import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
 import ppatsrrif.one.waterstate.mainPart.activity.MoreStats
 import ppatsrrif.one.waterstate.mainPart.dialogs.DialogAddWater
@@ -49,6 +50,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
         binding.floatingActionButton.setOnClickListener(this)
         binding.moreStatistic.setOnClickListener(this)
+        binding.buttonMoreDrunk.setOnClickListener(this)
 
         return binding.root
     }
@@ -60,7 +62,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
         val adView = AdView(requireContext())
         adView.adSize = AdSize.BANNER
-        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        adView.adUnitId = KeysAds.justBannerKey
 
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
@@ -107,8 +109,6 @@ class FragmentHome : Fragment(), View.OnClickListener {
         binding.closeRecommendation.setOnClickListener(this)
         // start WHO site
         binding.buttonMore.setOnClickListener(this)
-        // open list water item
-        binding.buttonMoreDrunk.setOnClickListener(this)
 
 
     }
@@ -147,7 +147,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
                 startActivity(uriWho)
             }
 
-            R.id.button_more_drunk -> {
+            R.id.buttonMoreDrunk -> {
                 val dialog = DialogListItemWater()
                 val transaction = parentFragmentManager.beginTransaction()
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

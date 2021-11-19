@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import ppatsrrif.one.waterstate.R
@@ -16,7 +17,7 @@ import ppatsrrif.one.waterstate.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.DialogEditUserBinding
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
 
-class DialogEditUser : DialogFragment() {
+class DialogEditUser : DialogFragment(), NumberPicker.OnValueChangeListener {
 
     private lateinit var bindingDialog: DialogEditUserBinding
     private val sharedPreferencesHelper by lazy {
@@ -45,11 +46,6 @@ class DialogEditUser : DialogFragment() {
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
 
-        // change weight text
-        bindingDialog.weightEditSlider.addOnChangeListener { _, value, _ ->
-            bindingDialog.finalWeight.text = "${getString(R.string.weight)} $value"
-        }
-
         // change name text
         bindingDialog.nameEditInput.editText?.addTextChangedListener(textListener)
 
@@ -58,11 +54,26 @@ class DialogEditUser : DialogFragment() {
             dismiss()
         }
 
+        //set params for numberPicker
+        bindingDialog.weightChoice.apply {
+            maxValue = 150
+            minValue = 30
+        }
+        bindingDialog.weightChoiceSub.apply {
+            maxValue = 9
+            minValue = 0
+        }
+
+        bindingDialog.weightChoice.setOnValueChangedListener(this)
+        bindingDialog.weightChoiceSub.setOnValueChangedListener(this)
+
 
         // save data in dialog
         bindingDialog.saveEditsButton.setOnClickListener {
 
-            val userWeight = bindingDialog.weightEditSlider.value
+            val userWeight = bindingDialog.weightChoice.value +
+                    bindingDialog.weightChoiceSub.value / 10.0f
+
             val userName = bindingDialog.nameEditInput.editText?.text.toString()
 
             // check for validity
@@ -114,8 +125,20 @@ class DialogEditUser : DialogFragment() {
         // get start weight and name from (SharedPreferences -> LiveData -> this)
         bindingDialog.nameEditInput.editText?.setText(sharedPreferencesHelper.getUserName())
 
-        bindingDialog.weightEditSlider.value = sharedPreferencesHelper.getUserWeight()
+        bindingDialog.weightChoice.value = sharedPreferencesHelper.getUserWeight().toInt()
+        bindingDialog.weightChoiceSub.value =
+            ((sharedPreferencesHelper.getUserWeight() % 1) * 10).toInt()
+
         bindingDialog.finalWeight.text =
             "${getString(R.string.weight)} ${sharedPreferencesHelper.getUserWeight()}"
+    }
+
+    override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
+
+        var value = bindingDialog.weightChoice.value +
+                bindingDialog.weightChoiceSub.value / 10.0f
+
+        bindingDialog.finalWeight.text =
+            "${getString(R.string.weight)} $value"
     }
 }

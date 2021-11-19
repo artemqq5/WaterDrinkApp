@@ -11,6 +11,7 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
+import ppatsrrif.one.waterstate.adMob.KeysAds
 import ppatsrrif.one.waterstate.databinding.ActivityMoreStatsBinding
 import ppatsrrif.one.waterstate.mainPart.helperClasses.CompareDates
 import ppatsrrif.one.waterstate.mainPart.helperClasses.DateHelper
@@ -58,7 +59,7 @@ class MoreStats : AppCompatActivity() {
 
         val adView = AdView(this)
         adView.adSize = AdSize.BANNER
-        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        adView.adUnitId = KeysAds.justBannerKey
 
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
