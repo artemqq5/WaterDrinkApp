@@ -42,9 +42,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setTheme(R.style.Theme_WaterState)
-
-
         // set action for navigation items
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
