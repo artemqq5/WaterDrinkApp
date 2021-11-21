@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
@@ -24,6 +22,7 @@ import ppatsrrif.one.waterstate.mainPart.dialogs.DialogListItemWater
 import ppatsrrif.one.waterstate.mainPart.helperClasses.TranslateVolume
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.mainPart.viewModel.ViewModelUser
+
 
 class FragmentHome : Fragment(), View.OnClickListener {
 
@@ -55,17 +54,19 @@ class FragmentHome : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // ads
-        val mAdView = binding.adView
+        val bannerView = AdView(requireContext())
+        binding.adViewContainer.addView(bannerView)
+        KeysAds().run {
+            loadBanner(
+                bannerView, KeysAds.justBannerKey,
+                adSize(requireActivity(), binding.adViewContainer, requireContext(), 16 * 2)
+            )
+        }
 
-        val adView = AdView(requireContext())
-        adView.adSize = AdSize.BANNER
-        adView.adUnitId = KeysAds.justBannerKey
-
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
 
         // get status WHO Recommendation
         val statusVisibilityRecommendation = sharedPreferencesHelper.getStatusRecommendation()

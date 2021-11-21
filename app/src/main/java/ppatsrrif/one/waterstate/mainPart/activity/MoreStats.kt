@@ -6,8 +6,6 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.SharedPreferencesHelper
@@ -55,14 +53,14 @@ class MoreStats : AppCompatActivity() {
         setContentView(binding.root)
 
         // ads
-        val mAdView = binding.adView
-
-        val adView = AdView(this)
-        adView.adSize = AdSize.BANNER
-        adView.adUnitId = KeysAds.justBannerKey
-
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        val bannerView = AdView(baseContext)
+        binding.adViewContainer.addView(bannerView)
+        KeysAds().run {
+            loadBanner(
+                bannerView, KeysAds.justBannerKey,
+                adSize(this@MoreStats, binding.adViewContainer, baseContext, 16 * 2)
+            )
+        }
 
         binding.topAppBar.setNavigationOnClickListener {
             startActivity(

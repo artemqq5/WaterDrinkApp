@@ -168,16 +168,13 @@
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
+            <FrameLayout
+                android:id="@+id/adViewContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:adSize="BANNER"
-                app:adUnitId="@string/justBannerKey"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/more_statistic"
+                app:layout_constraintStart_toStartOf="@+id/more_statistic"
                 app:layout_constraintTop_toBottomOf="@+id/more_statistic" />
 
             <com.google.android.material.card.MaterialCardView
@@ -190,7 +187,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/adView">
+                app:layout_constraintTop_toBottomOf="@+id/adViewContainer">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

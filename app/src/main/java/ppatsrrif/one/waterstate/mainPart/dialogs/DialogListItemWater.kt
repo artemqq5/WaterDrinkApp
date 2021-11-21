@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.adMob.KeysAds
@@ -47,14 +46,14 @@ class DialogListItemWater : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // ads
-        val mAdView = view.findViewById<AdView>(R.id.adView)
-
-        val adView = AdView(requireContext())
-        adView.adSize = AdSize.FULL_BANNER
-        adView.adUnitId = KeysAds.justBannerKey
-
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        val bannerView = AdView(requireContext())
+        view.findViewById<FrameLayout>(R.id.adViewContainer).addView(bannerView)
+        KeysAds().run {
+            loadBanner(
+                bannerView, KeysAds.justBannerKey,
+                adSize(requireActivity(), view.findViewById(R.id.adViewContainer), requireContext())
+            )
+        }
 
         // set params for dialog
         dialog?.window?.run {
