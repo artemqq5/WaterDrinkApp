@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.DialogCreateBinding
 import ppatsrrif.one.waterstate.domain.DateHelper
-import ppatsrrif.one.waterstate.repository.database.TableItemStorage
 import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
+import ppatsrrif.one.waterstate.repository.database.table.TableItemStorage
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -65,12 +65,12 @@ class DialogAddWater : DialogFragment() {
 
                     val volumeWaterItem = volume.toDouble()
 
-                    viewModelItem.addItem(
-                        TableItemStorage(
-                            time = resultTime, volumeWater = volumeWaterItem,
-                            typeDay = dateHelper.getDay()
-                        )
-                    )
+//                    viewModelItem.addItem(
+//                        TableItemStorage(
+//                            time = resultTime, volumeWater = volumeWaterItem,
+//                            typeDay = dateHelper.getDay()
+//                        )
+//                    )
 
                     // close dialog
                     dismiss()

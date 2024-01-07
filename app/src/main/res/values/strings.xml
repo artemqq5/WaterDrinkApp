@@ -63,20 +63,29 @@
     <string name="resetProfileTitle">Reset profile?</string>
     <string name="reset_ok">OK</string>
 
-    <!--    Fragment name-->
-    <string name="setName">How can I call you?</string>
-    <string name="setNameInput">Name</string>
     <string name="button_next">Next</string>
+
+    <!--    Fragment name-->
+    <string name="setName">What is your name?</string>
+    <string name="setNameInput">Name</string>
+
+    <!--    Fragment gender-->
+    <string name="setGender">What is your gender?</string>
+    <string name="setGenderInput">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+    <!--    Fragment weight-->
+    <string name="setWeight">Your weight</string>
+    <string name="setWeightInput">weight</string>
+
+    <!--    Fragment physical-->
+    <string name="setPhysical">Choice your physical activity</string>
 
     <!--    Fragment profile-->
     <string name="buttonEdit">Edit profile</string>
     <string name="buttonReset">Reset profile</string>
     <string name="unit_weight">kg</string>
-
-    <!--    Fragment weight-->
-    <string name="setWeight">Your weight</string>
-    <string name="setWeightInput">weight</string>
-    <string name="setWeightSub">,</string>
 
     <!--    Item card water-->
     <string name="open_popup">Open the menu</string>
@@ -85,7 +94,13 @@
     <!--    Popup menu-->
     <string name="delete">Delete</string>
 
+<!--    Errors-->
     <string name="empty_error">Empty field</string>
+    <string name="weight_range_error">Weight range should be in 30–150 kilograms</string>
+    <string name="weight_format_error">Invalid format. Should be 60.0</string>
+    <string name="gender_choose_error">You should choose one gender</string>
+
+
     <string name="field_ml">from 100 to 1000 ml.</string>
 
     <string name="volume_l">L</string>

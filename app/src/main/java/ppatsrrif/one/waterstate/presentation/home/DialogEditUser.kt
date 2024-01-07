@@ -13,15 +13,15 @@ import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import ppatsrrif.one.waterstate.R
-import ppatsrrif.one.waterstate.repository.SharedPreferencesHelper
+import ppatsrrif.one.waterstate.repository.storage.UserUserStoragePreference
 import ppatsrrif.one.waterstate.databinding.DialogEditUserBinding
 import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelUser
 
 class DialogEditUser : DialogFragment(), NumberPicker.OnValueChangeListener {
 
     private lateinit var bindingDialog: DialogEditUserBinding
-    private val sharedPreferencesHelper by lazy {
-        SharedPreferencesHelper(requireContext())
+    private val userStoragePreference by lazy {
+        UserUserStoragePreference(requireContext())
     }
     private val viewModelUser: ViewModelUser by activityViewModels()
 
@@ -80,8 +80,8 @@ class DialogEditUser : DialogFragment(), NumberPicker.OnValueChangeListener {
             if (userName.isNotEmpty()) {
 
                 // set data to SharedPreferences
-                sharedPreferencesHelper.setUserWeight(userWeight)
-                sharedPreferencesHelper.setUserName(userName)
+//                sharedPreferencesHelper.setUserWeight(userWeight)
+//                sharedPreferencesHelper.setUserName(userName)
 
                 // set into viewModel
                 viewModelUser.liveDataWeight.value = userWeight
@@ -123,14 +123,14 @@ class DialogEditUser : DialogFragment(), NumberPicker.OnValueChangeListener {
         super.onStart()
 
         // get start weight and name from (SharedPreferences -> LiveData -> this)
-        bindingDialog.nameEditInput.editText?.setText(sharedPreferencesHelper.getUserName())
+//        bindingDialog.nameEditInput.editText?.setText(sharedPreferencesHelper.getUserName())
+//
+//        bindingDialog.weightChoice.value = sharedPreferencesHelper.getUserWeight().toInt()
+//        bindingDialog.weightChoiceSub.value =
+//            ((sharedPreferencesHelper.getUserWeight() % 1) * 10).toInt()
 
-        bindingDialog.weightChoice.value = sharedPreferencesHelper.getUserWeight().toInt()
-        bindingDialog.weightChoiceSub.value =
-            ((sharedPreferencesHelper.getUserWeight() % 1) * 10).toInt()
-
-        bindingDialog.finalWeight.text =
-            "${getString(R.string.weight)} ${sharedPreferencesHelper.getUserWeight()}"
+//        bindingDialog.finalWeight.text =
+//            "${getString(R.string.weight)} ${sharedPreferencesHelper.getUserWeight()}"
     }
 
     override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {

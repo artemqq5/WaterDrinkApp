@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="physical_activity">
+        <item name="minimal">1.0 Minimal or no activity</item>
+        <item name="light">1.2 Light activity</item>
+        <item name="moderate">1.4 Moderate activity</item>
+        <item name="high">1.6 High activity</item>
+        <item name="very_high">1.8 Very high activity</item>
+    </string-array>
+
+    <string-array name="physical_activity_value">
+        <item name="minimal">1.0</item>
+        <item name="light">1.2</item>
+        <item name="moderate">1.4</item>
+        <item name="high">1.6</item>
+        <item name="very_high">1.8</item>
+    </string-array>
+</resources>

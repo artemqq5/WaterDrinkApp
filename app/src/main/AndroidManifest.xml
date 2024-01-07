@@ -13,16 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aquent">
-        <activity android:name=".presentation.home.MoreStats" />
-        <activity android:name=".presentation.home.MainActivity" />
+        <activity android:name=".presentation.home.activity.MoreStatsActivity" />
+        <activity android:name=".presentation.home.activity.MainActivity" />
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:noHistory="true" />
-        <activity
-            android:name=".presentation.login.SplashScreen"
-            android:noHistory="true"
-            android:theme="@style/SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

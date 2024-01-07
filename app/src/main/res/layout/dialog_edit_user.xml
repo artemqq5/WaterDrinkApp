@@ -106,7 +106,6 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
-                    android:text="@string/setWeightSub"
                     android:textColor="@color/gray"
                     android:textSize="24sp" />
 

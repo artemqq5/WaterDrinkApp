@@ -17,11 +17,11 @@ import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
 class DialogListItemWater : DialogFragment() {
 
     private lateinit var bindingDialog: DialogListItemWaterBinding
-    private val adapterRecycler by lazy {
-        AdapterListItemWater {
-            viewModelItem.deleteItem(it)
-        }
-    }
+//    private val adapterRecycler by lazy {
+//        AdapterListItemWater {
+//            viewModelItem.deleteItem(it)
+//        }
+//    }
 
     private val viewModelItem by lazy {
         ViewModelProvider(requireActivity())[ViewModelItem::class.java]
@@ -55,17 +55,17 @@ class DialogListItemWater : DialogFragment() {
         }
 
         // set adapter, layoutManager to RecyclerView
-        bindingDialog.recyclerItemWater.run {
-            adapter = adapterRecycler
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+//        bindingDialog.recyclerItemWater.run {
+//            adapter = adapterRecycler
+//            layoutManager = LinearLayoutManager(requireContext())
+//        }
 
         viewModelItem.date.observe(viewLifecycleOwner) {
 
             // set observer to RecyclerView
-            viewModelItem.listSomeDay(it).observe(viewLifecycleOwner, { list ->
-                adapterRecycler.setNewList(list)
-            })
+//            viewModelItem.listSomeDay(it).observe(viewLifecycleOwner) { list ->
+//                adapterRecycler.setNewList(list)
+//            }
 
         }
 

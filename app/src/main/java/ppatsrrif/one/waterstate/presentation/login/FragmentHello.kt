@@ -4,9 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.FragmentHelloBinding
 
+@AndroidEntryPoint
 class FragmentHello : Fragment() {
 
     private lateinit var binding: FragmentHelloBinding
@@ -25,9 +30,7 @@ class FragmentHello : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.buttonLogIn.setOnClickListener {
-
-            //run method from LoginActivity
-            (activity as LoginActivity).nextFragment(FragmentName.newInstance())
+            findNavController().navigate(R.id.action_fragmentHello_to_fragmentUser)
         }
     }
 }

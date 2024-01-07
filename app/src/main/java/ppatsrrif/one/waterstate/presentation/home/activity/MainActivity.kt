@@ -1,4 +1,4 @@
-package ppatsrrif.one.waterstate.presentation.home
+package ppatsrrif.one.waterstate.presentation.home.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,13 +6,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
-import ppatsrrif.one.waterstate.repository.SharedPreferencesHelper
 import ppatsrrif.one.waterstate.databinding.ActivityMainBinding
 import ppatsrrif.one.waterstate.domain.CompareDates
 import ppatsrrif.one.waterstate.domain.DateHelper
+import ppatsrrif.one.waterstate.presentation.home.FragmentHome
+import ppatsrrif.one.waterstate.presentation.home.FragmentProfile
+import ppatsrrif.one.waterstate.presentation.home.FragmentSettings
 import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy {
@@ -28,12 +32,12 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this)[ViewModelItem::class.java]
     }
 
-    private val dateCheck by lazy {
-        CompareDates(
-            SharedPreferencesHelper(this),
-            viewModelItem
-        )
-    }
+//    private val dateCheck by lazy {
+//        CompareDates(
+//            UserStorage(this),
+//            viewModelItem
+//        )
+//    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +85,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        dateCheck.checkWeek(dateHelper.getWeek())
-        viewModelItem.date.value = dateHelper.getDay()
+//        dateCheck.checkWeek(dateHelper.getWeek())
+//        viewModelItem.date.value = dateHelper.getDay()
     }
 
 

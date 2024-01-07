@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Aquent</string>
+
+    <!--    Menu tags-->
+    <string name="bottom_nav_home">Головна</string>
+    <string name="bottom_nav_profile">Профіль</string>
+    <string name="bottom_nav_settings">Налаштування</string>
+
+    <!--    More Stats-->
+    <string name="more_stats_title">Детальна статистика</string>
+    <string name="daily_norm">Денна норма</string>
+    <string name="today">Сьогодні</string>
+    <string name="_of">з</string>
+    <string name="weekly_norm">Тижнева норма</string>
+    <string name="your_goals">Твої цілі</string>
+    <string name="now_week">Поточний тиждень</string>
+
+    <!--    Dialog add water-->
+    <string name="add_water">Додати воду</string>
+    <string name="volume_water">Об\'єм</string>
+    <string name="volume_sub">Об\'єм вказуйте у мілілітрах</string>
+    <string name="unit_count">мл</string>
+    <string name="button_add">Додати</string>
+    <string name="button_cancel">Скасування</string>
+
+    <!--    Dialog edit user-->
+    <string name="close_window">Закрити діалогове вікно</string>
+    <string name="edit">Редагувати</string>
+    <string name="button_save">Зберегти</string>
+    <string name="weight">Вага</string>
+
+    <!--    Dialog list item-->
+    <string name="list_records">Список записів</string>
+
+    <!--    End fragment settings-->
+    <string name="end_sub">Швидше натискай кнопку старт і починай стежити за водним балансом</string>
+    <string name="settings_end">Налаштування завершено</string>
+
+    <!--    Fragment hello-->
+    <string name="login">Ласкаво просимо!</string>
+    <string name="login_sub">Ми раді вітати вас у нашому додатку! Сподіваємося, ви знайдете тут багато корисного для себе.</string>
+    <string name="button_start">Почати</string>
+
+    <!--    Fragment home-->
+    <string name="box1_text">Ваша норма споживання води</string>
+    <string name="box2_text">Сьогодні</string>
+    <string name="box2_button">Відкрити список</string>
+    <string name="box3_text">Детальна статистика</string>
+    <string name="box3_text_sub">За минулий тиждень</string>
+    <string name="box4_text">Яку воду не слід пити</string>
+    <string name="box4_text_sub">Безпечна та доступна \nвода — важливий фактор здоров\'я людей,
+        незалежно від того, використовується чи вона для пиття</string>
+    <string name="box4_button">Переглянути більше</string>
+    <string name="ms_open">Відкрити детальну статистику</string>
+    <string name="close_who">Закрити рекомендації</string>
+    <string name="sub_text_home1">становить</string>
+    <string name="sub_text_home2">літрів, відповідно до розрахунку 35 мілілітрів на 1 кілограм маси тіла</string>
+
+    <!--    ResetUser Dialog-->
+    <string name="resetProfileMessage">Після скидання профіль неможливо буде відновити!</string>
+
+
+    <string name="resetProfileTitle">Скинути профіль?</string>
+    <string name="reset_ok">ОК</string>
+
+    <string name="button_next">Продовжити</string>
+
+    <!--    Fragment name-->
+    <string name="setName">Як до вас звертатися?</string>
+    <string name="setNameInput">Ім\'я</string>
+
+    <!--    Fragment gender-->
+    <string name="setGender">Яка твоя стать?</string>
+    <string name="setGenderInput">Стать</string>
+    <string name="male">Чоловіча</string>
+    <string name="female">Жіноча</string>
+
+    <!--    Fragment weight-->
+    <string name="setWeight">Ваша вага</string>
+    <string name="setWeightInput">Вага</string>
+
+    <!--    Fragment physical-->
+    <string name="setPhysical">Виберіть свою фізичну активність</string>
+
+    <!--    Fragment profile-->
+    <string name="buttonEdit">Редагувати</string>
+    <string name="buttonReset">Скинути профіль</string>
+    <string name="unit_weight">кг</string>
+
+    <!--    Item card water-->
+    <string name="open_popup">Відкрити меню</string>
+    <string name="image_water">елемент списку</string>
+
+    <!--    Popup menu-->
+    <string name="delete">Видалити</string>
+
+    <!--    Errors-->
+    <string name="empty_error">Порожнє поле</string>
+    <string name="weight_range_error">Діапазон ваги повинен становити 30–150 кілограм</string>
+    <string name="weight_format_error">Неправильний формат. Повинен бути 60.0</string>
+    <string name="gender_choose_error">Ви повинні вибрати одну стать</string>
+
+    <string name="field_ml">від 100 до 1000 мл.</string>
+
+    <string name="volume_l">Л</string>
+
+    <string name="toast_exit">Повторіть для виходу</string>
+
+</resources>

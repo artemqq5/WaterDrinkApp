@@ -3,7 +3,6 @@ package ppatsrrif.one.waterstate.presentation.home
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,10 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import ppatsrrif.one.waterstate.R
-import ppatsrrif.one.waterstate.repository.SharedPreferencesHelper
+import ppatsrrif.one.waterstate.repository.storage.UserUserStoragePreference
 import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
 import ppatsrrif.one.waterstate.domain.TranslateVolume
+import ppatsrrif.one.waterstate.presentation.home.activity.MoreStatsActivity
 import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
 import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelUser
 
@@ -22,8 +22,8 @@ import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelUser
 class FragmentHome : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
-    private val sharedPreferencesHelper by lazy {
-        SharedPreferencesHelper(requireContext())
+    private val userStoragePreference by lazy {
+        UserUserStoragePreference(requireContext())
     }
     private val liveDataUser: ViewModelUser by activityViewModels()
     private val viewModelItem: ViewModelItem by lazy {
@@ -62,40 +62,41 @@ class FragmentHome : Fragment(), View.OnClickListener {
 //        }
 
 
-        // get status WHO Recommendation
-        val statusVisibilityRecommendation = sharedPreferencesHelper.getStatusRecommendation()
-
-        // set default status WHO Recommendation
-        binding.blockRecommendation.visibility =
-            if (statusVisibilityRecommendation) View.VISIBLE else View.INVISIBLE
-
-        // set water norm
-        liveDataUser.liveDataWeight.observe(viewLifecycleOwner) {
-            binding.waterNorma.text =
-                resources.getString(R.string.sub_text_home1) + " " + translateVolume.normalWaterUI(
-                    it,
-                    1
-                ) + " " + resources.getString(R.string.sub_text_home2)
-
-        }
+//        // get status WHO Recommendation
+//        val statusVisibilityRecommendation = sharedPreferencesHelper.getStatusRecommendation()
+//
+//        // set default status WHO Recommendation
+//        binding.blockRecommendation.visibility =
+//            if (statusVisibilityRecommendation) View.VISIBLE else View.INVISIBLE
+//
+//        // set water norm
+//        liveDataUser.liveDataWeight.observe(viewLifecycleOwner) {
+//            binding.waterNorma.text =
+//                resources.getString(R.string.sub_text_home1) + " " + translateVolume.normalWaterUI(
+//                    it,
+//                    1
+//                ) + " " + resources.getString(R.string.sub_text_home2)
+//
+//        }
 
 
 
         viewModelItem.date.observe(viewLifecycleOwner) { nowDate ->
 
-            // set all volume drunk water for a day
-            viewModelItem.listSomeDay(nowDate).observe(viewLifecycleOwner, { listItems ->
-                var sum = 0.0
-
-                for (item in listItems) {
-                    sum += item.volumeWater
-                }
-
-
-                binding.countWater.text = translateVolume.addWater(sum, 1).toString()
-
-                Log.i("sdfe34f234f1", "$sum - ${translateVolume.addWater(sum, 1)}")
-            })
+//            // set all volume drunk water for a day
+//            viewModelItem.listSomeDay(nowDate).observe(viewLifecycleOwner
+//            ) { listItems ->
+//                var sum = 0.0
+//
+//                for (item in listItems) {
+//                    sum += item.volumeWater
+//                }
+//
+//
+//                binding.countWater.text = translateVolume.addWater(sum, 1).toString()
+//
+//                Log.i("sdfe34f234f1", "$sum - ${translateVolume.addWater(sum, 1)}")
+//            }
 
         }
 
@@ -122,7 +123,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
             R.id.more_statistic -> {
                 startActivity(
-                    Intent(requireContext(), MoreStats::class.java)
+                    Intent(requireContext(), MoreStatsActivity::class.java)
                 )
 
             }
@@ -130,7 +131,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
             R.id.closeRecommendation -> {
                 binding.blockRecommendation.visibility = View.INVISIBLE
 
-                sharedPreferencesHelper.setStatusRecommendation(false)
+//                sharedPreferencesHelper.setStatusRecommendation(false)
             }
 
             R.id.button_more -> {

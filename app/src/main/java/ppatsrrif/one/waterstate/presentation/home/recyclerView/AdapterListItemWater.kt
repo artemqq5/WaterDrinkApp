@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.ItemWaterViewBinding
 import ppatsrrif.one.waterstate.domain.TranslateVolume
-import ppatsrrif.one.waterstate.repository.database.TableItemStorage
+import ppatsrrif.one.waterstate.repository.database.table.TableItemStorage
 import java.util.*
 
 
