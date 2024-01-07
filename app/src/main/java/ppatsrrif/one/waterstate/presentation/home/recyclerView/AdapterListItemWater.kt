@@ -1,6 +1,6 @@
 package ppatsrrif.one.waterstate.presentation.home.recyclerView
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,45 +9,32 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.ItemWaterViewBinding
-import ppatsrrif.one.waterstate.domain.TranslateVolume
-import ppatsrrif.one.waterstate.repository.database.table.TableItemStorage
+import ppatsrrif.one.waterstate.domain.repository.database_table.WaterItemTable
 import java.util.*
 
 
-class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
+class AdapterListItemWater(
+    private var listItemWater: List<WaterItemTable> = emptyList(),
+    var listener: (WaterItemTable) -> Unit
+) :
     RecyclerView.Adapter<AdapterListItemWater.CustomViewHolder>() {
 
-    private var listItemWater = listOf<TableItemStorage>()
-
-    private val translateVolume by lazy {
-        TranslateVolume()
-    }
-
-    // class for init components of card
-    inner class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    inner class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemWaterViewBinding.bind(view)
-        private lateinit var idItem: UUID
 
-        fun initializing(model: TableItemStorage, context: Context) {
-            binding.timeText.text = model.time
-            binding.volumeText.text =
-                translateVolume.addWater(model.volumeWater, 1).toString() + " " +
-                        context.resources.getString(R.string.volume_l)
+        fun initializing(model: WaterItemTable) {
+            binding.timeText.text = model.date.toString()
+            binding.volumeText.text = model.volumeWater.toString()
+//                TranslateVolume().addWater(model.volumeWater, 1).toString() + " " +
+//                        context.resources.getString(R.string.volume_l)
 
-            idItem = model.id
-
-            binding.openPopMenu.setOnClickListener(this)
-        }
-
-        override fun onClick(p0: View?) {
-            when (p0?.id) {
-                R.id.openPopMenu -> {
-                    openMenu(binding.openPopMenu)
-                }
+            binding.openPopMenu.setOnClickListener {
+                openMenu(binding.openPopMenu, model)
             }
         }
 
-        private fun openMenu(v: View) {
+
+        private fun openMenu(v: View, model: WaterItemTable) {
 
             val popupWindow = PopupWindow(v.context)
             val view = LayoutInflater.from(v.context).inflate(R.layout.popup_window, null)
@@ -63,7 +50,7 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
             val textView = view.findViewById<TextView>(R.id.popMenu)
 
             textView.setOnClickListener {
-                listener(idItem)
+                listener(model)
                 popupWindow.dismiss()
             }
 
@@ -89,13 +76,14 @@ class AdapterListItemWater(private val listener: (index: UUID) -> Unit) :
 
     // start init fun with ModelItemWater object
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.initializing(listItemWater[position], holder.itemView.context)
+        holder.initializing(listItemWater[position])
     }
 
     override fun getItemCount(): Int = listItemWater.size
 
-    fun setNewList(list: List<TableItemStorage>) {
-        this.listItemWater = list
+    @SuppressLint("NotifyDataSetChanged")
+    fun setNewList(list: List<WaterItemTable>) {
+        listItemWater = list
         notifyDataSetChanged()
     }
 

@@ -1,4 +1,4 @@
-package ppatsrrif.one.waterstate.presentation.login
+package ppatsrrif.one.waterstate.presentation.login.activity
 
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity(R.layout.activity_login) {
                 finishAffinity()
             } else {
                 Snackbar.make(
-                    findViewById(R.id.fragment_container_login),
+                    findViewById(R.id.fragmentContainerLogin),
                     resources.getString(R.string.toast_exit),
                     Snackbar.LENGTH_SHORT
                 ).show()

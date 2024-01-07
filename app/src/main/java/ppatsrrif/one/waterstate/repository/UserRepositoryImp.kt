@@ -1,21 +1,18 @@
 package ppatsrrif.one.waterstate.repository
 
-import android.content.Context
-import ppatsrrif.one.waterstate.domain.repository.Repository
+import ppatsrrif.one.waterstate.domain.repository.UserRepository
 import ppatsrrif.one.waterstate.domain.repository.model.LoadMode
-import ppatsrrif.one.waterstate.domain.repository.model.UserModel
 import ppatsrrif.one.waterstate.domain.repository.model.UserGender
+import ppatsrrif.one.waterstate.domain.repository.model.UserModel
 import ppatsrrif.one.waterstate.repository.storage.UserStorage
 import javax.inject.Inject
 
 
-private const val DATABASE_NAME = "data_base-water_state10"
 
 
-class RepositoryImp @Inject constructor(
-    private val userStorage: UserStorage,
-    private val context: Context
-) : Repository {
+class UserRepositoryImp @Inject constructor(
+    private val userStorage: UserStorage
+) : UserRepository {
 
 //    private val dataBase: DataBase by lazy {
 //        Room.databaseBuilder(

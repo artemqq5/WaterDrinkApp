@@ -4,7 +4,7 @@ import ppatsrrif.one.waterstate.domain.repository.model.LoadMode
 import ppatsrrif.one.waterstate.domain.repository.model.UserModel
 
 
-interface Repository {
+interface UserRepository {
 
     fun getLoadMode(): LoadMode
     fun setLoadMode(loadMode: LoadMode)

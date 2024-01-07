@@ -5,10 +5,12 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.repository.storage.UserUserStoragePreference
-import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
+import ppatsrrif.one.waterstate.presentation.viewmodel.ViewModelItem
 
+@AndroidEntryPoint
 class DialogResetProfile : DialogFragment() {
 
 

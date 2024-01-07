@@ -2,13 +2,11 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("com.google.gms.google-services")
-
-    id("com.google.devtools.ksp")
-    id("kotlin-kapt")
-
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
+    id("kotlin-kapt")
 }
 
 android {

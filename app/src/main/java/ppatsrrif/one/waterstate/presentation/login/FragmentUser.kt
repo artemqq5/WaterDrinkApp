@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.FragmentUserBinding
-import ppatsrrif.one.waterstate.domain.repository.Repository
+import ppatsrrif.one.waterstate.domain.repository.UserRepository
 import ppatsrrif.one.waterstate.domain.repository.model.LoadMode
 import ppatsrrif.one.waterstate.domain.repository.model.UserGender
 import ppatsrrif.one.waterstate.domain.repository.model.UserModel
@@ -30,7 +30,7 @@ class FragmentUser : Fragment() {
     private lateinit var binding: FragmentUserBinding
 
     @Inject
-    lateinit var repositoryImp: Repository
+    lateinit var userRepositoryImp: UserRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -65,7 +65,7 @@ class FragmentUser : Fragment() {
             if (validationName(name) && validationWeight(weight) && validationGender(gender)) {
 
                 // save data from user
-                repositoryImp.setUser(
+                userRepositoryImp.setUser(
                     UserModel(
                         name = name,
                         weight = weight.toFloat(),
@@ -75,7 +75,7 @@ class FragmentUser : Fragment() {
                 )
 
                 // set next load mode home
-                repositoryImp.setLoadMode(LoadMode.Home)
+                userRepositoryImp.setLoadMode(LoadMode.Home)
 
                 // go to finish text (optional action)
                 findNavController().navigate(R.id.action_fragmentUser_to_fragmentEnd)

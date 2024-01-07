@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_stats.xml"
+    app:startDestination="@id/baseStatisticFragment">
+
+    <fragment
+        android:id="@+id/baseStatisticFragment"
+        android:name="ppatsrrif.one.waterstate.presentation.more_stats.BaseStatisticFragment"
+        android:label="fragment_base_statistic"
+        tools:layout="@layout/fragment_base_statistic" />
+</navigation>

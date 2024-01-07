@@ -3,28 +3,37 @@ package ppatsrrif.one.waterstate.presentation.home
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ppatsrrif.one.waterstate.databinding.DialogListItemWaterBinding
+import ppatsrrif.one.waterstate.domain.repository.WaterRepository
+import ppatsrrif.one.waterstate.domain.usecase.DateUseCase
 import ppatsrrif.one.waterstate.presentation.home.recyclerView.AdapterListItemWater
-import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class DialogListItemWater : DialogFragment() {
 
     private lateinit var bindingDialog: DialogListItemWaterBinding
-//    private val adapterRecycler by lazy {
-//        AdapterListItemWater {
-//            viewModelItem.deleteItem(it)
-//        }
-//    }
 
-    private val viewModelItem by lazy {
-        ViewModelProvider(requireActivity())[ViewModelItem::class.java]
+    private val adapterRecycler by lazy {
+        AdapterListItemWater {}
+    }
+
+    @Inject
+    lateinit var waterRepositoryImp: WaterRepository
+
+    private val excCoroutine = CoroutineExceptionHandler { _, throwable ->
+        Log.i("MyLog", "DialogListItemWater: $throwable")
     }
 
     override fun onCreateView(
@@ -41,33 +50,34 @@ class DialogListItemWater : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        // ads
-//        val bannerView = AdView(requireContext())
-//        view.findViewById<FrameLayout>(R.id.adViewContainer).addView(bannerView)
-//        KeysAds().run {
-//            loadBanner(bannerView, KeysAds.justBannerKey)
-//        }
-
         // set params for dialog
         dialog?.window?.run {
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
 
-        // set adapter, layoutManager to RecyclerView
-//        bindingDialog.recyclerItemWater.run {
-//            adapter = adapterRecycler
-//            layoutManager = LinearLayoutManager(requireContext())
-//        }
+        bindingDialog.recyclerItemWater.adapter = adapterRecycler
 
-        viewModelItem.date.observe(viewLifecycleOwner) {
-
-            // set observer to RecyclerView
-//            viewModelItem.listSomeDay(it).observe(viewLifecycleOwner) { list ->
-//                adapterRecycler.setNewList(list)
-//            }
-
+        adapterRecycler.listener = {
+            lifecycleScope.launch(Dispatchers.IO + excCoroutine) {
+                waterRepositoryImp.deleteWaterItem(it)
+            }
         }
+
+        waterRepositoryImp.getWaterItemByDate(
+            DateUseCase().getCurrentStartDate(),
+            DateUseCase().getCurrentEndDate()
+        ).observe(viewLifecycleOwner) {
+            adapterRecycler.setNewList(it)
+        }
+
+
+        // ads
+//        val bannerView = AdView(requireContext())
+//        view.findViewById<FrameLayout>(R.id.adViewContainer).addView(bannerView)
+//        KeysAds().run {
+//            loadBanner(bannerView, KeysAds.justBannerKey)
+//        }
 
 
         // button close dialog

@@ -9,14 +9,14 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.domain.repository.model.LoadMode
-import ppatsrrif.one.waterstate.domain.repository.Repository
+import ppatsrrif.one.waterstate.domain.repository.UserRepository
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class ConditionalScreen : Fragment() {
 
     @Inject
-    lateinit var repositoryImp: Repository
+    lateinit var userRepositoryImp: UserRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +24,7 @@ class ConditionalScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        if (repositoryImp.getLoadMode() == LoadMode.Home) {
+        if (userRepositoryImp.getLoadMode() == LoadMode.Home) {
             findNavController().navigate(R.id.action_conditionalScreen_to_mainActivity)
         } else {
             findNavController().navigate(R.id.action_conditionalScreen_to_fragmentHello)

@@ -1,16 +1,8 @@
-package ppatsrrif.one.waterstate.presentation.viewModel
+package ppatsrrif.one.waterstate.presentation.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import ppatsrrif.one.waterstate.repository.RepositoryImp
-import ppatsrrif.one.waterstate.repository.database.table.TableIItemStorageGoals
-import ppatsrrif.one.waterstate.repository.database.table.TableItemStorage
-import java.util.*
 
 class ViewModelItem(application: Application) : AndroidViewModel(application) {
 

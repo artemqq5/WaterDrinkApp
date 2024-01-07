@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:layout_margin="16dp"
-    android:background="@drawable/bg_slide">
+    android:background="@drawable/bg_slide"
+    tools:context=".presentation.home.DialogAddWater">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/materialTextView"

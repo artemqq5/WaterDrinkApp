@@ -1,4 +1,4 @@
-package ppatsrrif.one.waterstate.presentation.viewModel
+package ppatsrrif.one.waterstate.presentation.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

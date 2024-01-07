@@ -1,4 +1,4 @@
-package ppatsrrif.one.waterstate.domain
+package ppatsrrif.one.waterstate.domain.q1
 
 import android.app.Activity
 import android.content.Context

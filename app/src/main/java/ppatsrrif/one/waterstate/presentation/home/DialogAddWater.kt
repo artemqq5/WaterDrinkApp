@@ -4,28 +4,33 @@ package ppatsrrif.one.waterstate.presentation.home
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ppatsrrif.one.waterstate.R
-import ppatsrrif.one.waterstate.databinding.DialogCreateBinding
-import ppatsrrif.one.waterstate.domain.DateHelper
-import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
-import ppatsrrif.one.waterstate.repository.database.table.TableItemStorage
-import java.text.SimpleDateFormat
-import java.util.*
+import ppatsrrif.one.waterstate.databinding.DialogAddWaterBinding
+import ppatsrrif.one.waterstate.domain.repository.WaterRepository
+import ppatsrrif.one.waterstate.domain.repository.database_table.WaterItemTable
+import ppatsrrif.one.waterstate.domain.usecase.DateUseCase
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DialogAddWater : DialogFragment() {
 
-    private lateinit var bindingDialog: DialogCreateBinding
-    private val viewModelItem by lazy {
-        ViewModelProvider(requireActivity())[ViewModelItem::class.java]
-    }
+    private lateinit var bindingDialog: DialogAddWaterBinding
 
-    private val dateHelper by lazy {
-        DateHelper()
+    @Inject
+    lateinit var waterRepositoryImp: WaterRepository
+
+    private val excCoroutine = CoroutineExceptionHandler { _, throwable ->
+        Log.i("MyLog", "DialogAddWater: $throwable")
     }
 
     override fun onCreateView(
@@ -34,7 +39,7 @@ class DialogAddWater : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        bindingDialog = DialogCreateBinding.inflate(inflater)
+        bindingDialog = DialogAddWaterBinding.inflate(inflater)
 
         bindingDialog.waterInput.editText?.addTextChangedListener(textListener)
 
@@ -55,24 +60,21 @@ class DialogAddWater : DialogFragment() {
 
             val volume = bindingDialog.waterInput.editText?.text.toString()
 
-            val dateNow = Date()
-            val stringFormat = SimpleDateFormat("HH:mm", Locale.CANADA)
-            val resultTime = stringFormat.format(dateNow)
-
             // check for validity
             if (bindingDialog.waterInput.editText?.text.toString().isNotEmpty()) {
                 if (volume.toDouble() in 100.0..1000.0) {
 
                     val volumeWaterItem = volume.toDouble()
 
-//                    viewModelItem.addItem(
-//                        TableItemStorage(
-//                            time = resultTime, volumeWater = volumeWaterItem,
-//                            typeDay = dateHelper.getDay()
-//                        )
-//                    )
+                    lifecycleScope.launch(Dispatchers.IO + excCoroutine) {
+                        waterRepositoryImp.addWaterItem(
+                            WaterItemTable(
+                                date = DateUseCase().getCurrentDate(),
+                                volumeWater = volumeWaterItem
+                            )
+                        )
+                    }
 
-                    // close dialog
                     dismiss()
                 } else bindingDialog.waterInput.error = resources.getString(R.string.field_ml)
 

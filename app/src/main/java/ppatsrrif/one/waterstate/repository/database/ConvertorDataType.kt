@@ -6,23 +6,13 @@ import java.util.*
 class ConvertorDataType {
 
     @TypeConverter
-    fun fromUUID(uuid: UUID): String {
-        return uuid.toString()
+    fun fromDate(value: Date?): Long? {
+        return value?.time
     }
 
     @TypeConverter
-    fun toUUID(str: String): UUID {
-        return UUID.fromString(str)
-    }
-
-    @TypeConverter
-    fun fromDouble(volume: Double): String {
-        return volume.toString()
-    }
-
-    @TypeConverter
-    fun toDouble(str: String): Double {
-        return str.toDouble()
+    fun toDate(value: Long?): Date? {
+        return value?.let { Date(it) }
     }
 
 }

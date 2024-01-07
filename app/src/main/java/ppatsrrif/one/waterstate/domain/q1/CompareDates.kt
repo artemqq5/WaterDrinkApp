@@ -1,7 +1,7 @@
-package ppatsrrif.one.waterstate.domain
+package ppatsrrif.one.waterstate.domain.q1
 
 import ppatsrrif.one.waterstate.repository.storage.UserUserStoragePreference
-import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
+import ppatsrrif.one.waterstate.presentation.viewmodel.ViewModelItem
 
 class CompareDates(
     private val sharedPref: UserUserStoragePreference,

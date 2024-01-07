@@ -1,32 +1,22 @@
-package ppatsrrif.one.waterstate.presentation.home.activity
+package ppatsrrif.one.waterstate.presentation.more_stats.activity
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import ppatsrrif.one.waterstate.R
+import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.databinding.ActivityMoreStatsBinding
-import ppatsrrif.one.waterstate.domain.CompareDates
-import ppatsrrif.one.waterstate.domain.DateHelper
-import ppatsrrif.one.waterstate.domain.TranslateVolume
-import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelItem
-import ppatsrrif.one.waterstate.presentation.viewModel.ViewModelUser
-import java.text.SimpleDateFormat
-import java.util.*
 
+@AndroidEntryPoint
 class MoreStatsActivity : AppCompatActivity() {
 
-    private val binding by lazy {
-        ActivityMoreStatsBinding.inflate(layoutInflater)
-    }
-    private val viewModelItem: ViewModelItem by lazy {
-        ViewModelProvider(this)[ViewModelItem::class.java]
-    }
-    private val liveDataUser: ViewModelUser by viewModels()
-
-    private val dateHelper by lazy {
-        DateHelper()
-    }
+    private lateinit var binding: ActivityMoreStatsBinding
+//    private val viewModelItem: ViewModelItem by lazy {
+//        ViewModelProvider(this)[ViewModelItem::class.java]
+//    }
+//    private val liveDataUser: ViewModelUser by viewModels()
+//
+//    private val dateHelper by lazy {
+//        DateHelper()
+//    }
 
 //    private val dateCheck by lazy {
 //        CompareDates(
@@ -35,16 +25,17 @@ class MoreStatsActivity : AppCompatActivity() {
 //        )
 //    }
 
-    private val translateVolume by lazy {
-        TranslateVolume()
-    }
-
-    private val listOfIdImageStatus =
-        arrayOf(R.id.Mon, R.id.Tue, R.id.Wed, R.id.Thu, R.id.Fri, R.id.Sat, R.id.Sun)
+//    private val translateVolume by lazy {
+//        TranslateVolume()
+//    }
+//
+//    private val listOfIdImageStatus =
+//        arrayOf(R.id.Mon, R.id.Tue, R.id.Wed, R.id.Thu, R.id.Fri, R.id.Sat, R.id.Sun)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMoreStatsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // ads
@@ -145,37 +136,35 @@ class MoreStatsActivity : AppCompatActivity() {
     }
 
 
-    private fun getNowDate(): Int {
-
-        val dateFormat = SimpleDateFormat("u")
-
-        return dateFormat.format(Date()).toInt()
-    }
+//    private fun getNowDate(): Int {
+//
+//        val dateFormat = SimpleDateFormat("u")
+//
+//        return dateFormat.format(Date()).toInt()
+//    }
 
 
     override fun onResume() {
         super.onResume()
-
 //        dateCheck.checkWeek(dateHelper.getWeek())
 //        viewModelItem.date.value = dateHelper.getDay()
 
-        setWeekDate()
-
+//        setWeekDate()
     }
 
-    private fun setWeekDate() {
-        // object calendar
-        var calendar = Calendar.getInstance(Locale.getDefault())
-        // set monday date
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-        // write to string var date
-        var sDateW = calendar.get(Calendar.DAY_OF_MONTH).toString() + " - "
-        // set saturday date
-        calendar.add(Calendar.DAY_OF_WEEK, 6)
-        // write to string var date too
-        sDateW += calendar.get(Calendar.DAY_OF_MONTH).toString()
-        //set Date for week
-        binding.textDateWeek.text = "${SimpleDateFormat("MMMM").format(Date())} $sDateW"
-    }
+//    private fun setWeekDate() {
+//        // object calendar
+//        var calendar = Calendar.getInstance(Locale.getDefault())
+//        // set monday date
+//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+//        // write to string var date
+//        var sDateW = calendar.get(Calendar.DAY_OF_MONTH).toString() + " - "
+//        // set saturday date
+//        calendar.add(Calendar.DAY_OF_WEEK, 6)
+//        // write to string var date too
+//        sDateW += calendar.get(Calendar.DAY_OF_MONTH).toString()
+//        //set Date for week
+//        binding.textDateWeek.text = "${SimpleDateFormat("MMMM").format(Date())} $sDateW"
+//    }
 
 }

@@ -21,14 +21,6 @@
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <fragment
-        android:id="@+id/fragmentHello"
-        android:name="ppatsrrif.one.waterstate.presentation.login.FragmentHello"
-        android:label="FragmentHello">
-        <action
-            android:id="@+id/action_fragmentHello_to_fragmentUser"
-            app:destination="@id/fragmentUser" />
-    </fragment>
-    <fragment
         android:id="@+id/fragmentUser"
         android:name="ppatsrrif.one.waterstate.presentation.login.FragmentUser"
         android:label="fragment_name"
@@ -45,5 +37,14 @@
         <action
             android:id="@+id/action_fragmentEnd_to_mainActivity"
             app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHello"
+        android:name="ppatsrrif.one.waterstate.presentation.login.FragmentHello"
+        android:label="fragment_hello"
+        tools:layout="@layout/fragment_hello" >
+        <action
+            android:id="@+id/action_fragmentHello_to_fragmentUser"
+            app:destination="@id/fragmentUser" />
     </fragment>
 </navigation>
