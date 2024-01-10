@@ -9,23 +9,22 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
-import ppatsrrif.one.waterstate.repository.storage.UserUserStoragePreference
 import ppatsrrif.one.waterstate.databinding.DialogEditUserBinding
-import ppatsrrif.one.waterstate.presentation.viewmodel.ViewModelUser
+import ppatsrrif.one.waterstate.domain.repository.UserRepository
+import ppatsrrif.one.waterstate.domain.repository.model.UserModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DialogEditUser : DialogFragment() {
 
     private lateinit var bindingDialog: DialogEditUserBinding
-    private val userStoragePreference by lazy {
-        UserUserStoragePreference(requireContext())
-    }
-    private val viewModelUser: ViewModelUser by activityViewModels()
+
+    @Inject
+    lateinit var userRepositoryImp: UserRepository
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,92 +47,73 @@ class DialogEditUser : DialogFragment() {
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
 
-//        // change name text
-//        bindingDialog.nameEditInput.editText?.addTextChangedListener(textListener)
-//
-//        // button close dialog
-//        bindingDialog.closeDialogButton.setOnClickListener {
-//            dismiss()
-//        }
-//
-//        //set params for numberPicker
-//        bindingDialog.weightChoice.apply {
-//            maxValue = 150
-//            minValue = 30
-//        }
-//        bindingDialog.weightChoiceSub.apply {
-//            maxValue = 9
-//            minValue = 0
-//        }
-//
-//        bindingDialog.weightChoice.setOnValueChangedListener(this)
-//        bindingDialog.weightChoiceSub.setOnValueChangedListener(this)
-//
-//
-//        // save data in dialog
-//        bindingDialog.saveEditsButton.setOnClickListener {
-//
-//            val userWeight = bindingDialog.weightChoice.value +
-//                    bindingDialog.weightChoiceSub.value / 10.0f
-//
-//            val userName = bindingDialog.nameEditInput.editText?.text.toString()
-//
-//            // check for validity
-//            if (userName.isNotEmpty()) {
+        // default user params
+        bindingDialog.nameEditInput.editText?.setText(userRepositoryImp.getUser().name)
 
-                // set data to SharedPreferences
-//                sharedPreferencesHelper.setUserWeight(userWeight)
-//                sharedPreferencesHelper.setUserName(userName)
+        // change name text
+        bindingDialog.nameEditInput.editText?.addTextChangedListener(textListener)
 
-                // set into viewModel
-//                viewModelUser.liveDataWeight.value = userWeight
-//                viewModelUser.liveDataName.value = userName
-//
-//
-//                // close dialog
-//                dismiss()
-//
-//            } else {
-//                bindingDialog.nameEditInput.error = "Пустое поле"
-//            }
-//
-//        }
+        // button close dialog
+        bindingDialog.closeDialogButton.setOnClickListener {
+            dismiss()
+        }
+
+        // save data in dialog
+        bindingDialog.saveEditsButton.setOnClickListener {
+
+            val userName = bindingDialog.nameEditInput.editText?.text.toString()
+
+            // check for validity
+            if (validationName(userName)) {
+
+                val user = userRepositoryImp.getUser()
+                userRepositoryImp.setUser(
+                    UserModel(
+                        userName,
+                        user.weight,
+                        user.gender,
+                        user.physical
+                    )
+                )
+
+                dismiss()
+
+            } else {
+                bindingDialog.nameEditInput.error = resources.getString(R.string.empty_error)
+            }
+
+        }
 
     }
 
+    //    listener for editText
+    private val textListener = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-    //listener for editText
-//    private val textListener = object : TextWatcher {
-//        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//
-//        }
-//
-//        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            if (bindingDialog.nameEditInput.editText?.text.toString().isNotEmpty()) {
-//                bindingDialog.nameEditInput.error = null
-//            }
-//        }
-//
-//        override fun afterTextChanged(p0: Editable?) {
-//
-//        }
-//
-//    }
+        }
 
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            val name = bindingDialog.nameEditInput.editText?.text.toString()
 
-//    override fun onStart() {
-//        super.onStart()
+            if (validationName(name)) {
+                bindingDialog.nameEditInput.error = null
+            }
+        }
 
-        // get start weight and name from (SharedPreferences -> LiveData -> this)
-//        bindingDialog.nameEditInput.editText?.setText(sharedPreferencesHelper.getUserName())
-//
-//        bindingDialog.weightChoice.value = sharedPreferencesHelper.getUserWeight().toInt()
-//        bindingDialog.weightChoiceSub.value =
-//            ((sharedPreferencesHelper.getUserWeight() % 1) * 10).toInt()
+        override fun afterTextChanged(p0: Editable?) {
 
-//        bindingDialog.finalWeight.text =
-//            "${getString(R.string.weight)} ${sharedPreferencesHelper.getUserWeight()}"
-//    }
+        }
+
+    }
+
+    private fun validationName(name: String): Boolean {
+        if (name.isEmpty()) {
+            bindingDialog.nameEditInput.error = resources.getString(R.string.empty_error)
+            return false
+        }
+
+        return true
+    }
 
 
 }

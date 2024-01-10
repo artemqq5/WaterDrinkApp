@@ -2,6 +2,7 @@ package ppatsrrif.one.waterstate.repository.storage
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import androidx.preference.PreferenceManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -13,20 +14,10 @@ class UserUserStoragePreference @Inject constructor(
         context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE)
     }
 
-//    private val preferencesSettings by lazy {
-//        PreferenceManager.getDefaultSharedPreferences(context)
-//    }
+    private val defaultPreferencesSettings by lazy {
+        PreferenceManager.getDefaultSharedPreferences(context)
+    }
 
-
-//
-//    // WHO Recommendation
-//    fun getStatusRecommendation(): Boolean =
-//        preferencesSettings.getBoolean(KEY_RECOMMENDATION, true)
-//
-//    fun setStatusRecommendation(status: Boolean) = preferencesSettings.edit().putBoolean(
-//        KEY_RECOMMENDATION, status
-//    ).apply()
-//
 //    // DB Date
 //    fun getDateWeek(): Int = preference.getInt(KEY_WEEK_L, 0)
 //    fun setDateWeek(weekNum: Int) = preference.edit().putInt(KEY_WEEK_L, weekNum).apply()
@@ -64,11 +55,17 @@ class UserUserStoragePreference @Inject constructor(
 //        const val KEY_END_DATE = "end_date"
 
         // keys of default preferences
-        const val KEY_RECOMMENDATION = "recommendation_who"
+        const val KEY_RECOMMENDATION = "recommendation-who"
 
 
     }
 
+    // WHO RECOMMENDATION
+    override fun getStatusRecommendation(): Boolean =
+        defaultPreferencesSettings.getBoolean(KEY_RECOMMENDATION, true)
+
+    override fun setStatusRecommendation(status: Boolean) =
+        defaultPreferencesSettings.edit().putBoolean(KEY_RECOMMENDATION, status).apply()
 
     // LOAD MODE
     override fun setLoadModePref(loadMode: String) {

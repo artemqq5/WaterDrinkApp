@@ -3,7 +3,7 @@ package ppatsrrif.one.waterstate.repository.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import ppatsrrif.one.waterstate.domain.repository.database_table.WaterItemTable
+import ppatsrrif.one.waterstate.repository.database.table.WaterItemTable
 
 @Database(
     entities = [WaterItemTable::class],

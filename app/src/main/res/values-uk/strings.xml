@@ -87,7 +87,12 @@
     <!--    Fragment profile-->
     <string name="buttonEdit">Редагувати</string>
     <string name="buttonReset">Скинути профіль</string>
-    <string name="unit_weight">кг</string>
+    <string name="base_characteristics_profile">%s | %s кг</string>
+    <string name="physical_1.0">1.0 Мінімальна або відсутня активність</string>
+    <string name="physical_1.2">1.2 Легка активність</string>
+    <string name="physical_1.4">1.4 Помірна активність</string>
+    <string name="physical_1.6">1.6 Висока активність</string>
+    <string name="physical_1.8">1.8 Дуже висока активність</string>
 
     <!--    Item card water-->
     <string name="open_popup">Відкрити меню</string>
@@ -107,5 +112,10 @@
     <string name="volume_l">Л</string>
 
     <string name="toast_exit">Повторіть для виходу</string>
+
+    <!--    Settings Fragment-->
+    <string name="settings">Налаштування</string>
+    <string name="who_settings_title">Рекомендації ВООЗ</string>
+    <string name="who_settings_desc">Будуть відображені рекомендації Всесвітньої організації охорони здоров\'я</string>
 
 </resources>

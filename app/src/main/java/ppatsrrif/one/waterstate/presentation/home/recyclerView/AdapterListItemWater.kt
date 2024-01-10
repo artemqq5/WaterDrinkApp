@@ -9,20 +9,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.ItemWaterViewBinding
-import ppatsrrif.one.waterstate.domain.repository.database_table.WaterItemTable
+import ppatsrrif.one.waterstate.domain.repository.model.WaterModel
 import java.util.*
 
 
 class AdapterListItemWater(
-    private var listItemWater: List<WaterItemTable> = emptyList(),
-    var listener: (WaterItemTable) -> Unit
+    private var listItemWater: List<WaterModel> = emptyList(),
+    var listener: (WaterModel) -> Unit
 ) :
     RecyclerView.Adapter<AdapterListItemWater.CustomViewHolder>() {
 
     inner class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemWaterViewBinding.bind(view)
 
-        fun initializing(model: WaterItemTable) {
+        fun initializing(model: WaterModel) {
             binding.timeText.text = model.date.toString()
             binding.volumeText.text = model.volumeWater.toString()
 //                TranslateVolume().addWater(model.volumeWater, 1).toString() + " " +
@@ -34,7 +34,7 @@ class AdapterListItemWater(
         }
 
 
-        private fun openMenu(v: View, model: WaterItemTable) {
+        private fun openMenu(v: View, model: WaterModel) {
 
             val popupWindow = PopupWindow(v.context)
             val view = LayoutInflater.from(v.context).inflate(R.layout.popup_window, null)
@@ -82,7 +82,7 @@ class AdapterListItemWater(
     override fun getItemCount(): Int = listItemWater.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNewList(list: List<WaterItemTable>) {
+    fun setNewList(list: List<WaterModel>) {
         listItemWater = list
         notifyDataSetChanged()
     }

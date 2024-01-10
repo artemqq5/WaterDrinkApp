@@ -6,6 +6,9 @@ import ppatsrrif.one.waterstate.domain.repository.model.UserModel
 
 interface UserRepository {
 
+    fun getStatusRecommendation(): Boolean
+    fun setStatusRecommendation(status: Boolean)
+
     fun getLoadMode(): LoadMode
     fun setLoadMode(loadMode: LoadMode)
 

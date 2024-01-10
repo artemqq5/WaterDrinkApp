@@ -12,10 +12,6 @@ class FragmentSettings : PreferenceFragmentCompat() {
         addPreferencesFromResource(R.xml.settings)
     }
 
-    companion object {
-
-        fun newInstance() = FragmentSettings()
-    }
 
 
 }

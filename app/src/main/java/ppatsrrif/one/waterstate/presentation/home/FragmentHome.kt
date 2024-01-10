@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
+import ppatsrrif.one.waterstate.domain.repository.UserRepository
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentHome : Fragment(), View.OnClickListener {
@@ -19,6 +21,9 @@ class FragmentHome : Fragment(), View.OnClickListener {
         "https://www.who.int/news-room/fact-sheets/detail/drinking-water"
 
     private lateinit var binding: FragmentHomeBinding
+
+    @Inject
+    lateinit var userRepositoryImp: UserRepository
 
 //    private val userStoragePreference by lazy {
 //        UserUserStoragePreference(requireContext())
@@ -61,12 +66,9 @@ class FragmentHome : Fragment(), View.OnClickListener {
 //        }
 
 
-//        // get status WHO Recommendation
-//        val statusVisibilityRecommendation = sharedPreferencesHelper.getStatusRecommendation()
-//
-//        // set default status WHO Recommendation
-//        binding.blockRecommendation.visibility =
-//            if (statusVisibilityRecommendation) View.VISIBLE else View.INVISIBLE
+        // set default status WHO Recommendation
+        binding.recommendation.visibility =
+            if (userRepositoryImp.getStatusRecommendation()) View.VISIBLE else View.INVISIBLE
 //
 //        // set water norm
 //        liveDataUser.liveDataWeight.observe(viewLifecycleOwner) {
@@ -109,14 +111,12 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
             R.id.more_statistic -> {
                 findNavController().navigate(R.id.action_fragmentHome_to_moreStatsActivity)
-
             }
-//
-//            R.id.closeRecommendation -> {
-//                binding.blockRecommendation.visibility = View.INVISIBLE
-//
-////                sharedPreferencesHelper.setStatusRecommendation(false)
-//            }
+
+            R.id.closeRecommendation -> {
+                binding.recommendation.visibility = View.INVISIBLE
+                userRepositoryImp.setStatusRecommendation(false)
+            }
 
             R.id.button_more -> {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(recommendationWHO)))

@@ -71,7 +71,6 @@ class DialogListItemWater : DialogFragment() {
             adapterRecycler.setNewList(it)
         }
 
-
         // ads
 //        val bannerView = AdView(requireContext())
 //        view.findViewById<FrameLayout>(R.id.adViewContainer).addView(bannerView)

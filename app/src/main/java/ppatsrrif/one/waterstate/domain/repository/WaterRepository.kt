@@ -1,15 +1,16 @@
 package ppatsrrif.one.waterstate.domain.repository
 
 import androidx.lifecycle.LiveData
-import ppatsrrif.one.waterstate.domain.repository.database_table.WaterItemTable
+import ppatsrrif.one.waterstate.domain.repository.model.WaterModel
+import ppatsrrif.one.waterstate.repository.database.table.WaterItemTable
 import java.util.Date
 
 interface WaterRepository {
 
-    fun addWaterItem(waterItem: WaterItemTable)
+    fun addWaterItem(waterItem: WaterModel)
 
-    fun deleteWaterItem(waterItem: WaterItemTable)
+    fun deleteWaterItem(waterItem: WaterModel)
 
-    fun getWaterItemByDate(startOfDay: Date, endOfDay: Date): LiveData<List<WaterItemTable>>
+    fun getWaterItemByDate(startOfDay: Date, endOfDay: Date): LiveData<List<WaterModel>>
 
 }

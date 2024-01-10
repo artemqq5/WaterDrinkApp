@@ -14,10 +14,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ppatsrrif.one.waterstate.ApplicationStart
+import ppatsrrif.one.waterstate.ApplicationStart.Companion.log
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.DialogAddWaterBinding
 import ppatsrrif.one.waterstate.domain.repository.WaterRepository
-import ppatsrrif.one.waterstate.domain.repository.database_table.WaterItemTable
+import ppatsrrif.one.waterstate.domain.repository.model.WaterModel
+import ppatsrrif.one.waterstate.repository.database.table.WaterItemTable
 import ppatsrrif.one.waterstate.domain.usecase.DateUseCase
 import javax.inject.Inject
 
@@ -30,7 +33,7 @@ class DialogAddWater : DialogFragment() {
     lateinit var waterRepositoryImp: WaterRepository
 
     private val excCoroutine = CoroutineExceptionHandler { _, throwable ->
-        Log.i("MyLog", "DialogAddWater: $throwable")
+        log("DialogAddWater: $throwable")
     }
 
     override fun onCreateView(
@@ -68,7 +71,7 @@ class DialogAddWater : DialogFragment() {
 
                     lifecycleScope.launch(Dispatchers.IO + excCoroutine) {
                         waterRepositoryImp.addWaterItem(
-                            WaterItemTable(
+                            WaterModel(
                                 date = DateUseCase().getCurrentDate(),
                                 volumeWater = volumeWaterItem
                             )

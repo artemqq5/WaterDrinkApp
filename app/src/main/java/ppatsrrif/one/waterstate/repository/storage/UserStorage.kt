@@ -2,6 +2,9 @@ package ppatsrrif.one.waterstate.repository.storage
 
 interface UserStorage {
 
+    fun getStatusRecommendation(): Boolean
+    fun setStatusRecommendation(status: Boolean)
+
     fun setLoadModePref(loadMode: String)
     fun getLoadModePref(): String?
 

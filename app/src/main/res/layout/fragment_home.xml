@@ -178,7 +178,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/more_statistic" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/blockRecommendation"
+                android:id="@+id/recommendation"
                 style="@style/CardMoreStats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

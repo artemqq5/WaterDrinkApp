@@ -1,4 +1,4 @@
-package ppatsrrif.one.waterstate.domain.repository.database_table
+package ppatsrrif.one.waterstate.repository.database.table
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

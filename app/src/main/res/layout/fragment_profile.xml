@@ -21,52 +21,50 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:orientation="vertical">
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Title, secondary and supporting text -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:text=""
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                tools:text="Artem" />
 
-                <!-- Title, secondary and supporting text -->
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/nameText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    tools:text="Artem" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/baseСharacteristics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                tools:text="Чоловік | 74.5 кг" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/weightText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text=""
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    tools:text="74.5 кг" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/physicalActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                tools:text="1.2 Мінімальна активність" />
 
-            </LinearLayout>
 
             <!-- Buttons -->
-            <FrameLayout
-                android:layout_width="match_parent"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/editUserProfile"
+                style="@style/ButtonOutline"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/editUserProfile"
-                    style="@style/ButtonOutline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:text="@string/buttonEdit"
-                    android:textAllCaps="false"
-                    android:textColor="@color/teal_200" />
-            </FrameLayout>
+                android:layout_gravity="end"
+                android:layout_marginEnd="12dp"
+                android:text="@string/buttonEdit"
+                android:textAllCaps="false"
+                android:textColor="@color/teal_200" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

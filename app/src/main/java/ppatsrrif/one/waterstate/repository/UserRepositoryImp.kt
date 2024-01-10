@@ -13,6 +13,13 @@ import javax.inject.Inject
 class UserRepositoryImp @Inject constructor(
     private val userStorage: UserStorage
 ) : UserRepository {
+    override fun getStatusRecommendation(): Boolean {
+        return userStorage.getStatusRecommendation()
+    }
+
+    override fun setStatusRecommendation(status: Boolean) {
+        userStorage.setStatusRecommendation(status)
+    }
 
 //    private val dataBase: DataBase by lazy {
 //        Room.databaseBuilder(
