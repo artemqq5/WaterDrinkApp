@@ -49,6 +49,9 @@ class FragmentProfile : Fragment() {
             findNavController().navigate(R.id.action_fragmentProfile_to_dialogEditUser)
         }
 
+        // todo
+        // додати mvvm
+
         // set data to profile info
         lifecycleScope.launch(Dispatchers.Main + excCoroutine) {
             val user = withContext(Dispatchers.IO) { userRepositoryImp.getUser() }

@@ -37,7 +37,6 @@ class DialogEditUser : DialogFragment() {
         return bindingDialog.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // set params for dialog
@@ -65,6 +64,8 @@ class DialogEditUser : DialogFragment() {
 
             // check for validity
             if (validationName(userName)) {
+
+                //todo додати інші поля для зміни та додати mvvm
 
                 val user = userRepositoryImp.getUser()
                 userRepositoryImp.setUser(

@@ -49,7 +49,6 @@ class DialogAddWater : DialogFragment() {
         return bindingDialog.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // set params for dialog
@@ -69,6 +68,7 @@ class DialogAddWater : DialogFragment() {
 
                     val volumeWaterItem = volume.toDouble()
 
+                    //todo в принципі все окей, тільки треба додати mvvm
                     lifecycleScope.launch(Dispatchers.IO + excCoroutine) {
                         waterRepositoryImp.addWaterItem(
                             WaterModel(

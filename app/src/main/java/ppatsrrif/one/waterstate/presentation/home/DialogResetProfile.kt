@@ -16,6 +16,11 @@ class DialogResetProfile : DialogFragment() {
             .setTitle(getString(R.string.resetProfileTitle))
             .setMessage(getString(R.string.resetProfileMessage))
             .setNegativeButton(resources.getString(R.string.button_cancel)) { _, _ ->
+
+                // todo
+                // тут потрібно скидати всі можливі налаштування та очищяти базу даних
+                // після чого перенаправляти користувача на екран реєстрації
+
                 dismiss()
             }
             .setPositiveButton(resources.getString(R.string.reset_ok)) { _, _ ->

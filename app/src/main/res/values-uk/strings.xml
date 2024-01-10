@@ -109,7 +109,7 @@
 
     <string name="field_ml">від 100 до 1000 мл.</string>
 
-    <string name="volume_l">Л</string>
+    <string name="volume_l">%s Л</string>
 
     <string name="toast_exit">Повторіть для виходу</string>
 

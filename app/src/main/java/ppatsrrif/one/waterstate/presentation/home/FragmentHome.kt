@@ -65,6 +65,9 @@ class FragmentHome : Fragment(), View.OnClickListener {
 //            )
 //        }
 
+        // todo
+        // додати відображення даних, mvvm
+
 
         // set default status WHO Recommendation
         binding.recommendation.visibility =

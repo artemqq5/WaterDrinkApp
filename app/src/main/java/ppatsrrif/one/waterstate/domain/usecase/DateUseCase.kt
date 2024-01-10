@@ -7,9 +7,15 @@ import java.util.Locale
 
 class DateUseCase {
 
-    fun getCurrentDateTimeFormatted(date: Date): String {
-        val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm EEEE", Locale.ENGLISH)
-        return formatter.format(date)
+    fun getFormatTimeForLocale(time: Date): String {
+        val defaultLocale = Locale.getDefault()
+        val formatter24 = SimpleDateFormat("HH:mm", defaultLocale)
+        val formatter12 = SimpleDateFormat("h:mm a", defaultLocale)
+
+        val time24 = formatter24.format(time)
+        val time12 = formatter12.format(time)
+
+        return if (time12.contains("AM") || time12.contains("PM")) time12 else time24
     }
 
     fun getCurrentDate(): Date {

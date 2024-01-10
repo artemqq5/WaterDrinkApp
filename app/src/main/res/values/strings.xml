@@ -108,7 +108,7 @@
 
     <string name="field_ml">from 100 to 1000 ml.</string>
 
-    <string name="volume_l">L</string>
+    <string name="volume_l">%s L</string>
 
     <string name="toast_exit">Repeat to exit</string>
 

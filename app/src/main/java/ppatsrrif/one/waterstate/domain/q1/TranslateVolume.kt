@@ -24,12 +24,7 @@ class TranslateVolume {
         } else round(((kg * 35.0 * 7) / 100)).toInt()
     }
 
-    // add volume to UI
-    fun addWater(volume: Double, type: Int): Double {
-
-        return if (type == 1) {
-            round((volume / 1000.0) * 100) / 100.0
-        } else round(volume / 100.0)
-
+    fun millilitersToLiters(volume: Double): Double {
+       return volume / 1000.0
     }
 }

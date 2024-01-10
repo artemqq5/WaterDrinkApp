@@ -10,11 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.ItemWaterViewBinding
 import ppatsrrif.one.waterstate.domain.repository.model.WaterModel
+import ppatsrrif.one.waterstate.domain.usecase.DateUseCase
+import ppatsrrif.one.waterstate.domain.usecase.VolumeUseCase
 import java.util.*
 
 
 class AdapterListItemWater(
     private var listItemWater: List<WaterModel> = emptyList(),
+    private val dateUseCase: DateUseCase = DateUseCase(),
+    private val volumeUseCase: VolumeUseCase = VolumeUseCase(),
     var listener: (WaterModel) -> Unit
 ) :
     RecyclerView.Adapter<AdapterListItemWater.CustomViewHolder>() {
@@ -23,16 +27,16 @@ class AdapterListItemWater(
         private val binding = ItemWaterViewBinding.bind(view)
 
         fun initializing(model: WaterModel) {
-            binding.timeText.text = model.date.toString()
-            binding.volumeText.text = model.volumeWater.toString()
-//                TranslateVolume().addWater(model.volumeWater, 1).toString() + " " +
-//                        context.resources.getString(R.string.volume_l)
+            binding.timeText.text = dateUseCase.getFormatTimeForLocale(model.date)
+            binding.volumeText.text = itemView.resources.getString(
+                R.string.volume_l,
+                volumeUseCase.millilitersToLiters(model.volumeWater).toString()
+            )
 
             binding.openPopMenu.setOnClickListener {
                 openMenu(binding.openPopMenu, model)
             }
         }
-
 
         private fun openMenu(v: View, model: WaterModel) {
 
@@ -62,10 +66,8 @@ class AdapterListItemWater(
 
         }
 
-
     }
 
-    // fill item data
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.item_water_view, parent,
@@ -74,7 +76,6 @@ class AdapterListItemWater(
         return CustomViewHolder(view)
     }
 
-    // start init fun with ModelItemWater object
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.initializing(listItemWater[position])
     }
