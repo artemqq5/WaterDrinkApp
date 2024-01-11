@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
-import ppatsrrif.one.waterstate.domain.repository.UserRepository
-import javax.inject.Inject
+import ppatsrrif.one.waterstate.presentation.viewmodel.UserViewModel
 
 @AndroidEntryPoint
 class FragmentHome : Fragment(), View.OnClickListener {
@@ -22,8 +22,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
 
-    @Inject
-    lateinit var userRepositoryImp: UserRepository
+    private val userViewModel: UserViewModel by activityViewModels()
 
 //    private val userStoragePreference by lazy {
 //        UserUserStoragePreference(requireContext())
@@ -66,13 +65,13 @@ class FragmentHome : Fragment(), View.OnClickListener {
 //        }
 
         // todo
-        // додати відображення даних, mvvm
-
+        // додати відображення даних
 
         // set default status WHO Recommendation
         binding.recommendation.visibility =
-            if (userRepositoryImp.getStatusRecommendation()) View.VISIBLE else View.INVISIBLE
-//
+            if (userViewModel.getDefaultStatusRecommendation()) View.VISIBLE else View.INVISIBLE
+
+        //
 //        // set water norm
 //        liveDataUser.liveDataWeight.observe(viewLifecycleOwner) {
 //            binding.waterNorma.text =
@@ -118,7 +117,7 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
             R.id.closeRecommendation -> {
                 binding.recommendation.visibility = View.INVISIBLE
-                userRepositoryImp.setStatusRecommendation(false)
+                userViewModel.setStatusRecommendation(false)
             }
 
             R.id.button_more -> {

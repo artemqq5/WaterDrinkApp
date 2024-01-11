@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
@@ -17,6 +18,7 @@ import ppatsrrif.one.waterstate.domain.repository.UserRepository
 import ppatsrrif.one.waterstate.domain.repository.model.LoadMode
 import ppatsrrif.one.waterstate.domain.repository.model.UserGender
 import ppatsrrif.one.waterstate.domain.repository.model.UserModel
+import ppatsrrif.one.waterstate.presentation.viewmodel.UserViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -29,8 +31,7 @@ class FragmentUser : Fragment() {
 
     private lateinit var binding: FragmentUserBinding
 
-    @Inject
-    lateinit var userRepositoryImp: UserRepository
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -65,7 +66,7 @@ class FragmentUser : Fragment() {
             if (validationName(name) && validationWeight(weight) && validationGender(gender)) {
 
                 // save data from user
-                userRepositoryImp.setUser(
+                userViewModel.setNewUser(
                     UserModel(
                         name = name,
                         weight = weight.toFloat(),
@@ -75,7 +76,7 @@ class FragmentUser : Fragment() {
                 )
 
                 // set next load mode home
-                userRepositoryImp.setLoadMode(LoadMode.Home)
+                userViewModel.setLoadMode(LoadMode.Home)
 
                 // go to finish text (optional action)
                 findNavController().navigate(R.id.action_fragmentUser_to_fragmentEnd)

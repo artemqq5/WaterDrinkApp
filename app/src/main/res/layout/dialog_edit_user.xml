@@ -68,6 +68,66 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/weightEditInput"
+                style="@style/InputMaterial"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/setWeightInput"
+                app:counterEnabled="true"
+                app:counterMaxLength="4"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextMaterial"
+                    android:inputType="numberDecimal"
+                    android:maxLength="4" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/gender"
+                style="@style/Text.SizeMedium"
+                android:text="@string/gender" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioMan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:enabled="false"
+                    android:text="@string/male" />
+
+                <RadioButton
+                    android:id="@+id/radioWoman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="@string/female" />
+            </RadioGroup>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/physical"
+                style="@style/Text.SizeMedium"
+                android:text="@string/setPhysical" />
+
+            <Spinner
+                android:id="@+id/physicalChoicer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                tools:listitem="@layout/physical_item" />
+
         </LinearLayout>
 
     </ScrollView>

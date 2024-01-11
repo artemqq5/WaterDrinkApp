@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +18,7 @@ import ppatsrrif.one.waterstate.ApplicationStart.Companion.log
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.FragmentProfileBinding
 import ppatsrrif.one.waterstate.domain.repository.UserRepository
+import ppatsrrif.one.waterstate.presentation.viewmodel.UserViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -23,8 +26,7 @@ class FragmentProfile : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
 
-    @Inject
-    lateinit var userRepositoryImp: UserRepository
+    private val userViewModel: UserViewModel by activityViewModels()
 
     private val excCoroutine = CoroutineExceptionHandler { _, throwable ->
         log("FragmentProfile: $throwable")
@@ -49,13 +51,7 @@ class FragmentProfile : Fragment() {
             findNavController().navigate(R.id.action_fragmentProfile_to_dialogEditUser)
         }
 
-        // todo
-        // додати mvvm
-
-        // set data to profile info
-        lifecycleScope.launch(Dispatchers.Main + excCoroutine) {
-            val user = withContext(Dispatchers.IO) { userRepositoryImp.getUser() }
-
+        userViewModel.liveDataUser.observe(viewLifecycleOwner) { user ->
             binding.name.text = user.name
             binding.physicalActivity.text = setPhysicalActivityByIndex(user.physical)
             binding.baseHaracteristics.text = resources.getString(

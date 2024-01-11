@@ -30,6 +30,7 @@
     <string name="edit">Edit</string>
     <string name="button_save">Save</string>
     <string name="weight">Weight</string>
+    <string name="gender">Gender</string>
 
     <!--    Dialog list item-->
     <string name="list_records">List of records</string>

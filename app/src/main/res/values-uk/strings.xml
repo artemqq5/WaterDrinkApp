@@ -30,6 +30,8 @@
     <string name="edit">Редагувати</string>
     <string name="button_save">Зберегти</string>
     <string name="weight">Вага</string>
+    <string name="gender">Стать</string>
+
 
     <!--    Dialog list item-->
     <string name="list_records">Список записів</string>
