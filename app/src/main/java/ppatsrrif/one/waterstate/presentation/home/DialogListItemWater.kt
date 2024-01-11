@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -17,6 +18,7 @@ import ppatsrrif.one.waterstate.databinding.DialogListItemWaterBinding
 import ppatsrrif.one.waterstate.domain.repository.WaterRepository
 import ppatsrrif.one.waterstate.domain.usecase.DateUseCase
 import ppatsrrif.one.waterstate.presentation.home.recyclerView.AdapterListItemWater
+import ppatsrrif.one.waterstate.presentation.viewmodel.WaterViewModel
 import javax.inject.Inject
 
 
@@ -29,12 +31,7 @@ class DialogListItemWater : DialogFragment() {
         AdapterListItemWater {}
     }
 
-    @Inject
-    lateinit var waterRepositoryImp: WaterRepository
-
-    private val excCoroutine = CoroutineExceptionHandler { _, throwable ->
-        Log.i("MyLog", "DialogListItemWater: $throwable")
-    }
+    private val waterViewModel: WaterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,20 +56,15 @@ class DialogListItemWater : DialogFragment() {
         bindingDialog.recyclerItemWater.adapter = adapterRecycler
 
         adapterRecycler.listener = {
-            lifecycleScope.launch(Dispatchers.IO + excCoroutine) {
-                waterRepositoryImp.deleteWaterItem(it)
-            }
+           waterViewModel.deleteWater(it)
         }
 
-        waterRepositoryImp.getWaterItemByDate(
-            DateUseCase().getCurrentStartDate(),
-            DateUseCase().getCurrentEndDate()
-        ).observe(viewLifecycleOwner) {
+        waterViewModel.liveDataListWater.observe(viewLifecycleOwner) {
             adapterRecycler.setNewList(it)
         }
 
         // todo
-        // додати mvvm та google admob
+        // додати google admob
 
         // ads
 //        val bannerView = AdView(requireContext())

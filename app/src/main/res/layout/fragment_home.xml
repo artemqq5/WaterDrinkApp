@@ -53,7 +53,7 @@
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/waterNorma"
+                        android:id="@+id/waterConsumption"
                         style="@style/Text"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="0dp"
@@ -63,7 +63,7 @@
                         android:text=""
                         android:textColor="@color/three"
                         android:textSize="14sp"
-                        tools:text="составляет 1.4 литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела" />
+                        tools:text="Ваша норма споживання води становить 2.2 літра згідно з нашим розрахунковим алгоритмом" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -95,14 +95,13 @@
                         android:textSize="20sp" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/count_water"
+                        android:id="@+id/countWater"
                         style="@style/Text"
                         android:layout_below="@id/text1"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text=""
                         android:textColor="@color/three_60"
                         android:textSize="20sp"
                         tools:text="0" />
@@ -112,7 +111,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_margin="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
                         android:contentDescription="@string/ms_open"
                         android:src="@drawable/ic_arrow_right" />
 

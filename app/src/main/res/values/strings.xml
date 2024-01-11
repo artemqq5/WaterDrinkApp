@@ -56,8 +56,9 @@
     <string name="box4_button">View more</string>
     <string name="ms_open">Open detailed statistics</string>
     <string name="close_who">Close Recommendations</string>
-    <string name="sub_text_home1">is</string>
-    <string name="sub_text_home2">liters, in accordance with the calculation of 35 milliliters per 1 kilogram of body weight</string>
+    <string name="water_consumption">Your daily water intake should be %s liters according to our calculation algorithm</string>
+    <string name="sum_liters">%s liters</string>
+
 
     <!--    ResetUser Dialog-->
     <string name="resetProfileMessage">After a reset, the profile cannot be restored!</string>

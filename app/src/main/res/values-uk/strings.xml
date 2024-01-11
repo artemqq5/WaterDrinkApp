@@ -57,8 +57,8 @@
     <string name="box4_button">Переглянути більше</string>
     <string name="ms_open">Відкрити детальну статистику</string>
     <string name="close_who">Закрити рекомендації</string>
-    <string name="sub_text_home1">становить</string>
-    <string name="sub_text_home2">літрів, відповідно до розрахунку 35 мілілітрів на 1 кілограм маси тіла</string>
+    <string name="water_consumption">Ваша норма споживання води становить %s літра згідно з нашим розрахунковим алгоритмом</string>
+    <string name="sum_liters">%s літрів</string>
 
     <!--    ResetUser Dialog-->
     <string name="resetProfileMessage">Після скидання профіль неможливо буде відновити!</string>

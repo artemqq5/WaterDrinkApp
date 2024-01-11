@@ -1,11 +1,11 @@
 package ppatsrrif.one.waterstate.domain.q1
 
 import ppatsrrif.one.waterstate.repository.storage.UserUserStoragePreference
-import ppatsrrif.one.waterstate.presentation.viewmodel.ViewModelItem
+import ppatsrrif.one.waterstate.presentation.viewmodel.WaterViewModel
 
 class CompareDates(
     private val sharedPref: UserUserStoragePreference,
-    private val viewModelItem: ViewModelItem
+    private val waterViewModel: WaterViewModel
 ) {
 
 //    fun checkWeek(weekNow: Int) {

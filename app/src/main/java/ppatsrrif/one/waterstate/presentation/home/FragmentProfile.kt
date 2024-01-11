@@ -28,10 +28,6 @@ class FragmentProfile : Fragment() {
 
     private val userViewModel: UserViewModel by activityViewModels()
 
-    private val excCoroutine = CoroutineExceptionHandler { _, throwable ->
-        log("FragmentProfile: $throwable")
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

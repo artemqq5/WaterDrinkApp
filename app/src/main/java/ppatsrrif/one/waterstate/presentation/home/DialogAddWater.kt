@@ -4,37 +4,24 @@ package ppatsrrif.one.waterstate.presentation.home
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import ppatsrrif.one.waterstate.ApplicationStart
-import ppatsrrif.one.waterstate.ApplicationStart.Companion.log
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.DialogAddWaterBinding
-import ppatsrrif.one.waterstate.domain.repository.WaterRepository
 import ppatsrrif.one.waterstate.domain.repository.model.WaterModel
-import ppatsrrif.one.waterstate.repository.database.table.WaterItemTable
 import ppatsrrif.one.waterstate.domain.usecase.DateUseCase
-import javax.inject.Inject
+import ppatsrrif.one.waterstate.presentation.viewmodel.WaterViewModel
 
 @AndroidEntryPoint
 class DialogAddWater : DialogFragment() {
 
     private lateinit var bindingDialog: DialogAddWaterBinding
 
-    @Inject
-    lateinit var waterRepositoryImp: WaterRepository
-
-    private val excCoroutine = CoroutineExceptionHandler { _, throwable ->
-        log("DialogAddWater: $throwable")
-    }
+    private val waterViewModel: WaterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,15 +55,12 @@ class DialogAddWater : DialogFragment() {
 
                     val volumeWaterItem = volume.toDouble()
 
-                    //todo в принципі все окей, тільки треба додати mvvm
-                    lifecycleScope.launch(Dispatchers.IO + excCoroutine) {
-                        waterRepositoryImp.addWaterItem(
-                            WaterModel(
-                                date = DateUseCase().getCurrentDate(),
-                                volumeWater = volumeWaterItem
-                            )
+                    waterViewModel.addWater(
+                        WaterModel(
+                            date = DateUseCase().getCurrentDate(),
+                            volumeWater = volumeWaterItem
                         )
-                    }
+                    )
 
                     dismiss()
                 } else bindingDialog.waterInput.error = resources.getString(R.string.field_ml)

@@ -12,7 +12,10 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
 import ppatsrrif.one.waterstate.databinding.FragmentHomeBinding
+import ppatsrrif.one.waterstate.domain.usecase.VolumeUseCase
 import ppatsrrif.one.waterstate.presentation.viewmodel.UserViewModel
+import ppatsrrif.one.waterstate.presentation.viewmodel.WaterViewModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentHome : Fragment(), View.OnClickListener {
@@ -22,19 +25,12 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
 
+    @Inject
+    lateinit var volumeUseCase: VolumeUseCase
+
     private val userViewModel: UserViewModel by activityViewModels()
 
-//    private val userStoragePreference by lazy {
-//        UserUserStoragePreference(requireContext())
-//    }
-//    private val liveDataUser: ViewModelUser by activityViewModels()
-//    private val viewModelItem: ViewModelItem by lazy {
-//        ViewModelProvider(requireActivity())[ViewModelItem::class.java]
-//    }
-//
-//    private val translateVolume by lazy {
-//        TranslateVolume()
-//    }
+    private val waterViewModel: WaterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,42 +61,26 @@ class FragmentHome : Fragment(), View.OnClickListener {
 //        }
 
         // todo
-        // додати відображення даних
+        // додати google ads
+
+        userViewModel.liveDataUser.observe(viewLifecycleOwner) { user ->
+            val waterConsumption = volumeUseCase.waterAlgorithm(user)
+            binding.waterConsumption.text =
+                resources.getString(R.string.water_consumption, waterConsumption.toString())
+        }
 
         // set default status WHO Recommendation
         binding.recommendation.visibility =
             if (userViewModel.getDefaultStatusRecommendation()) View.VISIBLE else View.INVISIBLE
 
-        //
-//        // set water norm
-//        liveDataUser.liveDataWeight.observe(viewLifecycleOwner) {
-//            binding.waterNorma.text =
-//                resources.getString(R.string.sub_text_home1) + " " + translateVolume.normalWaterUI(
-//                    it,
-//                    1
-//                ) + " " + resources.getString(R.string.sub_text_home2)
-//
-//        }
 
-
-//        viewModelItem.date.observe(viewLifecycleOwner) { nowDate ->
-
-//            // set all volume drunk water for a day
-//            viewModelItem.listSomeDay(nowDate).observe(viewLifecycleOwner
-//            ) { listItems ->
-//                var sum = 0.0
-//
-//                for (item in listItems) {
-//                    sum += item.volumeWater
-//                }
-//
-//
-//                binding.countWater.text = translateVolume.addWater(sum, 1).toString()
-//
-//                Log.i("sdfe34f234f1", "$sum - ${translateVolume.addWater(sum, 1)}")
-//            }
-
-//        }
+        waterViewModel.liveDataListWater.observe(viewLifecycleOwner) { listWater ->
+            val sumWater = listWater.sumOf { it.volumeWater }
+            binding.countWater.text = resources.getString(
+                R.string.sum_liters,
+                volumeUseCase.millilitersToLiters(sumWater).toString()
+            )
+        }
 
     }
 

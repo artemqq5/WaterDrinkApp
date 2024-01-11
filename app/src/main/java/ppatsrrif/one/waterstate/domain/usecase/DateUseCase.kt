@@ -4,8 +4,9 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 
-class DateUseCase {
+class DateUseCase @Inject constructor() {
 
     fun getFormatTimeForLocale(time: Date): String {
         val defaultLocale = Locale.getDefault()
