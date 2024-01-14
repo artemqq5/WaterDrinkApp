@@ -11,11 +11,12 @@
     <!--    More Stats-->
     <string name="more_stats_title">Детальна статистика</string>
     <string name="daily_norm">Денна норма</string>
+    <string name="water_of_norm_value">%s з %s</string>
     <string name="today">Сьогодні</string>
-    <string name="_of">з</string>
     <string name="weekly_norm">Тижнева норма</string>
     <string name="your_goals">Твої цілі</string>
-    <string name="now_week">Поточний тиждень</string>
+    <string name="last_7days">Останні 7 днів</string>
+    <string name="current_week_value">%s - %s</string>
 
     <!--    Dialog add water-->
     <string name="add_water">Додати воду</string>

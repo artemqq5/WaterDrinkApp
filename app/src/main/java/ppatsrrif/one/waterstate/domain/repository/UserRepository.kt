@@ -15,5 +15,6 @@ interface UserRepository {
     fun getUser(): UserModel
     fun setUser(userModel: UserModel)
 
+    fun clearDataUser()
 
 }

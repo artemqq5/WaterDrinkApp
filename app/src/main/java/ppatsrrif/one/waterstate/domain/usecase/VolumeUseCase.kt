@@ -14,6 +14,10 @@ class VolumeUseCase @Inject constructor() {
     fun waterAlgorithm(user: UserModel): Double {
         val genderCof = if (user.gender == UserGender.Male) 1.0 else 0.9
 
-        return millilitersToLiters((user.weight * 30) * user.physical * genderCof)
+        return (user.weight * 30) * user.physical * genderCof
+    }
+
+    fun waterToProgressFormat(volume: Double): Int {
+        return (volume * 10).toInt()
     }
 }

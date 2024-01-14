@@ -48,5 +48,9 @@ class UserViewModel @Inject constructor(
         return userRepository.getLoadMode()
     }
 
+    fun clearDataUser() {
+        userRepository.clearDataUser()
+    }
+
 
 }

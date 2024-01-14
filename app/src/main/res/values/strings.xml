@@ -11,11 +11,12 @@
     <!--    More Stats-->
     <string name="more_stats_title">Detailed statistics</string>
     <string name="daily_norm">Daily rate</string>
+    <string name="water_of_norm_value">%s of %s</string>
     <string name="today">Today</string>
-    <string name="_of">of</string>
     <string name="weekly_norm">Weekly rate</string>
     <string name="your_goals">Your goals</string>
-    <string name="now_week">This week</string>
+    <string name="last_7days">Last 7 days</string>
+    <string name="current_week_value">%s - %s</string>
 
     <!--    Dialog add water-->
     <string name="add_water">Add water</string>

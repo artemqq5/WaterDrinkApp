@@ -20,4 +20,6 @@ interface UserStorage {
     fun setUserPhysical(physical: Float)
     fun getUserPhysical(): Float
 
+    fun clearDataUser()
+
 }

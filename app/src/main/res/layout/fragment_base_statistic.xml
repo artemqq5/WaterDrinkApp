@@ -68,7 +68,7 @@
 
 
                     <TextView
-                        android:id="@+id/textPart1"
+                        android:id="@+id/dailyNorm"
                         style="@style/Text.SizeSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -79,14 +79,14 @@
                         tools:text="0.5 з 2.5" />
 
                     <ProgressBar
-                        android:id="@+id/progressDrink"
+                        android:id="@+id/dailyProgress"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="150dp"
                         android:layout_height="25dp"
-                        android:layout_alignTop="@+id/textPart1"
+                        android:layout_alignTop="@+id/dailyNorm"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
-                        android:layout_toEndOf="@+id/textPart1" />
+                        android:layout_toEndOf="@+id/dailyNorm" />
 
                 </RelativeLayout>
 
@@ -114,35 +114,35 @@
                         android:text="@string/weekly_norm" />
 
                     <TextView
-                        android:id="@+id/textDateWeek"
+                        android:id="@+id/currentWeekDate"
                         style="@style/Text.SizeSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textWeekly"
                         android:layout_marginTop="5dp"
-                        android:textSize="12sp"
-                        tools:text="Сентябрь 23 - 30" />
+                        tools:text="Січ 08 - Січ 14"
+                        android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textPart2"
+                        android:id="@+id/weeklyNorm"
                         style="@style/Text.SizeSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textDateWeek"
+                        android:layout_below="@+id/currentWeekDate"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="10dp"
                         android:textColor="@color/three"
                         tools:text="5.1 з 12.0" />
 
                     <ProgressBar
-                        android:id="@+id/progressDrinkWeek"
+                        android:id="@+id/weeklyProgress"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="150dp"
                         android:layout_height="25dp"
-                        android:layout_alignTop="@+id/textPart2"
+                        android:layout_alignTop="@+id/weeklyNorm"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
-                        android:layout_toEndOf="@+id/textPart2" />
+                        android:layout_toEndOf="@+id/weeklyNorm" />
 
                 </RelativeLayout>
 
@@ -173,7 +173,7 @@
                         android:text="@string/your_goals" />
 
                     <TextView
-                        android:id="@+id/textCompleted"
+                        android:id="@+id/countCompleted"
                         style="@style/Text.SizeSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -186,83 +186,83 @@
                         tools:text="3/7" />
 
                     <TextView
-                        android:id="@+id/textDateNow"
+                        android:id="@+id/currentWeekGoalsDate"
                         style="@style/Text.SizeSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textGoals"
                         android:layout_marginTop="5dp"
-                        android:text="@string/now_week"
+                        android:text="@string/last_7days"
                         android:textSize="12sp" />
 
 
                     <ImageView
-                        android:id="@+id/Mon"
+                        android:id="@+id/day6before"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_below="@+id/textDateNow"
-                        android:layout_alignStart="@+id/textDateNow"
+                        android:layout_below="@+id/currentWeekGoalsDate"
+                        android:layout_alignStart="@+id/currentWeekGoalsDate"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:contentDescription="@string/your_goals"
                         android:src="@drawable/ic_goal" />
 
                     <ImageView
-                        android:id="@+id/Tue"
+                        android:id="@+id/day5before"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignTop="@+id/Mon"
-                        android:layout_toEndOf="@+id/Mon"
+                        android:layout_alignTop="@+id/day6before"
+                        android:layout_toEndOf="@+id/day6before"
                         android:layout_marginStart="10dp"
                         android:contentDescription="@string/your_goals"
                         android:src="@drawable/ic_goal" />
 
                     <ImageView
-                        android:id="@+id/Wed"
+                        android:id="@+id/day4before"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignTop="@+id/Tue"
-                        android:layout_toEndOf="@+id/Tue"
+                        android:layout_alignTop="@+id/day5before"
+                        android:layout_toEndOf="@+id/day5before"
                         android:layout_marginStart="10dp"
                         android:contentDescription="@string/your_goals"
                         android:src="@drawable/ic_goal" />
 
                     <ImageView
-                        android:id="@+id/Thu"
+                        android:id="@+id/day3before"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignTop="@+id/Wed"
-                        android:layout_toEndOf="@+id/Wed"
+                        android:layout_alignTop="@+id/day4before"
+                        android:layout_toEndOf="@+id/day4before"
                         android:layout_marginStart="10dp"
                         android:contentDescription="@string/your_goals"
                         android:src="@drawable/ic_goal" />
 
                         <ImageView
-                            android:id="@+id/Fri"
+                            android:id="@+id/day2before"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_alignTop="@+id/Thu"
-                            android:layout_toEndOf="@+id/Thu"
+                            android:layout_alignTop="@+id/day3before"
+                            android:layout_toEndOf="@+id/day3before"
                             android:layout_marginStart="10dp"
                             android:contentDescription="@string/your_goals"
                             android:src="@drawable/ic_goal" />
 
                         <ImageView
-                            android:id="@+id/Sat"
+                            android:id="@+id/day1before"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_alignTop="@+id/Fri"
-                            android:layout_toEndOf="@+id/Fri"
+                            android:layout_alignTop="@+id/day2before"
+                            android:layout_toEndOf="@+id/day2before"
                             android:layout_marginStart="10dp"
                             android:contentDescription="@string/your_goals"
                             android:src="@drawable/ic_goal" />
 
                         <ImageView
-                            android:id="@+id/Sun"
+                            android:id="@+id/day0before"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_alignTop="@+id/Sat"
-                            android:layout_toEndOf="@+id/Sat"
+                            android:layout_alignTop="@+id/day1before"
+                            android:layout_toEndOf="@+id/day1before"
                             android:layout_marginStart="10dp"
                             android:contentDescription="@string/your_goals"
                             android:src="@drawable/ic_goal" />

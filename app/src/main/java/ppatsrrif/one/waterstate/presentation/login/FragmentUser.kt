@@ -42,7 +42,6 @@ class FragmentUser : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.physicalChoicer.adapter = ArrayAdapter(

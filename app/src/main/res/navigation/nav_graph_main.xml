@@ -25,6 +25,12 @@
         <action
             android:id="@+id/action_fragmentHome_to_dialogListItemWater"
             app:destination="@id/dialogListItemWater" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentSettings2"
+            app:destination="@id/fragmentSettings" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentProfile2"
+            app:destination="@id/fragmentProfile" />
     </fragment>
     <fragment
         android:id="@+id/fragmentProfile"

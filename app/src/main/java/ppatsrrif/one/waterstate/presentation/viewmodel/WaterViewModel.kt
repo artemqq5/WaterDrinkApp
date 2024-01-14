@@ -23,8 +23,18 @@ class WaterViewModel @Inject constructor(
         log("WaterViewModel $throwable")
     }
 
-    val liveDataListWater: LiveData<List<WaterModel>> = waterRepository.getWaterItemByDate(
+    val listCurrentWater: LiveData<List<WaterModel>> = waterRepository.getWaterItemsByDate(
         dateUseCase.getCurrentStartDate(),
+        dateUseCase.getCurrentEndDate()
+    )
+
+    val listCurrentWeekWater: LiveData<List<WaterModel>> = waterRepository.getWaterItemsByDate(
+        dateUseCase.getCurrentWeekStartDate(),
+        dateUseCase.getCurrentWeekEndDate()
+    )
+
+    val listGoalsWater: LiveData<List<WaterModel>> = waterRepository.getWaterItemsByDate(
+        dateUseCase.getCurrentStartDate(6),
         dateUseCase.getCurrentEndDate()
     )
 
@@ -35,10 +45,9 @@ class WaterViewModel @Inject constructor(
     }
 
     fun addWater(waterModel: WaterModel) {
-        viewModelScope.launch(Dispatchers.IO+excCoroutine) {
+        viewModelScope.launch(Dispatchers.IO + excCoroutine) {
             waterRepository.addWaterItem(waterModel)
         }
     }
-
 
 }

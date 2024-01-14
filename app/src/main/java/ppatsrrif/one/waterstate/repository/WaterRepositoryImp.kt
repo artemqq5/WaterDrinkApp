@@ -1,10 +1,12 @@
 package ppatsrrif.one.waterstate.repository
 
+import android.database.sqlite.SQLiteDatabase.deleteDatabase
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import ppatsrrif.one.waterstate.domain.repository.WaterRepository
 import ppatsrrif.one.waterstate.domain.repository.model.WaterModel
 import ppatsrrif.one.waterstate.repository.database.DaoManager
+import ppatsrrif.one.waterstate.repository.database.DataBase.Companion.DATABASE_NAME
 import ppatsrrif.one.waterstate.repository.database.table.WaterItemTable
 import java.util.Date
 import javax.inject.Inject
@@ -20,7 +22,7 @@ class WaterRepositoryImp @Inject constructor(
         daoManager.deleteItem(waterItem.toWaterItemTable())
     }
 
-    override fun getWaterItemByDate(startOfDay: Date, endOfDay: Date): LiveData<List<WaterModel>> {
+    override fun getWaterItemsByDate(startOfDay: Date, endOfDay: Date): LiveData<List<WaterModel>> {
         return daoManager.getByDate(startOfDay, endOfDay).map { list ->
             list.map { waterItemTable -> waterItemTable.toWaterModel() }
         }

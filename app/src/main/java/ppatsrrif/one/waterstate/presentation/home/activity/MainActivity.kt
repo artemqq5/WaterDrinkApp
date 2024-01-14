@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ppatsrrif.one.waterstate.R
@@ -27,7 +26,27 @@ class MainActivity : AppCompatActivity() {
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerMain) as NavHostFragment
 
-        binding.bottomNavigationView.setupWithNavController(navHostFragment.navController)
+//        binding.bottomNavigationView.setupWithNavController(navHostFragment.navController)
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.fragmentHome -> {
+                    navHostFragment.navController.navigate(R.id.fragmentHome)
+                    true
+                }
+
+                R.id.fragmentProfile -> {
+                    navHostFragment.navController.navigate(R.id.fragmentProfile)
+                    true
+                }
+
+                R.id.fragmentSettings -> {
+                    navHostFragment.navController.navigate(R.id.fragmentSettings)
+                    true
+                }
+
+                else -> false
+            }
+        }
 
     }
 
