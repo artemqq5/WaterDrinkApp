@@ -11,11 +11,12 @@
     <!--    More Stats-->
     <string name="more_stats_title">Detailed statistics</string>
     <string name="daily_norm">Daily rate</string>
+    <string name="water_of_norm_value">%s of %s</string>
     <string name="today">Today</string>
-    <string name="_of">of</string>
     <string name="weekly_norm">Weekly rate</string>
     <string name="your_goals">Your goals</string>
-    <string name="now_week">This week</string>
+    <string name="last_7days">Last 7 days</string>
+    <string name="current_week_value">%s - %s</string>
 
     <!--    Dialog add water-->
     <string name="add_water">Add water</string>
@@ -30,6 +31,7 @@
     <string name="edit">Edit</string>
     <string name="button_save">Save</string>
     <string name="weight">Weight</string>
+    <string name="gender">Gender</string>
 
     <!--    Dialog list item-->
     <string name="list_records">List of records</string>
@@ -55,28 +57,43 @@
     <string name="box4_button">View more</string>
     <string name="ms_open">Open detailed statistics</string>
     <string name="close_who">Close Recommendations</string>
-    <string name="sub_text_home1">is</string>
-    <string name="sub_text_home2">liters, in accordance with the calculation of 35 milliliters per 1 kilogram of body weight</string>
+    <string name="water_consumption">Your daily water intake should be %s liters according to our calculation algorithm</string>
+    <string name="sum_liters">%s liters</string>
+
 
     <!--    ResetUser Dialog-->
     <string name="resetProfileMessage">After a reset, the profile cannot be restored!</string>
     <string name="resetProfileTitle">Reset profile?</string>
     <string name="reset_ok">OK</string>
 
-    <!--    Fragment name-->
-    <string name="setName">How can I call you?</string>
-    <string name="setNameInput">Name</string>
     <string name="button_next">Next</string>
 
-    <!--    Fragment profile-->
-    <string name="buttonEdit">Edit profile</string>
-    <string name="buttonReset">Reset profile</string>
-    <string name="unit_weight">kg</string>
+    <!--    Fragment name-->
+    <string name="setName">What is your name?</string>
+    <string name="setNameInput">Name</string>
+
+    <!--    Fragment gender-->
+    <string name="setGender">What is your gender?</string>
+    <string name="setGenderInput">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 
     <!--    Fragment weight-->
     <string name="setWeight">Your weight</string>
     <string name="setWeightInput">weight</string>
-    <string name="setWeightSub">,</string>
+
+    <!--    Fragment physical-->
+    <string name="setPhysical">Choice your physical activity</string>
+
+    <!--    Fragment profile-->
+    <string name="buttonEdit">Edit profile</string>
+    <string name="buttonReset">Reset profile</string>
+    <string name="base_characteristics_profile">%s | %s kg</string>
+    <string name="physical_1.0">1.0 Minimal or no activity</string>
+    <string name="physical_1.2">1.2 Light activity</string>
+    <string name="physical_1.4">1.4 Moderate activity</string>
+    <string name="physical_1.6">1.6 High activity</string>
+    <string name="physical_1.8">1.8 Very high activity</string>
 
     <!--    Item card water-->
     <string name="open_popup">Open the menu</string>
@@ -85,15 +102,26 @@
     <!--    Popup menu-->
     <string name="delete">Delete</string>
 
+    <!--    Errors-->
     <string name="empty_error">Empty field</string>
+    <string name="weight_range_error">Weight range should be in 30–150 kilograms</string>
+    <string name="weight_format_error">Invalid format. Should be 60.0</string>
+    <string name="gender_choose_error">You should choose one gender</string>
+
+
     <string name="field_ml">from 100 to 1000 ml.</string>
 
-    <string name="volume_l">L</string>
+    <string name="volume_l">%s L</string>
 
     <string name="toast_exit">Repeat to exit</string>
 
 
     <!--    ads google-->
     <string name="justBannerKey" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+
+<!--    Settings Fragment-->
+    <string name="settings">Settings</string>
+    <string name="who_settings_title">WHO recommendations</string>
+    <string name="who_settings_desc">The recommendations of the World Health Organization will be displayed</string>
 
 </resources>

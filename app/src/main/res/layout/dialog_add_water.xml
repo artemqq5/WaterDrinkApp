@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:layout_margin="16dp"
+    android:background="@drawable/bg_slide"
+    tools:context=".presentation.home.DialogAddWater">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView"
+        style="@style/Text.TextProfile.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_water"
+        android:textColor="@color/three"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/water_input"
+        style="@style/InputMaterial"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:hint="@string/volume_water"
+        app:helperText="@string/volume_sub"
+        app:layout_constraintBottom_toTopOf="@+id/set_water"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/materialTextView2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialTextView"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/EditTextMaterial"
+            android:inputType="number"
+            android:maxLength="4" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView2"
+        style="@style/Text.SizeMedium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/unit_count"
+        android:textColor="@color/three_60"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/water_input"
+        app:layout_constraintTop_toTopOf="@+id/water_input" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/set_water"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/button_add"
+        android:textColor="@color/three"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/close_water"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/button_cancel"
+        android:textColor="@color/three_60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/set_water" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

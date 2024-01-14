@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".presentation.home.FragmentHome">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
@@ -14,6 +15,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
+        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,16 +28,16 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/relativeLayout3"
                 style="@style/CardMoreStats"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <RelativeLayout
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/text2"
@@ -52,9 +54,8 @@
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/waterNorma"
+                        android:id="@+id/waterConsumption"
                         style="@style/Text"
-                        android:layout_below="@id/text2"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="16dp"
@@ -63,16 +64,16 @@
                         android:text=""
                         android:textColor="@color/three"
                         android:textSize="14sp"
-                        tools:text="составляет 1.4 литра, в соответсвии с расчетом 35 милилитров на 1 кллограм массы тела" />
+                        tools:text="Ваша норма споживання води становить 2.2 літра згідно з нашим розрахунковим алгоритмом" />
 
-                </RelativeLayout>
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/buttonMoreDrunk"
                 style="@style/CardMoreStats"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:focusable="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,14 +96,13 @@
                         android:textSize="20sp" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/count_water"
+                        android:id="@+id/countWater"
                         style="@style/Text"
                         android:layout_below="@id/text1"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text=""
                         android:textColor="@color/three_60"
                         android:textSize="20sp"
                         tools:text="0" />
@@ -112,7 +112,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_margin="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
                         android:contentDescription="@string/ms_open"
                         android:src="@drawable/ic_arrow_right" />
 
@@ -124,7 +127,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/more_statistic"
                 style="@style/CardMoreStats"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:focusable="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -168,26 +171,18 @@
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <FrameLayout
-                android:id="@+id/adViewContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/more_statistic"
-                app:layout_constraintStart_toStartOf="@+id/more_statistic"
-                app:layout_constraintTop_toBottomOf="@+id/more_statistic" />
-
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/blockRecommendation"
+                android:id="@+id/recommendation"
                 style="@style/CardMoreStats"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/adViewContainer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/adViewContainer">
+                app:layout_constraintTop_toBottomOf="@+id/more_statistic"
+                app:layout_constraintVertical_bias="0.0">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -244,6 +239,13 @@
             </com.google.android.material.card.MaterialCardView>
 
 
+            <FrameLayout
+                android:id="@+id/adViewContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

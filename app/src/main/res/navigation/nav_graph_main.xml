@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main.xml"
+    app:startDestination="@id/fragmentHome">
+
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="ppatsrrif.one.waterstate.presentation.home.FragmentHome"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentProfile"
+            app:destination="@id/fragmentProfile" />
+        <action
+            android:id="@+id/action_fragmentHome_to_moreStatsActivity"
+            app:destination="@id/moreStatsActivity" />
+        <action
+            android:id="@+id/action_fragmentHome_to_dialogAddWater"
+            app:destination="@id/dialogAddWater" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentSettings"
+            app:destination="@id/fragmentSettings" />
+        <action
+            android:id="@+id/action_fragmentHome_to_dialogListItemWater"
+            app:destination="@id/dialogListItemWater" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentSettings2"
+            app:destination="@id/fragmentSettings" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentProfile2"
+            app:destination="@id/fragmentProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="ppatsrrif.one.waterstate.presentation.home.FragmentProfile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragmentProfile_to_dialogResetProfile"
+            app:destination="@id/dialogResetProfile" />
+        <action
+            android:id="@+id/action_fragmentProfile_to_dialogEditUser"
+            app:destination="@id/dialogEditUser" />
+    </fragment>
+    <activity
+        android:id="@+id/moreStatsActivity"
+        android:name="ppatsrrif.one.waterstate.presentation.more_stats.activity.MoreStatsActivity"
+        android:label="activity_more_stats"
+        tools:layout="@layout/activity_more_stats" />
+    <dialog
+        android:id="@+id/dialogAddWater"
+        android:name="ppatsrrif.one.waterstate.presentation.home.DialogAddWater"
+        android:label="dialog_add_water"
+        tools:layout="@layout/dialog_add_water" />
+    <dialog
+        android:id="@+id/dialogListItemWater"
+        android:name="ppatsrrif.one.waterstate.presentation.home.DialogListItemWater"
+        android:label="dialog_list_item_water"
+        tools:layout="@layout/dialog_list_item_water" />
+    <dialog
+        android:id="@+id/dialogEditUser"
+        android:name="ppatsrrif.one.waterstate.presentation.home.DialogEditUser"
+        android:label="dialog_edit_user"
+        tools:layout="@layout/dialog_edit_user" />
+    <dialog
+        android:id="@+id/dialogResetProfile"
+        android:name="ppatsrrif.one.waterstate.presentation.home.DialogResetProfile"
+        android:label="DialogResetProfile" />
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="ppatsrrif.one.waterstate.presentation.home.FragmentSettings"
+        android:label="FragmentSettings" />
+</navigation>

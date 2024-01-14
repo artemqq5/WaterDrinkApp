@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.more_stats.BaseStatisticFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/status_bar"
+            app:navigationIcon="@drawable/ic_arrow_back_"
+            app:title="@string/more_stats_title"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Note: A RecyclerView can also be used -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView2"
+                style="@style/CardMoreStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textDaly"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/daily_norm" />
+
+                    <TextView
+                        android:id="@+id/textDate"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/textDaly"
+                        android:text="@string/today"
+                        android:textSize="12sp" />
+
+
+                    <TextView
+                        android:id="@+id/dailyNorm"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textDate"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/three"
+                        tools:text="0.5 з 2.5" />
+
+                    <ProgressBar
+                        android:id="@+id/dailyProgress"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="25dp"
+                        android:layout_alignTop="@+id/dailyNorm"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toEndOf="@+id/dailyNorm" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView3"
+                style="@style/CardMoreStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textWeekly"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weekly_norm" />
+
+                    <TextView
+                        android:id="@+id/currentWeekDate"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textWeekly"
+                        android:layout_marginTop="5dp"
+                        tools:text="Січ 08 - Січ 14"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/weeklyNorm"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/currentWeekDate"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/three"
+                        tools:text="5.1 з 12.0" />
+
+                    <ProgressBar
+                        android:id="@+id/weeklyProgress"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="25dp"
+                        android:layout_alignTop="@+id/weeklyNorm"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toEndOf="@+id/weeklyNorm" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView4"
+                style="@style/CardMoreStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textGoals"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/your_goals" />
+
+                    <TextView
+                        android:id="@+id/countCompleted"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@+id/textGoals"
+                        android:gravity="end"
+                        android:textColor="@color/three_60"
+                        android:textSize="15sp"
+                        tools:text="3/7" />
+
+                    <TextView
+                        android:id="@+id/currentWeekGoalsDate"
+                        style="@style/Text.SizeSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textGoals"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/last_7days"
+                        android:textSize="12sp" />
+
+
+                    <ImageView
+                        android:id="@+id/day6before"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/currentWeekGoalsDate"
+                        android:layout_alignStart="@+id/currentWeekGoalsDate"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:contentDescription="@string/your_goals"
+                        android:src="@drawable/ic_goal" />
+
+                    <ImageView
+                        android:id="@+id/day5before"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignTop="@+id/day6before"
+                        android:layout_toEndOf="@+id/day6before"
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@string/your_goals"
+                        android:src="@drawable/ic_goal" />
+
+                    <ImageView
+                        android:id="@+id/day4before"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignTop="@+id/day5before"
+                        android:layout_toEndOf="@+id/day5before"
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@string/your_goals"
+                        android:src="@drawable/ic_goal" />
+
+                    <ImageView
+                        android:id="@+id/day3before"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignTop="@+id/day4before"
+                        android:layout_toEndOf="@+id/day4before"
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@string/your_goals"
+                        android:src="@drawable/ic_goal" />
+
+                        <ImageView
+                            android:id="@+id/day2before"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignTop="@+id/day3before"
+                            android:layout_toEndOf="@+id/day3before"
+                            android:layout_marginStart="10dp"
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
+
+                        <ImageView
+                            android:id="@+id/day1before"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignTop="@+id/day2before"
+                            android:layout_toEndOf="@+id/day2before"
+                            android:layout_marginStart="10dp"
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
+
+                        <ImageView
+                            android:id="@+id/day0before"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignTop="@+id/day1before"
+                            android:layout_toEndOf="@+id/day1before"
+                            android:layout_marginStart="10dp"
+                            android:contentDescription="@string/your_goals"
+                            android:src="@drawable/ic_goal" />
+
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--            <FrameLayout-->
+            <!--                android:id="@+id/adViewContainer"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center_horizontal"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:layout_marginBottom="16dp" />-->
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
