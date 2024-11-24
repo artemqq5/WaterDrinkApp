@@ -6,46 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".presentation.login.FragmentEnd">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonStartMain"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/name"
+        style="@style/Text.SizeBig"
+        android:layout_centerHorizontal="true"
+        android:text="@string/settings_end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subTitle"
+        style="@style/Text.SizeSmall"
+        android:layout_below="@id/name"
+        android:layout_centerHorizontal="true"
+        android:text="@string/end_sub"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/name"
-                style="@style/Text.SizeBig"
-                android:layout_centerHorizontal="true"
-                android:text="@string/settings_end" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="50dp"
+        android:contentDescription="@string/settings_end"
+        android:src="@drawable/ic_performed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subTitle" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/subTitle"
-                style="@style/Text.SizeSmall"
-                android:layout_below="@id/name"
-                android:layout_centerHorizontal="true"
-                android:text="@string/end_sub" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/subTitle"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:contentDescription="@string/settings_end"
-                android:src="@drawable/ic_performed" />
-
-        </RelativeLayout>
-
-    </ScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonStartMain"

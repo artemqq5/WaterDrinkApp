@@ -1,6 +1,7 @@
 package ppatsrrif.one.waterstate.presentation.home
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -36,12 +37,33 @@ class DialogAddWater : DialogFragment() {
         return bindingDialog.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // set params for dialog
         dialog?.setCancelable(true)
         dialog?.window?.run {
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
+
+        bindingDialog.waterPosition200ml.setOnClickListener {
+            bindingDialog.waterInput.editText?.setText("200")
+        }
+
+        bindingDialog.waterPosition250ml.setOnClickListener {
+            bindingDialog.waterInput.editText?.setText("250")
+        }
+
+        bindingDialog.waterPosition300ml.setOnClickListener {
+            bindingDialog.waterInput.editText?.setText("300")
+        }
+
+        bindingDialog.waterPosition500ml.setOnClickListener {
+            bindingDialog.waterInput.editText?.setText("500")
+        }
+
+        bindingDialog.waterPosition1000ml.setOnClickListener {
+            bindingDialog.waterInput.editText?.setText("1000")
         }
 
         // save data in dialog

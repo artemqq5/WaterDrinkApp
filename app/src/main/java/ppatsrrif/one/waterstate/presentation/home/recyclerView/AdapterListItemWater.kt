@@ -27,10 +27,19 @@ class AdapterListItemWater(
         private val binding = ItemWaterViewBinding.bind(view)
 
         fun initializing(model: WaterModel) {
+
+            when(model.volumeWater) {
+                in 0.0..200.0 -> binding.imageView.setImageResource(R.drawable.w200ml)
+                in 201.0..250.0 -> binding.imageView.setImageResource(R.drawable.w250ml)
+                in 251.0..300.0 -> binding.imageView.setImageResource(R.drawable.w300ml)
+                in 301.0..500.0 -> binding.imageView.setImageResource(R.drawable.w500ml)
+                else -> binding.imageView.setImageResource(R.drawable.w1000ml)
+            }
+
             binding.timeText.text = dateUseCase.getFormatTimeForLocale(model.date)
             binding.volumeText.text = itemView.resources.getString(
-                R.string.volume_l,
-                volumeUseCase.millilitersToLiters(model.volumeWater).toString()
+                R.string.volume_ml,
+                model.volumeWater.toString()
             )
 
             binding.openPopMenu.setOnClickListener {
@@ -84,7 +93,7 @@ class AdapterListItemWater(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setNewList(list: List<WaterModel>) {
-        listItemWater = list
+        listItemWater = list.reversed()
         notifyDataSetChanged()
     }
 

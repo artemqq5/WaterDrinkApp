@@ -1,8 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Aquent" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Aquent" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <!--        <item name="android:windowFullscreen">true</item>-->
         <item name="colorPrimary">@color/three</item>
         <item name="colorPrimaryVariant">@color/two</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -12,11 +11,10 @@
         <item name="android:windowBackground">@color/background</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >@color/status_bar</item>
-        <item name="android:windowAnimationStyle">@null</item>
-        <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">true</item>
 
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:fitsSystemWindows">true</item>
 
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
     </style>

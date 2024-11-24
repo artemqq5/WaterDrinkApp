@@ -1,5 +1,6 @@
 package ppatsrrif.one.waterstate.domain.usecase
 
+import android.annotation.SuppressLint
 import ppatsrrif.one.waterstate.domain.repository.model.UserGender
 import ppatsrrif.one.waterstate.domain.repository.model.UserModel
 import javax.inject.Inject
@@ -8,7 +9,7 @@ import kotlin.math.roundToInt
 class VolumeUseCase @Inject constructor() {
 
     fun millilitersToLiters(volume: Double): Double {
-        return (volume / 1000.0 * 10).roundToInt() / 10.0
+        return (volume / 1000.0).let { Math.round(it * 100) / 100.0 }
     }
 
     fun waterAlgorithm(user: UserModel): Double {

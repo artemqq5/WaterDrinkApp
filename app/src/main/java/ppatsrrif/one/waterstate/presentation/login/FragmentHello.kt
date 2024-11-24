@@ -21,9 +21,7 @@ class FragmentHello : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentHelloBinding.inflate(inflater)
-
         return binding.root
     }
 

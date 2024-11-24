@@ -112,6 +112,7 @@
     <string name="field_ml">from 100 to 1000 ml.</string>
 
     <string name="volume_l">%s L</string>
+    <string name="volume_ml">%s ml</string>
 
     <string name="toast_exit">Repeat to exit</string>
 
@@ -123,5 +124,10 @@
     <string name="settings">Settings</string>
     <string name="who_settings_title">WHO recommendations</string>
     <string name="who_settings_desc">The recommendations of the World Health Organization will be displayed</string>
+    <string name="_200_ml">200 ml</string>
+    <string name="_250_ml">250 ml</string>
+    <string name="_500_ml">500 ml</string>
+    <string name="_1000_ml">1000 ml</string>
+    <string name="_300_ml">300 ml</string>
 
 </resources>

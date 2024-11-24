@@ -17,8 +17,8 @@ android {
         applicationId = "ppatsrrif.one.waterstate"
         minSdk = 24
         targetSdk = 34
-        versionCode = 5
-        versionName = "2.0"
+        versionCode = 7
+        versionName = "3.0"
         viewBinding.enable = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -35,8 +35,8 @@ android {
         }
 
         debug {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

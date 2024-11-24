@@ -41,35 +41,6 @@ class FragmentHome : Fragment(), View.OnClickListener {
 
     private val waterViewModel: WaterViewModel by activityViewModels()
 
-    private var adView: AdView? = null
-    private var initialLayoutComplete = false
-
-    private val adSize: AdSize
-        get() {
-            val bounds: Rect = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                requireActivity().windowManager.currentWindowMetrics.bounds
-            } else {
-                val displayMetrics = DisplayMetrics()
-                @Suppress("DEPRECATION")
-                requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
-                Rect(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels)
-            }
-
-            var adWidthPixels = binding.adViewContainer.width.toFloat()
-
-            if (adWidthPixels == 0f) {
-                adWidthPixels = bounds.width().toFloat()
-            }
-
-            val density = resources.displayMetrics.density
-            val adWidth = (adWidthPixels / density).toInt()
-
-            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
-                requireContext(),
-                adWidth
-            )
-        }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -88,17 +59,6 @@ class FragmentHome : Fragment(), View.OnClickListener {
         binding.buttonMoreDrunk.setOnClickListener(this)
         binding.closeRecommendation.setOnClickListener(this)
         binding.buttonMore.setOnClickListener(this)
-
-        // ads
-        adView = AdView(requireContext())
-        binding.adViewContainer.addView(adView)
-
-        binding.adViewContainer.viewTreeObserver.addOnGlobalLayoutListener {
-            if (!initialLayoutComplete) {
-                initialLayoutComplete = true
-                loadBanner()
-            }
-        }
 
         userViewModel.liveDataUser.observe(viewLifecycleOwner) { user ->
             val waterConsumption = volumeUseCase.waterAlgorithm(user)
@@ -148,17 +108,6 @@ class FragmentHome : Fragment(), View.OnClickListener {
                 findNavController().navigate(R.id.action_fragmentHome_to_dialogListItemWater)
             }
         }
-    }
-
-
-    private fun loadBanner() {
-        adView?.let { adView ->
-            adView.adUnitId = AdsUseCase.ID_BANNER
-            adView.setAdSize(adSize)
-            val adRequest = AdRequest.Builder().build()
-            adView.loadAd(adRequest)
-        }
-
     }
 
 

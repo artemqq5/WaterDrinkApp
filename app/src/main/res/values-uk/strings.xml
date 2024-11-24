@@ -113,6 +113,7 @@
     <string name="field_ml">від 100 до 1000 мл.</string>
 
     <string name="volume_l">%s Л</string>
+    <string name="volume_ml">%s мл</string>
 
     <string name="toast_exit">Повторіть для виходу</string>
 
@@ -120,5 +121,10 @@
     <string name="settings">Налаштування</string>
     <string name="who_settings_title">Рекомендації ВООЗ</string>
     <string name="who_settings_desc">Будуть відображені рекомендації Всесвітньої організації охорони здоров\'я</string>
+    <string name="_200_ml">200 ml</string>
+    <string name="_250_ml">250 ml</string>
+    <string name="_500_ml">500 ml</string>
+    <string name="_1000_ml">1000 ml</string>
+    <string name="_300_ml">300 ml</string>
 
 </resources>
